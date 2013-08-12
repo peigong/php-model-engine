@@ -1,0 +1,27 @@
+{
+  "name": "php-utils",
+  "title": "PHP WEB系统的常用工具库",
+  "description": "PHP WEB系统的常用工具库",
+  "version": "0.0.1",
+  "homepage": "https://github.com/peigong/php-utils",
+  "author": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peigong/php-utils.git"
+  },
+  "bugs": "https://github.com/peigong/php-utils/issues",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/peigong/php-utils/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+  },
+  "keywords": [],
+  "devDependencies": {
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-copy": "~0.4.0",
+    "grunt": "~0.4.1"
+  }
+}

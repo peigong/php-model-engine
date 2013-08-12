@@ -1,0 +1,86 @@
+{include file="common/header.tpl.html"}
+<!--
+广告前端系统统一DEMO项目
+当前版本：@MASTERVERSION@
+构建时间：@BUILDDATE@
+@COPYRIGHT@
+-->
+<style type="text/css">
+</style>
+<section class="section">
+    <div class="container">
+        <h1>模型和模型表单设计</h1>
+        <!-- 二级导航 -->
+        <ul class="nav nav-tabs">
+            <li><a href="designer.php?type=form">表单设计</a></li>
+            <li class="active"><a href="designer.php?type=model">模型设计</a></li>
+            <li><a href="designer.php?type=list">属性列表</a></li>
+        </ul>
+        <aside class="left span4">
+            <h3 class="title">模型<span class="model-ctrl"><a id="model_create_handler" title="添加新模型" href="#"><i class="icon-plus"></i></a></span></h3>
+            <div id="model_list_container"></div>
+        </aside>
+        <aside class="list span5">
+            <h3 class="title">属性<span class="model-ctrl"><a id="attribute_create_handler" title="添加新属性" href="#"><i class="icon-plus"></i></a></span></h3>
+            <div id="attribute_list_container"></div>
+        </aside>
+    </div>
+</section>
+<script type="text/javascript">
+seajs.use([
+'jquery', 
+'/model-engine/js/enum', 
+'/model-engine/js/modelctrllist', 
+'/model-engine/js/linkagelist'
+], function($, enu, mcl, ll){
+    $(function() {
+        var ModelType = enu.ModelType,
+            ModelCtrlList = mcl.ModelCtrlList,
+            LinkageList = ll.LinkageList;
+        var model_list = new ModelCtrlList("#model_list_container", ModelType.MODEL, { 
+                'value': 'model_code', 
+                'text': '[{ model_code }]{ model_name }',
+                'name': 'model_name', 
+
+                'add': {
+                    'handler': '#model_create_handler', 
+                    'form_name': 'frm_model_create'
+                },
+
+                'edit': {
+                    'key': 'model_id',
+                    'form_name': 'frm_model_update'
+                },
+
+                'delete': {
+                    'service': '/model-engine/svr/model_delete.php',
+                    'options' : { 'model': ModelType.MODEL, 'id': '{ model_id }', 'attr': '' }             
+                } 
+            } ),
+            attribute_list = new ModelCtrlList("#attribute_list_container", ModelType.ATTRIBUTE, { 
+                'value': 'attribute_id', 
+                'text': '[{ attribute_name }]{ attribute_comment }',
+                'name': 'attribute_comment', 
+                
+                'add': {
+                    'handler': '#attribute_create_handler', 
+                    'form_name': 'frm_attribute_create',
+                    'options': { 'model_code': 'code' }
+                },
+
+                'edit': {
+                    'key': 'attribute_id',
+                    'form_name': 'frm_attribute_update'
+                },
+
+                'delete': {
+                    'service': '/model-engine/svr/model_delete.php',
+                    'options' : { 'model': ModelType.ATTRIBUTE, 'id': '{ attribute_id }' }             
+                } 
+            } ),
+            ma_linkage = new LinkageList(model_list, attribute_list);
+        ma_linkage.load();
+    } );
+} );
+</script>
+{include file="common/footer.tpl.html"}

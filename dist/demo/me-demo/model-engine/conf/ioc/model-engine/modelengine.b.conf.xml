@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.peigong.tk/ioc/config">
+    <!-- 模型引擎系统业务模型类配置定义 -->
+    <!-- 业务层模型类配置 -->
+    <bean id="modelengine.modules.business.model" class="BModel" path="inc/modules/business/b.model.class.php"  parent="modelengine.modules.core.b.object">
+        <properties>
+            <property name="dao" ref="modelengine.modules.dataaccess.model" />
+            <property name="daoAttribute" ref="modelengine.modules.dataaccess.attribute" />
+        </properties>
+    </bean>
+    <bean id="modelengine.modules.business.modelcategory" class="BModelCategory" path="inc/modules/business/b.modelcategory.class.php"  parent="modelengine.modules.core.b.object">
+        <properties>
+            <property name="dao" ref="modelengine.modules.dataaccess.modelcategory" />
+        </properties>
+    </bean>
+    <bean id="modelengine.modules.business.attribute" class="BAttribute" path="inc/modules/business/b.attribute.class.php"  parent="modelengine.modules.core.b.object">
+        <properties>
+            <property name="dao" ref="modelengine.modules.dataaccess.attribute" />
+            <property name="manager" ref="modelengine.modules.business.model" />
+        </properties>
+    </bean>
+    <bean id="modelengine.modules.business.form" class="BForm" path="inc/modules/business/b.form.class.php"  parent="modelengine.modules.core.b.object">
+        <properties>
+            <property name="dao" ref="modelengine.modules.dataaccess.form" />
+            <property name="b_model" ref="modelengine.modules.business.model" />
+            <property name="b_attribute" ref="modelengine.modules.business.attribute" />
+            <property name="b_formattribute" ref="modelengine.modules.business.formattribute" />
+            <property name="b_system_list" ref="modelengine.modules.business.systemlist" />
+            <property name="b_custom_list_item" ref="modelengine.modules.business.customlistitem" />
+            <property name="b_validation" ref="modelengine.modules.business.validation" />
+        </properties>
+    </bean>
+    <bean id="modelengine.modules.business.formattribute" class="BFormAttribute" path="inc/modules/business/b.formattribute.class.php"  parent="modelengine.modules.core.b.object">
+        <properties>
+            <property name="model" ref="modelengine.modules.business.model" />
+            <property name="attribute" ref="modelengine.modules.dataaccess.attribute" />
+        </properties>
+    </bean>
+    <bean id="modelengine.modules.business.systemlist" class="BSystemList" path="inc/modules/business/b.systemlist.class.php"  parent="modelengine.modules.core.b.object">
+        <properties>
+            <property name="dao" ref="modelengine.modules.dataaccess.systemlist" />
+            <property name="manager" ref="modelengine.modules.business.model" />
+            <property name="custom" ref="modelengine.modules.business.customlist" />
+        </properties>
+    </bean>
+    <bean id="modelengine.modules.business.customlist" class="BCustomList" path="inc/modules/business/b.customlist.class.php"  parent="modelengine.modules.core.b.object">
+        <properties>
+            <property name="dao" ref="modelengine.modules.dataaccess.customlist" />
+            <property name="manager" ref="modelengine.modules.business.model" />
+        </properties>
+    </bean>
+    <bean id="modelengine.modules.business.customlistitem" class="BCustomListItem" path="inc/modules/business/b.customlistitem.class.php"  parent="modelengine.modules.core.b.object">
+        <properties>
+            <property name="dao" ref="modelengine.modules.dataaccess.customlistitem" />
+            <property name="manager" ref="modelengine.modules.business.model" />
+        </properties>
+    </bean>
+    <bean id="modelengine.modules.business.defaultvalue" class="BDefaultValue" path="inc/modules/business/b.defaultvalue.class.php"  parent="modelengine.modules.core.b.object">
+        <properties>
+            <property name="dao" ref="modelengine.modules.dataaccess.defaultvalue" />
+        </properties>
+    </bean>
+    <bean id="modelengine.modules.business.valuetype" class="BValueType" path="inc/modules/business/b.valuetype.class.php"  parent="modelengine.modules.core.b.object">
+        <properties>
+            <property name="dao" ref="modelengine.modules.dataaccess.valuetype" />
+        </properties>
+    </bean>
+    <bean id="modelengine.modules.business.validation" class="BValidation" path="inc/modules/business/b.validation.class.php"  parent="modelengine.modules.core.b.object">
+        <properties>
+            <property name="dao" ref="modelengine.modules.dataaccess.validation" />
+            <property name="manager" ref="modelengine.modules.business.model" />
+        </properties>
+    </bean>
+</config>
+

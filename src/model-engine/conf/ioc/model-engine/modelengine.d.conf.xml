@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.peigong.tk/ioc/config">
+    <!-- 模型引擎系统数据访问类配置定义 -->
+    <bean id="modelengine.modules.dataaccess.model" class="DModel" path="inc/modules/dataaccess/d.model.class.php" parent="modelengine.modules.core.d.object" />
+    <bean id="modelengine.modules.dataaccess.modelcategory" class="DModelCategory" path="inc/modules/dataaccess/d.modelcategory.class.php" parent="modelengine.modules.core.d.object" />
+    <bean id="modelengine.modules.dataaccess.attribute" class="DAttribute" path="inc/modules/dataaccess/d.attribute.class.php" parent="modelengine.modules.core.d.object" />
+    <bean id="modelengine.modules.dataaccess.form" class="DForm" path="inc/modules/dataaccess/d.form.class.php" parent="modelengine.modules.core.d.object" />
+    <bean id="modelengine.modules.dataaccess.systemlist" class="DSystemList" path="inc/modules/dataaccess/d.systemlist.class.php" parent="modelengine.modules.core.d.object" />
+    <bean id="modelengine.modules.dataaccess.customlist" class="DCustomList" path="inc/modules/dataaccess/d.customlist.class.php" parent="modelengine.modules.core.d.object" />
+    <bean id="modelengine.modules.dataaccess.customlistitem" class="DCustomListItem" path="inc/modules/dataaccess/d.customlistitem.class.php" parent="modelengine.modules.core.d.object" />
+    <bean id="modelengine.modules.dataaccess.defaultvalue" class="DDefaultValue" path="inc/modules/dataaccess/d.defaultvalue.class.php" parent="modelengine.modules.core.d.object" />
+    <bean id="modelengine.modules.dataaccess.valuetype" class="DValueType" path="inc/modules/dataaccess/d.valuetype.class.php" parent="modelengine.modules.core.d.object" />
+    <bean id="modelengine.modules.dataaccess.validation" class="DValidation" path="inc/modules/dataaccess/d.validation.class.php" parent="modelengine.modules.core.d.object" />
+</config>
+

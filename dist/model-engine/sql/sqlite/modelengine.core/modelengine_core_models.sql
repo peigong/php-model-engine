@@ -1,0 +1,45 @@
+/*- 模型数据表 -*/
+DROP TABLE IF EXISTS modelengine_core_models;
+CREATE TABLE modelengine_core_models ( 
+    model_id          INTEGER          PRIMARY KEY
+                                       NOT NULL
+                                       UNIQUE,
+    model_code        NVARCHAR( 20 )   NOT NULL
+                                       UNIQUE,
+    model_name        NVARCHAR( 255 ),
+    model_description NVARCHAR( 255 ),
+    model_table       NVARCHAR( 50 ),
+    attribute_table   NVARCHAR( 50 ),
+    category_id       INTEGER          NOT NULL
+                                       DEFAULT ( 0 ),
+    update_time       INTEGER          NOT NULL,
+    create_time       INTEGER          NOT NULL 
+);
+
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (1, 'model', '模型', '模型引擎系统的模型', 'modelengine_core_models', '', 1, 1373350537, 1364974632);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (2, 'attribute', '模型属性', '模型属性', 'modelengine_core_attributes', '', 1, 1366771339, 1366771339);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (3, 'modelform', '表单', '模型引擎系统的表单模型。', 'modelengine_core_forms', 'modelengine_core_form_attributes', 1, 1364974632, 1364974632);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (4, 'textinput', '单行文本框', '模型引擎系统的表单单行文本框输入域模型。', 'modelengine_core_forms', 'modelengine_core_form_attributes', 2, 1364974632, 1364974632);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (5, 'selectinput', '下拉列表', '模型引擎系统的表单下拉列表输入域模型。', 'modelengine_core_forms', 'modelengine_core_form_attributes', 2, 1364974632, 1364974632);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (6, 'checkboxinput', '复选按钮', '复选按钮', 'modelengine_core_forms', 'modelengine_core_form_attributes', 2, 1366771237, 1366771237);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (7, 'checkboxlistinput', '复选按钮列表', '复选按钮列表', 'modelengine_core_forms', 'modelengine_core_form_attributes', 2, 1366947315, 1366947315);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (8, 'radiolistinput', '单选按钮列表', '单选按钮列表', 'modelengine_core_forms', 'modelengine_core_form_attributes', 2, 1366947550, 1366947550);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (9, 'fileinput', '文件上传控件', '文件上传控件', 'modelengine_core_forms', 'modelengine_core_form_attributes', 2, 1366947550, 1366947550);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (10, 'tabcontainer', '表单标签容器', '在表单中装载其他控件或容器的容器，以TAB标签容器的形式表现', 'modelengine_core_forms', 'modelengine_core_form_attributes', 2, 1367482798, 1367482798);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (11, 'rowcontainer', '表单行容器', '在表单中装载其他控件或容器的容器，使各控件或容器以行的形式表现', 'modelengine_core_forms', 'modelengine_core_form_attributes', 2, 1367482943, 1367482943);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (12, 'slot', '广告位', '广告位数据模型', 'adengine_core_slots', 'adengine_core_slot_attributes', 1, 1367574576, 1367574576);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (13, 'skin', '广告皮肤广告', '用于演示广告皮肤的广告模型', 'adengine_user_ads', 'adengine_user_ad_attributes', 3, 1367574677, 1367574677);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (14, 'customlist', '用户自定义列表', '用户自定义列表', 'modelengine_core_custom_lists', '', 1, 1367835404, 1367835404);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (15, 'customlistitem', '用户自定义列表项', '用户自定义列表项', 'modelengine_core_custom_listitems', '', 1, 1367835449, 1367835449);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (16, 'validation', '表单验证模型', '表单验证数据模型', 'modelengine_core_validation', 'modelengine_core_validation_attributes', 1, 1372042354, 1372042354);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (17, 'systemlist', '系统内置列表', '系统内置列表', 'modelengine_core_system_lists', '', 1, 1372646886, 1372646886);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (18, 'flvplayer', '流媒体播放器广告', '流媒体播放器广告', 'adengine_user_ads', 'adengine_user_ad_attributes', 3, 1373274232, 1373274232);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (19, 'user', '用户模型', '用户模型', 'accounts_core_users', 'accounts_core_user_attributes', 4, 1373708515, 1373708515);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (20, 'role', '角色模型', '角色模型', 'accounts_core_roles', '', 4, 1373954812, 1373954812);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (21, 'permission', '许可模型', '许可模型', 'accounts_core_permissions', '', 4, 1373954853, 1373954853);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (22, 'theia_image', '移动设备图片广告', '移动设备图片广告', 'adengine_user_ads', 'adengine_user_ad_attributes', 3, 1375620295, 1375620295);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (23, 'theia_text', '移动设备文本广告', '移动设备文本广告', 'adengine_user_ads', 'adengine_user_ad_attributes', 3, 1375621681, 1375621681);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (24, 'theia_image_text', '移动设备图文广告', '移动设备图文广告', 'adengine_user_ads', 'adengine_user_ad_attributes', 3, 1375621763, 1375621763);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (25, 'theia_fullscreen', '移动设备全屏广告', '移动设备全屏广告', 'adengine_user_ads', 'adengine_user_ad_attributes', 3, 1375620295, 1375620295);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (26, 'theia_intersitial', '移动设备插屏广告', '移动设备插屏广告', 'adengine_user_ads', 'adengine_user_ad_attributes', 3, 1375621681, 1375621681);
+INSERT INTO [modelengine_core_models] ([model_id], [model_code], [model_name], [model_description], [model_table], [attribute_table], [category_id], [update_time], [create_time]) VALUES (27, 'theia_html', '移动设备HTML广告', '移动设备HTML广告', 'adengine_user_ads', 'adengine_user_ad_attributes', 3, 1375621763, 1375621763);
