@@ -33,7 +33,7 @@ module.exports = function(grunt) {
           {expand: true, cwd: 'libs/requirejs-2.1.8', src: ['require.js'], dest: 'dist/demo/libs/requirejs-2.1.8'},
           {expand: true, cwd: 'libs/jquery-2.0.3/dist', src: ['jquery.min.js'], dest: 'dist/demo/libs/jquery-2.0.3'},
 
-          {expand: true, cwd: 'libs/bootstrap-v3.0.0-rc1/dist', src: ['**'], dest: 'dist/demo/libs/bootstrap'},
+          {expand: true, cwd: 'libs/bootstrap-v3.0.0-rc1/dist', src: ['**'], dest: 'dist/demo/libs/bootstrap-v3.0.0-rc1'},
           {expand: true, cwd: 'libs/jquery-file-upload-8.7.1/js', src: [
               'jquery.fileupload.js', 
               'jquery.fileupload-fp.js', 

@@ -11,6 +11,5 @@ $page_id = 'modelengine.pages.modeldesignerpage';
 $page = $context->getBean($page_id);
 $type = isset($_GET['type']) ? $_GET['type'] : 'form';
 $page->type = $type;
-print_r($context);
-//$page->render();
+$page->render();
 ?>

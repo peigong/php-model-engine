@@ -1,4 +1,26 @@
-{include file="common/header.tpl.html"}
+<?php /* Smarty version Smarty-3.1-DEV, created on 2013-08-12 11:25:19
+         compiled from ".\templates\form-designer.tpl.html" */ ?>
+<?php /*%%SmartyHeaderCode:215915208c61f4f9581-01649294%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '8ea1a3ad46efd380346d540f4e8d568d58007851' => 
+    array (
+      0 => '.\\templates\\form-designer.tpl.html',
+      1 => 1376306713,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '215915208c61f4f9581-01649294',
+  'function' => 
+  array (
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1-DEV',
+  'unifunc' => 'content_5208c61f5913e2_31718523',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_5208c61f5913e2_31718523')) {function content_5208c61f5913e2_31718523($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("common/header.tpl.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
 <!--
 广告前端系统统一DEMO项目
 当前版本：@MASTERVERSION@
@@ -162,4 +184,6 @@ seajs.use([
 } );
 */
 </script>
-{include file="common/footer.tpl.html"}
+<?php echo $_smarty_tpl->getSubTemplate ("common/footer.tpl.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+<?php }} ?>

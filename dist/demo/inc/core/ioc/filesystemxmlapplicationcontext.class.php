@@ -5,7 +5,6 @@ require_once(ROOT . "inc/core/cache/cachefactory.class.php");
  * 应用程序上下文对象的文件系统XML格式存储实现。
  */
 class FileSystemXmlApplicationContext implements IApplicationContext{	
-    private $root = ROOT;
     private $arr_config_path = array();
     private $config_suffix = "conf.xml";
     private $cache = null;
@@ -19,7 +18,9 @@ class FileSystemXmlApplicationContext implements IApplicationContext{
      */
     function  __construct(){
         // 设置默认配置目录
-        $this->setConfigPath(ROOT . 'conf/ioc');
+        if (defined('ROOT')) {
+            $this->setConfigPath(ROOT . 'conf/ioc', ROOT);
+        }
     }
     
     /**
@@ -31,9 +32,19 @@ class FileSystemXmlApplicationContext implements IApplicationContext{
     /**
      * 设置IOC类配置的目录。
      * @param String $path IOC类配置的目录。
+     * @param String $root 寻找类定义文件的起始根目录。
      */
-    function setConfigPath($path){
-        array_push($this->arr_config_path, $path);
+    function setConfigPath($path, $root = ''){
+        $root = trim($root);
+        if((0 == strlen($root)) && defined('ROOT')){
+            $root = ROOT;
+        }
+        if (file_exists($path) && (strlen($root) > 0)) {
+            $path = realpath($path);
+            if (!array_key_exists($path, $this->arr_config_path)) {
+                $this->arr_config_path[$path] = $root;
+            }
+        }
     }
     
     /**
@@ -56,8 +67,8 @@ class FileSystemXmlApplicationContext implements IApplicationContext{
                 if($this->config == null){
                     $this->config = array();
                     if(count($this->arr_config_path) > 0){
-                        foreach($this->arr_config_path as $idx=>$conf_path){
-                            $this->initializeConfig($conf_path, $this->config_suffix);
+                        foreach($this->arr_config_path as $conf_path=>$class_root){
+                            $this->initializeConfig($conf_path, $this->config_suffix, $class_root);
                         }
                     }
                     if($this->cache){
@@ -102,17 +113,18 @@ class FileSystemXmlApplicationContext implements IApplicationContext{
      * 初始化类的配置。
      * @param String $path 配置文件的路径。
      * @param String $suffix 配置文件的后缀。
+     * @param String $root 寻找类定义文件的起始根目录。
      */
-    private function initializeConfig($path, $suffix){
+    private function initializeConfig($path, $suffix, $root){
         if(is_dir($path) && ($dh = opendir($path))){
             while(false !== ($file = readdir($dh))){
                 $file_path = $path . "/" . $file;
                 if(is_dir($file_path) && ($file != ".") && ($file != "..")){
-                    $this->initializeConfig($file_path, $suffix);
+                    $this->initializeConfig($file_path, $suffix, $root);
                 }elseif(is_file($file_path)){
                     $pattern = "/\.$suffix$/i";
                     if(preg_match($pattern, $file) > 0){
-                        $config_temp = $this->parse($file_path);
+                        $config_temp = $this->parse($file_path, $root);
                         $this->config = $this->merge($this->config, $config_temp);
                     }
                 }
@@ -122,9 +134,10 @@ class FileSystemXmlApplicationContext implements IApplicationContext{
     
     /**
      * 将XML格式的配置文件解析成数组格式。
-     * 
+     * @param String $path 配置文件的路径。
+     * @param String $root 寻找类定义文件的起始根目录。
      */
-    private function parse($path){
+    private function parse($path, $root){
         $temp = array();
 		if(file_exists($path)){
 			$doc = new DOMDocument();
@@ -139,7 +152,7 @@ class FileSystemXmlApplicationContext implements IApplicationContext{
 				    $temp[$id] = array(
 				        "id" => $id, 
 				        "class" => $class, 
-				        "path" => $path, 
+				        "path" => $root . '/' . $path, 
 				        "parent" => $parent, 
 				        "properties" => array()
 				        );
@@ -154,7 +167,7 @@ class FileSystemXmlApplicationContext implements IApplicationContext{
                                 "name" => $property_name, 
                                 "ref" => $property_ref,
                                 "class" => $property_class, 
-                                "path" => $property_path
+                                "path" => $root . '/' . $property_path
                             ));
                         }
                     }
@@ -188,7 +201,7 @@ class FileSystemXmlApplicationContext implements IApplicationContext{
 	private function create($clazz, $path, $properties = null){
 		$o = null;
         if((strlen($clazz) > 0) && (strlen($path) > 0)){
-            $path = ROOT . $path;
+            //$path = ROOT . $path;
             if(file_exists($path)){
                 try{
                     require_once($path);

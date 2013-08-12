@@ -13,8 +13,9 @@ interface IApplicationContext{
     /**
      * 设置IOC类配置的目录。
      * @param String $path IOC类配置的目录。
+     * @param String $root 寻找类定义文件的起始根目录。
      */
-    function setConfigPath($path);
+    function setConfigPath($path, $root = '');
 }
 
 interface IInjectEnable{
