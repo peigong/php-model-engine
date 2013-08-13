@@ -1,10 +1,3 @@
-/**
- * 广告前端系统统一DEMO项目
- * 模型及模型表单引擎。
- * 当前版本：@MASTERVERSION@
- * 构建时间：@BUILDDATE@
- * @COPYRIGHT@
- */
 define(function(require, exports, module) {
     var $ = jQuery = require('jquery');
 
@@ -35,7 +28,7 @@ define(function(require, exports, module) {
         params += '<player_height>' + height + '</player_height>';
         params += '<click_link>ss</click_link>';
         params += '</cfg>';
-        var path = '/model-engine/assets/flvplayer.2.2.1.0.swf', 
+        var path = 'model-engine/assets/flvplayer.2.2.1.0.swf', 
             flv = createFlash(path, width, height, params);
         return flv;
     };

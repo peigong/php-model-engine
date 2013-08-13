@@ -1,10 +1,5 @@
 {include file="common/header.tpl.html"}
-<!--
-广告前端系统统一DEMO项目
-当前版本：@MASTERVERSION@
-构建时间：@BUILDDATE@
-@COPYRIGHT@
--->
+<script type="text/javascript" src="../js/config.js"></script>
 <style type="text/css">
 </style>
 <section class="section">
@@ -16,15 +11,15 @@
             <li><a href="designer.php?type=model">模型设计</a></li>
             <li class="active"><a href="designer.php?type=list">属性列表</a></li>
         </ul>
-        <aside class="left span3">
+        <aside class="left col-3">
             <h3 class="title">系统内置列表<span class="model-ctrl"><a id="systemlist_create_handler" title="添加系统内置列表" href="#"><i class="icon-plus"></i></a></span></h3>
             <div id="systemlist_container"></div>
         </aside>
-        <aside class="list span3">
+        <aside class="list col-3">
             <h3 class="title">用户自定义列表<span class="model-ctrl"><a id="customlist_create_handler" title="添加用户自定义列表" href="#"><i class="icon-plus"></i></a></span></h3>
             <div id="customlist_container"></div>
         </aside>
-        <aside class="list span4">
+        <aside class="list col-4">
             <h3 class="title">用户自定义列表项<span class="model-ctrl"><a id="customlistitem_create_handler" title="添加用户自定义列表项" href="#"><i class="icon-plus"></i></a></span></h3>
             <div id="customlistitem_container"></div>
         </aside>
@@ -32,80 +27,77 @@
 </section>
 <script type="text/javascript">
 seajs.use([
-'jquery', 
-'/model-engine/js/enum', 
-'/model-engine/js/modelctrllist', 
-'/model-engine/js/linkagelist'
-], function($, enu, mcl, ll){
-    $(function() {
-        var ModelType = enu.ModelType,
-            ModelCtrlList = mcl.ModelCtrlList,
-            LinkageList = ll.LinkageList;
-        var systemlist = new ModelCtrlList("#systemlist_container", ModelType.SYSTEMLIST, { 
-                'value': 'list_id', 
-                'text': 'list_name',
-                'name': 'list_name', 
+'model-engine/js/enum', 
+'model-engine/js/modelctrllist', 
+'model-engine/js/linkagelist'
+], function(enu, mcl, ll){
+    var ModelType = enu.ModelType,
+        ModelCtrlList = mcl.ModelCtrlList,
+        LinkageList = ll.LinkageList;
+    var systemlist = new ModelCtrlList("#systemlist_container", ModelType.SYSTEMLIST, { 
+            'value': 'list_id', 
+            'text': 'list_name',
+            'name': 'list_name', 
 
-                'add': {
-                    'handler': '#systemlist_create_handler', 
-                    'form_name': 'frm_model_systemlist_create'
-                },
+            'add': {
+                'handler': '#systemlist_create_handler', 
+                'form_name': 'frm_model_systemlist_create'
+            },
 
-                'edit': {
-                    'key': 'list_id',
-                    'form_name': 'frm_model_systemlist_update'
-                },
+            'edit': {
+                'key': 'list_id',
+                'form_name': 'frm_model_systemlist_update'
+            },
 
-                'delete': {
-                    'service': '/model-engine/svr/model_delete.php',
-                    'options' : { 'model': ModelType.SYSTEMLIST, 'id': '{ list_id }' }             
-                }
-            } ),
-            customlist = new ModelCtrlList("#customlist_container", ModelType.CUSTOMLIST, { 
-                'value': 'list_id', 
-                'text': 'list_name',
-                'name': 'list_name', 
+            'delete': {
+                'service': '/model-engine/svr/model_delete.php',
+                'options' : { 'model': ModelType.SYSTEMLIST, 'id': '{ list_id }' }             
+            }
+        } ),
+        customlist = new ModelCtrlList("#customlist_container", ModelType.CUSTOMLIST, { 
+            'value': 'list_id', 
+            'text': 'list_name',
+            'name': 'list_name', 
 
-                'add': {
-                    'handler': '#customlist_create_handler', 
-                    'form_name': 'frm_model_customlist_create'
-                },
+            'add': {
+                'handler': '#customlist_create_handler', 
+                'form_name': 'frm_model_customlist_create'
+            },
 
-                'edit': {
-                    'key': 'list_id',
-                    'form_name': 'frm_model_customlist_update'
-                },
+            'edit': {
+                'key': 'list_id',
+                'form_name': 'frm_model_customlist_update'
+            },
 
-                'delete': {
-                    'service': '/model-engine/svr/model_delete.php',
-                    'options' : { 'model': ModelType.CUSTOMLIST, 'id': '{ list_id }' }             
-                } 
-            } ),
-            customlistitem = new ModelCtrlList("#customlistitem_container", ModelType.CUSTOMLISTITEM, { 
-                'value': 'item_id', 
-                'text': '[{ item_value }]{ item_text }',
-                'name': 'item_text', 
+            'delete': {
+                'service': '/model-engine/svr/model_delete.php',
+                'options' : { 'model': ModelType.CUSTOMLIST, 'id': '{ list_id }' }             
+            } 
+        } ),
+        customlistitem = new ModelCtrlList("#customlistitem_container", ModelType.CUSTOMLISTITEM, { 
+            'value': 'item_id', 
+            'text': '[{ item_value }]{ item_text }',
+            'name': 'item_text', 
 
-                'add': {
-                    'handler': '#customlistitem_create_handler', 
-                    'form_name': 'frm_model_customlistitem_create',
-                    'options': { 'list_id': 'code' }
-                },
+            'add': {
+                'handler': '#customlistitem_create_handler', 
+                'form_name': 'frm_model_customlistitem_create',
+                'options': { 'list_id': 'code' }
+            },
 
-                'edit': {
-                    'key': 'item_id',
-                    'form_name': 'frm_model_customlistitem_update'
-                },
+            'edit': {
+                'key': 'item_id',
+                'form_name': 'frm_model_customlistitem_update'
+            },
 
-                'delete': {
-                    'service': '/model-engine/svr/model_delete.php',
-                    'options' : { 'model': ModelType.CUSTOMLISTITEM, 'id': '{ item_id }' }             
-                }
-            } ),
-            custom_linkage = new LinkageList(customlist, customlistitem);
-        systemlist.load();
-        custom_linkage.load();
-    } );
+            'delete': {
+                'service': '/model-engine/svr/model_delete.php',
+                'options' : { 'model': ModelType.CUSTOMLISTITEM, 'id': '{ item_id }' }             
+            }
+        } ),
+        custom_linkage = new LinkageList(customlist, customlistitem);
+    systemlist.load();
+    custom_linkage.load();
 } );
 </script>
 {include file="common/footer.tpl.html"}

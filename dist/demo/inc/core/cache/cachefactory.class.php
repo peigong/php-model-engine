@@ -29,7 +29,7 @@ class CacheFactory{
         $clazz = '';
         if ($type && strlen($type) > 0) {
             $clazz = $type;
-        }else if (defined(CACHE_CLASS_NAME) && strlen(CACHE_CLASS_NAME) > 0) {
+        }else if (defined('CACHE_CLASS_NAME') && strlen(CACHE_CLASS_NAME) > 0) {
             $clazz = CACHE_CLASS_NAME;
         }
         if ($clazz && strlen($clazz) > 0) {

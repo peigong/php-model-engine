@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <title>模型和模型表单引擎的DEMO</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script data-main="/js/main" src="/libs/requirejs-2.1.8/require.js"></script>
+    <script type="text/javascript" id="seajsnode" src="/libs/seajs-2.1.1/sea.js"></script>
+    <script type="text/javascript" src="/js/config.js"></script>
+    <script type="text/javascript">
+        seajs.use("js/main");
+    </script>
 </head>
 <body>
-    <header class="header">
-        <div class="container">模型和模型表单引擎的DEMO</div>
-    </header>

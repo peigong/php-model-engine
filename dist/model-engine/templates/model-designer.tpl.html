@@ -1,10 +1,5 @@
 {include file="common/header.tpl.html"}
-<!--
-广告前端系统统一DEMO项目
-当前版本：@MASTERVERSION@
-构建时间：@BUILDDATE@
-@COPYRIGHT@
--->
+<script type="text/javascript" src="../js/config.js"></script>
 <style type="text/css">
 </style>
 <section class="section">
@@ -16,11 +11,11 @@
             <li class="active"><a href="designer.php?type=model">模型设计</a></li>
             <li><a href="designer.php?type=list">属性列表</a></li>
         </ul>
-        <aside class="left span4">
+        <aside class="left col-4">
             <h3 class="title">模型<span class="model-ctrl"><a id="model_create_handler" title="添加新模型" href="#"><i class="icon-plus"></i></a></span></h3>
             <div id="model_list_container"></div>
         </aside>
-        <aside class="list span5">
+        <aside class="list col-5">
             <h3 class="title">属性<span class="model-ctrl"><a id="attribute_create_handler" title="添加新属性" href="#"><i class="icon-plus"></i></a></span></h3>
             <div id="attribute_list_container"></div>
         </aside>
@@ -29,9 +24,9 @@
 <script type="text/javascript">
 seajs.use([
 'jquery', 
-'/model-engine/js/enum', 
-'/model-engine/js/modelctrllist', 
-'/model-engine/js/linkagelist'
+'model-engine/js/enum', 
+'model-engine/js/modelctrllist', 
+'model-engine/js/linkagelist'
 ], function($, enu, mcl, ll){
     $(function() {
         var ModelType = enu.ModelType,

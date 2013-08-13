@@ -1,7 +1,6 @@
-requirejs.config({
-    baseUrl: '/',
-    paths: {
-        jquery: 'libs/jquery-2.0.3/jquery.min',
-        bootstrap: 'libs/bootstrap-v3.0.0-rc1/js/bootstrap.min'
-    }
+define(function(require, exports, module) {
+	require('jquery');
+	require('bootstrap');
+	require('bootstrap-css/bootstrap.css');
+	require('css/global.css');
 });

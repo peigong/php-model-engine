@@ -1,0 +1,13 @@
+/*- 主体样式--页面自定义样式 -*/
+section.section h1{
+    font-size:18px;
+    line-height:150%;
+}
+section.section h2{
+    font-size:16px;
+    line-height:150%;
+}
+section.section h3{
+    font-size:14px;
+    line-height:150%;
+}

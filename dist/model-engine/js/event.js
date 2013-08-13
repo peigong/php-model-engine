@@ -1,10 +1,3 @@
-/**
- * 广告前端系统统一DEMO项目
- * 模型及模型表单引擎。
- * 当前版本：@MASTERVERSION@
- * 构建时间：@BUILDDATE@
- * @COPYRIGHT@
- */
 define(function(require, exports, module) {
     /**
      * 事件定义。

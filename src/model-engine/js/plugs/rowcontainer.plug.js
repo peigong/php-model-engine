@@ -1,10 +1,3 @@
-/**
- * 广告前端系统统一DEMO项目
- * 模型及模型表单引擎。
- * 当前版本：@MASTERVERSION@
- * 构建时间：@BUILDDATE@
- * @COPYRIGHT@
- */
 define(function(require, exports, module) {
     /**
      * 创建表单行容器。
@@ -17,7 +10,7 @@ define(function(require, exports, module) {
      * @param def {String} 表单对象的默认值。
      */
     function create(o, container, settings, ext, def){
-        var util = require('/model-engine/js/plugs/plugutil'),
+        var util = require('model-engine/js/plugs/plugutil'),
             attributes = settings.attributes,
             items = settings.items,
             createItem = ext['createItem'],
