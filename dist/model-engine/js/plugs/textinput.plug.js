@@ -4,7 +4,7 @@ define([
     'model-engine/js/util',
     'model-engine/js/plugs/plugutil',
     'model-engine/js/plugs/triggeredtextinputeditor.plug'
-],function($, enu, util, plugutil, trigger) {
+], function($, enu, util, plugutil, trigger) {
     var ModelType = enu.ModelType,
         FormfieldPrefix = enu.FormfieldPrefix,
         loadCss = util.loadCss;

@@ -1,6 +1,5 @@
 define([
     'jquery',
-    'jquery.ui',
     'jquery-validate/jquery.validate.min',
     'jquery-validate/localization/messages_zh',
     'model-engine/js/enum',
@@ -12,7 +11,7 @@ define([
     'model-engine/js/plugs/rowcontainer.plug',
     'model-engine/js/plugs/selectinput.plug',
     'model-engine/js/plugs/textinput.plug'
-], function($, ui, jv, jvi18n, enu, eve, util, checkboxinput, fileinput, radiolistinput, rowcontainer, selectinput, textinput) {
+], function($, jv, jvi18n, enu, eve, util, checkboxinput, fileinput, radiolistinput, rowcontainer, selectinput, textinput) {
     var ModelType = enu.ModelType,
         FormfieldPrefix = enu.FormfieldPrefix,
         Event = eve.Event,

@@ -1,5 +1,5 @@
 define([
-    'jquery'
+    'jquery',
     'model-engine/js/util'
 ], function($, util) {
     var loadCss = util.loadCss;

@@ -5,10 +5,7 @@ define([
     'model-engine/js/util',
     'model-engine/js/plugs/plugutil',
     'jquery.ui',
-    'jquery-file-upload/jquery.fileupload',
-    'jquery-file-upload/jquery.fileupload-fp',
-    'jquery-file-upload/jquery.fileupload-ui',
-    'jquery-file-upload/jquery.iframe-transport'
+    'jquery-file-upload/jquery.fileupload'
 ], function($, enu, pre, util, plugutil) {
     var ModelType = enu.ModelType,
         FormfieldPrefix = enu.FormfieldPrefix,

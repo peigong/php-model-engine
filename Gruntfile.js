@@ -42,12 +42,7 @@ module.exports = function(grunt) {
           {expand: true, cwd: "libs/jquery-validation-1.11.1/dist", src: ["jquery.validate.min.js"], dest: "dist/demo/libs/jquery-validation-1.11.1"},
           {expand: true, cwd: "libs/jquery-validation-1.11.1", src: ["localization/messages_zh.js"], dest: "dist/demo/libs/jquery-validation-1.11.1"},
           {expand: true, cwd: "libs/bootstrap-v3.0.0-rc1/dist", src: ["**"], dest: "dist/demo/libs/bootstrap-v3.0.0-rc1"},
-          {expand: true, cwd: "libs/jquery-file-upload-8.7.1/js", src: [
-              "jquery.fileupload.js", 
-              "jquery.fileupload-fp.js", 
-              "jquery.fileupload-ui.js", 
-              "jquery.iframe-transport.js"
-            ], dest: "dist/demo/libs/jquery-file-upload-8.7.1"},
+          {expand: true, cwd: "libs/jquery-file-upload-8.7.1/js", src: ["**.js"], dest: "dist/demo/libs/jquery-file-upload-8.7.1"},
             {expand: true, cwd: "libs/jquery-file-upload-8.7.1/css", src: ["jquery.fileupload-ui.css"], dest: "dist/demo/libs/jquery-file-upload-8.7.1"},
             {expand: true, cwd: "libs/jquery-file-upload-8.7.1/server/php", src: ["UploadHandler.php"], dest: "dist/demo/libs/jquery-file-upload-8.7.1"}
         ]

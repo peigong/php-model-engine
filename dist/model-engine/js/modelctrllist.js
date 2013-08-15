@@ -1,5 +1,5 @@
 define([
-    'jquery'
+    'jquery',
     'model-engine/js/util',
     'model-engine/js/modellist',
     'model-engine/js/modelform',

@@ -1,6 +1,6 @@
 define([
     'model-engine/js/plugs/plugutil'
-],function(util) {
+], function(util) {
     /**
      * 创建表单行容器。
      * @param o {ModelForm} 模型表单对象的实例。

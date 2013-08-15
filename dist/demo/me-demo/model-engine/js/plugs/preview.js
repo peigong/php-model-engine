@@ -28,7 +28,7 @@ define([
         params += '<player_height>' + height + '</player_height>';
         params += '<click_link>ss</click_link>';
         params += '</cfg>';
-        var path = 'model-engine/assets/flvplayer.2.2.1.0.swf', 
+        var path = require.toUrl('model-engine/assets/flvplayer.2.2.1.0.swf'), 
             flv = createFlash(path, width, height, params);
         return flv;
     };

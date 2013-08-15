@@ -2,7 +2,7 @@ define([
     'jquery',
     'model-engine/js/enum',
     'model-engine/js/util'
-],function($, enu, util) {
+], function($, enu, util) {
     var ModelType = enu.ModelType,
         FormfieldPrefix = enu.FormfieldPrefix,
         loadCss = util.loadCss;
