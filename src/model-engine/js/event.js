@@ -10,6 +10,7 @@ define(function(require, exports, module) {
     function EventDispatcher(){
         this.callbackDict = {};
     };
+    
     EventDispatcher.prototype = {
         /**
          * 添加事件监听。

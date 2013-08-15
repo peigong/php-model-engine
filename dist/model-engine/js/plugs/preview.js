@@ -1,5 +1,5 @@
 define(function(require, exports, module) {
-    var $ = jQuery = require('jquery');
+    var $ = require('jquery');
 
     /**
      * 创建FLASH的HTML内容。

@@ -1,20 +1,19 @@
-define(function(require, exports, module) {
-    var $ = jQuery = require('jquery'),
-        enu = require('model-engine/js/enum'),
+define(['jquery'], function(require, exports, module) {
+    require.async(['jquery.ui'], function(){
+        require('jquery-file-upload/jquery.fileupload');                            
+        require('jquery-file-upload/jquery.fileupload-fp');                            
+        require('jquery-file-upload/jquery.fileupload-ui');                            
+        require('jquery-file-upload/jquery.iframe-transport');                            
+    });
+
+    var enu = require('model-engine/js/enum'),
         pre = require('model-engine/js/plugs/preview'),
         ModelType = enu.ModelType,
         FormfieldPrefix = enu.FormfieldPrefix,
         preview = pre.preview;
         
-    require('lab')
-    require('bootstrap');
-    require('fileupload-7.4.1/jquery.fileupload-ui.css');
-    $LAB
-    .script('/libs/jquery-ui-1.10.3.js').wait()
-    .script('/libs/fileupload-7.4.1/jquery.fileupload.js').wait()
-    .script('/libs/fileupload-7.4.1/jquery.fileupload-fp.js')
-    .script('/libs/fileupload-7.4.1/jquery.fileupload-ui.js')
-    .script('/libs/fileupload-7.4.1/jquery.iframe-transport.js');
+    require('bootstrap-css/bootstrap.css');
+    require('jquery-file-upload/jquery.fileupload-ui.css');
         
     /**
      * 创建文件上传控件表单项。
@@ -32,6 +31,11 @@ define(function(require, exports, module) {
             form_name = o.getControlName(settings),
             controls = util.createHorizontalContainer(o.containers, container, settings, form_name, attributes.label);
         
+        var upload_service = './svr/file_upload.php';
+        if (ext.hasownproperty('upload_service')) {
+            upload_service = ext['upload_service'];
+        };
+
         var txt = $('<input />');
         controls.append(txt);
         txt.attr('id', form_name);
@@ -64,7 +68,7 @@ define(function(require, exports, module) {
         file.attr('type', 'file');
         var oThis = this;
         $(file).fileupload({
-            url: '/model-engine/svr/file_upload.php',
+            url: upload_service,
             autoUpload: true,
             dataType: 'json',
             done: function (e, data) {

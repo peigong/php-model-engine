@@ -1,6 +1,6 @@
-define(function(require, exports, module) {
-	require('jquery');
-	require('bootstrap');
-	require('bootstrap-css/bootstrap.css');
-	require('css/global.css');
+
+/*全局的JS入口*/
+define(function(require, exports, module){
+    require('css/global.css');
+    require('bootstrap-css/bootstrap.css');    
 });

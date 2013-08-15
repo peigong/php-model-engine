@@ -1,10 +1,10 @@
 define(function(require, exports, module) {
-    var $ = jQuery = require('jquery'),
+    var $ = require('jquery'),
         enu = require('model-engine/js/enum'),
         ModelType = enu.ModelType,
         FormfieldPrefix = enu.FormfieldPrefix;
         
-    require('bootstrap');
+    require('bootstrap-css/bootstrap.css');
         
     /**
      * 创建单选按钮列表表单项。

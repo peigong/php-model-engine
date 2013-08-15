@@ -1,6 +1,6 @@
 define(function(require, exports, module) {
-    var $ = jQuery = require('jquery');
-    require('bootstrap');
+    var $ = require('jquery');
+    require('bootstrap-css/bootstrap.css');
     
     /**
      * 创建表单项的水平容器。

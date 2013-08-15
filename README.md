@@ -9,12 +9,13 @@
  * PHP版本的数据库访问框架：git clone https://github.com/peigong/php-db.git --branch 0.0.1 ./libs/php-db-0.0.1
  * PHP网站系统核心基类和接口库：git clone https://github.com/peigong/php-site-core.git --branch 0.0.1 ./libs/php-site-core-0.0.1
  * PHP WEB系统的常用工具库：git clone https://github.com/peigong/php-utils.git --branch 0.0.1 ./libs/php-utils-0.0.1
- * Sea.js库(http://seajs.org)：git clone https://github.com/seajs/seajs.git --branch 2.1.1 ./libs/seajs-2.1.1
- * jQuery框架(http://jquery.com)：git clone https://github.com/jquery/jquery.git --branch 2.0.3 ./libs/jquery-2.0.3
- * jQuery UI库(http://jqueryui.com)：git clone https://github.com/jquery/jquery-ui.git --branch 1.10.3 ./libs/jquery-ui-1.10.3
- * jQuery File Upload(blueimp-file-upload：git clone https://github.com/blueimp/jQuery-File-Upload.git --branch 8.7.1 ./libs/jquery-file-upload-8.7.1
- * bootstrap框架(http://twitter.github.io/bootstrap/)：git clone https://github.com/twbs/bootstrap.git --branch v3.0.0-rc1 ./libs/bootstrap-v3.0.0-rc1
- * Smarty模板引擎(http://www.smarty.net)：svn checkout http://smarty-php.googlecode.com/svn/tags/Smarty_3_1_8 ./libs/Smarty_3_1_8
+ * RequireJS框架([http://requirejs.org](http://requirejs.org))：git clone https://github.com/jrburke/requirejs.git --branch 2.1.8 ./libs/requirejs-2.1.8
+ * jQuery框架([http://jquery.com](http://jquery.com))：git clone https://github.com/jquery/jquery.git --branch 2.0.3 ./libs/jquery-2.0.3
+ * jQuery UI库([http://jqueryui.com](http://jqueryui.com))：git clone https://github.com/jquery/jquery-ui.git --branch 1.10.3 ./libs/jquery-ui-1.10.3
+ * jQuery File Upload([blueimp-file-upload](blueimp-file-upload)：git clone https://github.com/blueimp/jQuery-File-Upload.git --branch 8.7.1 ./libs/jquery-file-upload-8.7.1
+ * jQuery Validation Plugin([http://jqueryvalidation.org](http://jqueryvalidation.org))：git clone https://github.com/jzaefferer/jquery-validation.git --branch 1.11.1 ./libs/jquery-validation-1.11.1
+ * bootstrap框架([http://twitter.github.io/bootstrap](http://twitter.github.io/bootstrap))：git clone https://github.com/twbs/bootstrap.git --branch v3.0.0-rc1 ./libs/bootstrap-v3.0.0-rc1
+ * Smarty模板引擎([http://www.smarty.net](http://www.smarty.net))：svn checkout http://smarty-php.googlecode.com/svn/tags/Smarty_3_1_8 ./libs/Smarty_3_1_8
 
 ## 使用说明 ##
 

@@ -1,5 +1,5 @@
 {include file="common/header.tpl.html"}
-<script type="text/javascript" src="../js/config.js"></script>
+<!-- <script type="text/javascript" src="../js/config.js"></script> -->
 <style type="text/css">
 </style>
 <section class="section">
@@ -50,7 +50,7 @@ seajs.use([
             },
 
             'delete': {
-                'service': '/model-engine/svr/model_delete.php',
+                'service': './svr/model_delete.php',
                 'options' : { 'model': ModelType.SYSTEMLIST, 'id': '{ list_id }' }             
             }
         } ),
@@ -70,7 +70,7 @@ seajs.use([
             },
 
             'delete': {
-                'service': '/model-engine/svr/model_delete.php',
+                'service': './svr/model_delete.php',
                 'options' : { 'model': ModelType.CUSTOMLIST, 'id': '{ list_id }' }             
             } 
         } ),
@@ -91,7 +91,7 @@ seajs.use([
             },
 
             'delete': {
-                'service': '/model-engine/svr/model_delete.php',
+                'service': './svr/model_delete.php',
                 'options' : { 'model': ModelType.CUSTOMLISTITEM, 'id': '{ item_id }' }             
             }
         } ),

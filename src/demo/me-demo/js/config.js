@@ -3,6 +3,7 @@
 seajs.config({
     paths: {
         'model-engine': 'me-demo/model-engine',
-        'jquery.validate': '/libs/jquery-validation-1.11.1'
+        'jquery-validate': 'libs/jquery-validation-1.11.1',
+        'jquery-file-upload': 'libs/jquery-file-upload-8.7.1'
     }
 });
