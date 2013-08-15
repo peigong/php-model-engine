@@ -45,9 +45,9 @@ class ModelEngineSQLiteRoute implements IDbRoute{
                     $uid = $ext['uid'];
                 }
                 $db .= implode('/', array('u', ($uid % 10), $uid, ''));
-                io_mkdir($db);
                 break;
             }
+            io_mkdir($db);
             $db_name = implode('_', array($arr_table[0], $arr_table[1]));
             $db = implode('', array($db, $db_name, '.sqlite'));
         }else{
