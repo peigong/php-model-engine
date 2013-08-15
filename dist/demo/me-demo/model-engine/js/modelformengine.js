@@ -1,6 +1,6 @@
-define(function(require, exports, module) {
-    var mf = require('model-engine/js/modelform');
-
+define([
+    'model-engine/js/modelform'
+], function(mf) {
     var ModelForm = mf.ModelForm;
         
     /**
@@ -64,5 +64,7 @@ define(function(require, exports, module) {
         return ModelFormEngine.Instances[id];
     };
     
-    exports.ModelFormEngine = ModelFormEngine;
+    return {
+        'ModelFormEngine': ModelFormEngine
+    };
 });

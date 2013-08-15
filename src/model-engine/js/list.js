@@ -1,5 +1,7 @@
-define(['jquery'], function(require, exports, module) {
-    var eve = require('model-engine/js/event');
+define([
+    'jquery',
+    'model-engine/js/event'
+], function($, eve) {
     var Event = eve.Event,
         EventDispatcher = eve.EventDispatcher;
         
@@ -27,7 +29,9 @@ define(['jquery'], function(require, exports, module) {
      */
     List.Event = $.extend(Event, {'CHANGE': 'change'});
     
-    exports.empty = empty;
-    exports.List = List;
+    return {
+        'empty': empty,
+        'List': List
+    };
 });
 

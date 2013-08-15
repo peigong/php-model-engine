@@ -1,13 +1,14 @@
-define(['jquery'], function(require, exports, module) {
-    var util = require('model-engine/js/util'),
-        l = require('model-engine/js/list');
-        
-    require('model-engine/css/model-engine.css');
-
+define([
+    'jquery',
+    'model-engine/js/util',
+    'model-engine/js/list'
+], function($, util, l) {
     var format = util.format,
+        loadCss = util.loadCss,
         empty = l.empty;
         List = l.List;
-        
+    
+    loadCss(require.toUrl('model-engine/css/model-engine.css'));    
      
     /**
      * 模型列表。
@@ -131,5 +132,7 @@ define(['jquery'], function(require, exports, module) {
      */
     ModelList.Event = $.extend(List.Event, {});
     
-    exports.ModelList = ModelList;
+    return {
+        'ModelList': ModelList
+    };
 });

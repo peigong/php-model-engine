@@ -1,27 +1,34 @@
-define(['jquery'], function(require, exports, module) {
-    require('jquery.ui');
-    require('jquery-validate/jquery.validate.js');
-    require('jquery-validate/localization/messages_zh.js');                            
-    
-    var enu = require('model-engine/js/enum'),
-        e = require('model-engine/js/event'),
-        util = require('model-engine/js/util');
-
-
-    require('model-engine/css/model-engine.css');
-    require('model-engine/js/plugs/checkboxinput.plug');
-    require('model-engine/js/plugs/fileinput.plug');
-    require('model-engine/js/plugs/radiolistinput.plug');
-    require('model-engine/js/plugs/rowcontainer.plug');
-    require('model-engine/js/plugs/selectinput.plug');
-    require('model-engine/js/plugs/textinput.plug');
-    
-
+define([
+    'jquery',
+    'jquery.ui',
+    'jquery-validate/jquery.validate.min',
+    'jquery-validate/localization/messages_zh',
+    'model-engine/js/enum',
+    'model-engine/js/event',
+    'model-engine/js/util',
+    'model-engine/js/plugs/checkboxinput.plug',
+    'model-engine/js/plugs/fileinput.plug',
+    'model-engine/js/plugs/radiolistinput.plug',
+    'model-engine/js/plugs/rowcontainer.plug',
+    'model-engine/js/plugs/selectinput.plug',
+    'model-engine/js/plugs/textinput.plug'
+], function($, ui, jv, jvi18n, enu, eve, util, checkboxinput, fileinput, radiolistinput, rowcontainer, selectinput, textinput) {
     var ModelType = enu.ModelType,
         FormfieldPrefix = enu.FormfieldPrefix,
-        Event = e.Event,
-        EventDispatcher = e.EventDispatcher,
-        format = util.format;
+        Event = eve.Event,
+        EventDispatcher = eve.EventDispatcher,
+        format = util.format,
+        loadCss = util.loadCss,
+        plugs = {
+            'checkboxinput': checkboxinput, 
+            'fileinput': fileinput, 
+            'radiolistinput': radiolistinput, 
+            'rowcontainer': rowcontainer, 
+            'selectinput': selectinput, 
+            'textinput': textinput
+        };
+
+    loadCss(require.toUrl('model-engine/css/model-engine.css'));    
    
     /**
      * 模型表单类。
@@ -313,14 +320,13 @@ define(['jquery'], function(require, exports, module) {
          * @param {Boolean} inline 表单项是否是行内元素。
          */
         createItem: function(container, settings, inline){
-            var util, create, 
-                code = settings.code, 
+            var code = settings.code, 
                 validation = settings.validation,
-                module = 'model-engine/js/plugs/' + code + '.plug',
                 name = this.getControlName(settings),
-                util = require(module);
-            if(util){
-                create = util.create;
+                plug = plugs[code],
+                create;
+            if(plug){
+                create = plug.create;
                 this.addValidation(name, validation);
             }else{
                 create = function(){};
@@ -501,5 +507,7 @@ define(['jquery'], function(require, exports, module) {
      */
     ModelForm.Event = $.extend(Event, { 'LOADED': 'loaded', 'SUCCESS': 'success', 'CLOSED': 'closed' });
     
-    exports.ModelForm = ModelForm;
+    return {
+        'ModelForm': ModelForm
+    };
 });

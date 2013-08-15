@@ -1,4 +1,4 @@
-define(function(require, exports, module) {
+define(function() {
     /**
      * 事件定义。
      */
@@ -66,7 +66,9 @@ define(function(require, exports, module) {
         }
     };
     
-    exports.Event = Event;
-    exports.EventDispatcher = EventDispatcher;
+    return {
+        'Event': Event,
+        'EventDispatcher': EventDispatcher
+    };
 });
 

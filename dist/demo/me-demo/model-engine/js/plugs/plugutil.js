@@ -1,6 +1,9 @@
-define(function(require, exports, module) {
-    var $ = require('jquery');
-    require('bootstrap-css/bootstrap.css');
+define([
+    'jquery'
+    'model-engine/js/util'
+], function($, util) {
+    var loadCss = util.loadCss;
+    loadCss(require.toUrl('bootstrap-css'));
     
     /**
      * 创建表单项的水平容器。
@@ -53,6 +56,8 @@ define(function(require, exports, module) {
         return controlGroup;
     }
 
-    exports.createInlineContainer = createInlineContainer;
-    exports.createHorizontalContainer = createHorizontalContainer;
+    return {
+        'createInlineContainer': createInlineContainer,
+        'createHorizontalContainer': createHorizontalContainer
+    };
 });

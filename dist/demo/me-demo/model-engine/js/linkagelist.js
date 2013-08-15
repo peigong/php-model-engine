@@ -1,6 +1,7 @@
-define(['jquery'], function(require, exports, module) {
-    var l = require('model-engine/js/list');
-
+define([
+    'jquery',
+    'model-engine/js/list'
+], function($, l) {
     var List = l.List;
         
     /**
@@ -32,6 +33,9 @@ define(['jquery'], function(require, exports, module) {
             this.slave.load(code);
         }
     };      
-    exports.LinkageList = LinkageList;
+    
+    return {
+        'LinkageList': LinkageList
+    };
 });
 

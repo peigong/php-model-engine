@@ -1,10 +1,13 @@
-define(function(require, exports, module) {
-    var $ = require('jquery'),
-        enu = require('model-engine/js/enum'),
-        ModelType = enu.ModelType,
-        FormfieldPrefix = enu.FormfieldPrefix;
+define([
+    'jquery',
+    'model-engine/js/enum',
+    'model-engine/js/util'
+],function($, enu, util, plugutil) {
+    var ModelType = enu.ModelType,
+        FormfieldPrefix = enu.FormfieldPrefix,
+        loadCss = util.loadCss;
         
-    require('bootstrap-css/bootstrap.css');
+    loadCss(require.toUrl('bootstrap-css'));
         
     /**
      * 创建由点击触发的单行文本框编辑器表单项。
@@ -17,8 +20,7 @@ define(function(require, exports, module) {
      * @param def {String} 表单对象的默认值。
      */
     function create(o, container, settings, ext, def){
-        var util = require('model-engine/js/plugs/plugutil'),
-            attributes = settings.attributes,
+        var attributes = settings.attributes,
             form_name = o.getControlName(settings);
 
         var controlGroup = $('<div />');
@@ -70,5 +72,7 @@ define(function(require, exports, module) {
         o.controls[form_name] = { 'id': form_name, 'name': settings.name, 'type': ModelType.TEXTINPUT, 'field': attributes.field };
     }
     
-    exports.create = create;
+    return {
+        'create': create
+    };
 });

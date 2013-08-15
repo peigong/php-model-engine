@@ -1,9 +1,10 @@
-define(['jquery'], function(require, exports, module) {
-    var util = require('model-engine/js/util'),
-        ml = require('model-engine/js/modellist'),
-        mf = require('model-engine/js/modelform'),
-        mfe = require('model-engine/js/modelformengine');
-
+define([
+    'jquery'
+    'model-engine/js/util',
+    'model-engine/js/modellist',
+    'model-engine/js/modelform',
+    'model-engine/js/modelformengine'
+], function($, util, ml, mf, mfe) {
     var format = util.format,
         ModelList = ml.ModelList,
         ModelForm = mf.ModelForm,
@@ -290,6 +291,8 @@ define(['jquery'], function(require, exports, module) {
      */
     ModelCtrlList.Event = $.extend(ModelList.Event, {'EDITED': 'edited', 'CLOSED': 'closed'});
     
-    exports.ModelCtrlList = ModelCtrlList;
+    return {
+        'ModelCtrlList': ModelCtrlList
+    };
 });
  

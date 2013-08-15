@@ -1,4 +1,6 @@
-define(function(require, exports, module) {
+define([
+    'model-engine/js/plugs/plugutil'
+],function(util) {
     /**
      * 创建表单行容器。
      * @param o {ModelForm} 模型表单对象的实例。
@@ -10,8 +12,7 @@ define(function(require, exports, module) {
      * @param def {String} 表单对象的默认值。
      */
     function create(o, container, settings, ext, def){
-        var util = require('model-engine/js/plugs/plugutil'),
-            attributes = settings.attributes,
+        var attributes = settings.attributes,
             items = settings.items,
             createItem = ext['createItem'],
             controls = util.createHorizontalContainer(o.containers, container, settings, '', attributes.title);
@@ -22,5 +23,7 @@ define(function(require, exports, module) {
         }
     }
     
-    exports.create = create;
+    return {
+        'create': create
+    };
 });

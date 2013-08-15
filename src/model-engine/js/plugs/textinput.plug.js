@@ -1,10 +1,15 @@
-define(function(require, exports, module) {
-    var $ = require('jquery'),
-        enu = require('model-engine/js/enum'),
-        ModelType = enu.ModelType,
-        FormfieldPrefix = enu.FormfieldPrefix;
+define([
+    'jquery',
+    'model-engine/js/enum',
+    'model-engine/js/util',
+    'model-engine/js/plugs/plugutil',
+    'model-engine/js/plugs/triggeredtextinputeditor.plug'
+],function($, enu, util, plugutil, trigger) {
+    var ModelType = enu.ModelType,
+        FormfieldPrefix = enu.FormfieldPrefix,
+        loadCss = util.loadCss;
         
-    require('bootstrap-css/bootstrap.css');
+    loadCss(require.toUrl('bootstrap-css'));
         
     /**
      * 创建单行文本框表单项。
@@ -17,16 +22,14 @@ define(function(require, exports, module) {
      * @param def {String} 表单对象的默认值。
      */
     function create(o, container, settings, ext, def){
-        var util = require('model-engine/js/plugs/plugutil'),
-            attributes = settings.attributes,
+        var attributes = settings.attributes,
             triggered = attributes['triggered'] * 1,
             inline = ext['inline'],
             form_name = o.getControlName(settings),
             controls;
         if (!!def && triggered) {
-            var module = require('model-engine/js/plugs/triggeredtextinputeditor.plug');
-            if(module.create){
-                module.create(o, container, settings, ext, def);
+            if(trigger.create){
+                trigger.create(o, container, settings, ext, def);
             }
         }else{
             var input = $('<input />');
@@ -40,9 +43,9 @@ define(function(require, exports, module) {
             input.attr('placeholder', attributes.placeholder);
             if(inline){
                 input.attr('style', 'display:inline;');
-                controls = util.createInlineContainer(o.containers, container, settings, form_name, attributes.label)
+                controls = plugutil.createInlineContainer(o.containers, container, settings, form_name, attributes.label)
             }else{
-                controls = util.createHorizontalContainer(o.containers, container, settings, form_name, attributes.label)
+                controls = plugutil.createHorizontalContainer(o.containers, container, settings, form_name, attributes.label)
             }
             if(attributes.size){
                 input.addClass(attributes.size);
@@ -69,5 +72,7 @@ define(function(require, exports, module) {
         }
     }
     
-    exports.create = create;
+    return {
+        'create': create
+    };
 });

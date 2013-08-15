@@ -1,7 +1,8 @@
-define(['jquery'], function(require, exports, module) {
-    var enu = require('model-engine/js/enum'),
-        mfe = require('model-engine/js/modelformengine');
-
+define([
+    'jquery', 
+    'model-engine/js/enum', 
+    'model-engine/js/modelformengine'
+], function($, enu, mfe) {
     var ModelType = enu.ModelType,
         ModelCategory = enu.ModelCategory,
         ModelFormEngine = mfe.ModelFormEngine;
@@ -231,7 +232,9 @@ define(['jquery'], function(require, exports, module) {
             }
         }
     };
-
-    exports.FormDesigner = FormDesigner;
+    
+    return {
+        'FormDesigner': FormDesigner
+    };
 });
 

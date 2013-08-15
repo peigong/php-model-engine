@@ -1,10 +1,13 @@
-define(function(require, exports, module) {
-    var $ = require('jquery'),
-        enu = require('model-engine/js/enum'),
-        ModelType = enu.ModelType,
-        FormfieldPrefix = enu.FormfieldPrefix;
+define([
+    'jquery',
+    'model-engine/js/enum',
+    'model-engine/js/util'
+],function($, enu, util) {
+    var ModelType = enu.ModelType,
+        FormfieldPrefix = enu.FormfieldPrefix,
+        loadCss = util.loadCss;
         
-    require('bootstrap-css/bootstrap.css');
+    loadCss(require.toUrl('bootstrap-css'));
         
     /**
      * 创建复选按钮表单项。
@@ -38,5 +41,7 @@ define(function(require, exports, module) {
         o.controls[form_name] = { 'id': form_name, 'name': settings.name, 'type': ModelType.CHECKBOXINPUT, 'field': attributes.field };
     }
     
-    exports.create = create;
+    return {
+        'create': create
+    };
 });

@@ -36,7 +36,7 @@ module.exports = function(grunt) {
 
           {expand: true, cwd: "libs/Smarty_3_1_8/distribution/libs", src: ["**"], dest: "dist/demo/libs/Smarty_3_1_8/libs"},
 
-          {expand: true, cwd: "libs/seajs-2.1.1/dist", src: ["sea.js"], dest: "dist/demo/libs/seajs-2.1.1"},
+          {expand: true, cwd: "libs/requirejs-2.1.8", src: ["require.js"], dest: "dist/demo/libs/requirejs-2.1.8"},
           {expand: true, cwd: "libs/jquery-2.0.3/dist", src: ["jquery.min.js"], dest: "dist/demo/libs/jquery-2.0.3"},
           {expand: true, cwd: "libs/jquery-ui-1.10.3/dist", src: ["jquery-ui.min.js"], dest: "dist/demo/libs/jquery-ui-1.10.3"},
           {expand: true, cwd: "libs/jquery-validation-1.11.1/dist", src: ["jquery.validate.min.js"], dest: "dist/demo/libs/jquery-validation-1.11.1"},

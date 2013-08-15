@@ -1,9 +1,10 @@
-define(['jquery'], function(require, exports, module) {
-    var enu = require('model-engine/js/enum'),
-        e = require('model-engine/js/event');
-
+define([
+    'jquery',
+    'model-engine/js/enum',
+    'model-engine/js/event'
+], function($, enu, eve) {
     var ModelType = enu.ModelType,
-        EventDispatcher = e.EventDispatcher;
+        EventDispatcher = eve.EventDispatcher;
             
     /**
      * 为模型可编辑列表服务的添加表单对象。
@@ -138,7 +139,9 @@ define(['jquery'], function(require, exports, module) {
             }
         }
     });
-    
-    exports.ModelEditableForm = ModelEditableForm;
+
+    return {
+        'ModelEditableForm': ModelEditableForm
+    };
 });
 

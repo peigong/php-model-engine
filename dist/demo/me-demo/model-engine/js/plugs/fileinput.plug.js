@@ -1,19 +1,22 @@
-define(['jquery'], function(require, exports, module) {
-    require.async(['jquery.ui'], function(){
-        require('jquery-file-upload/jquery.fileupload');                            
-        require('jquery-file-upload/jquery.fileupload-fp');                            
-        require('jquery-file-upload/jquery.fileupload-ui');                            
-        require('jquery-file-upload/jquery.iframe-transport');                            
-    });
-
-    var enu = require('model-engine/js/enum'),
-        pre = require('model-engine/js/plugs/preview'),
-        ModelType = enu.ModelType,
+define([
+    'jquery',
+    'model-engine/js/enum',
+    'model-engine/js/plugs/preview',
+    'model-engine/js/util',
+    'model-engine/js/plugs/plugutil',
+    'jquery.ui',
+    'jquery-file-upload/jquery.fileupload',
+    'jquery-file-upload/jquery.fileupload-fp',
+    'jquery-file-upload/jquery.fileupload-ui',
+    'jquery-file-upload/jquery.iframe-transport'
+], function($, enu, pre, util, plugutil) {
+    var ModelType = enu.ModelType,
         FormfieldPrefix = enu.FormfieldPrefix,
-        preview = pre.preview;
+        preview = pre.preview,
+        loadCss = util.loadCss;
         
-    require('bootstrap-css/bootstrap.css');
-    require('jquery-file-upload/jquery.fileupload-ui.css');
+    loadCss(require.toUrl('bootstrap-css'));
+    loadCss(require.toUrl('jquery-file-upload/jquery.fileupload-ui.css'));    
         
     /**
      * 创建文件上传控件表单项。
@@ -26,10 +29,9 @@ define(['jquery'], function(require, exports, module) {
      * @param def {String} 表单对象的默认值。
      */
     function create(o, container, settings, ext, def){
-        var util = require('model-engine/js/plugs/plugutil'),
-            attributes = settings.attributes,
+        var attributes = settings.attributes,
             form_name = o.getControlName(settings),
-            controls = util.createHorizontalContainer(o.containers, container, settings, form_name, attributes.label);
+            controls = plugutil.createHorizontalContainer(o.containers, container, settings, form_name, attributes.label);
         
         var upload_service = './svr/file_upload.php';
         if (ext.hasownproperty('upload_service')) {
@@ -108,5 +110,7 @@ define(['jquery'], function(require, exports, module) {
         o.controls[form_name] = { 'id': form_name, 'name': settings.name, 'type': ModelType.FILEINPUT, 'field': attributes.field };
     }
     
-    exports.create = create;
+    return {
+        'create': create
+    };
 });

@@ -1,4 +1,4 @@
-define(function(require, exports, module) {
+define([], function() {
     /**
      * 模型的类型。
      */
@@ -94,8 +94,10 @@ define(function(require, exports, module) {
     FormfieldPrefix[ModelType.RADIOLISTINPUT] = 'rdl_';
     FormfieldPrefix[ModelType.SELECTINPUT] = 'ddl_';
     
-    exports.ModelType = ModelType;
-    exports.FormfieldPrefix = FormfieldPrefix;
-    exports.ModelCategory = ModelCategory;
+    return {
+        'ModelType': ModelType,
+        'FormfieldPrefix': FormfieldPrefix,
+        'ModelCategory': ModelCategory
+    };
 });
 

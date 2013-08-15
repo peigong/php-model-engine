@@ -3,14 +3,10 @@
 require.config({
     baseUrl: "/",
     paths: {
-        'jquery': 'libs/jquery-2.0.3/jquery.min.js',
-        'jquery.ui': 'libs/jquery-ui-1.10.3/jquery-ui.min.js',
-        'bootstrap': 'libs/bootstrap-v3.0.0-rc1/js/bootstrap.min.js'
+        'jquery': 'libs/jquery-2.0.3/jquery.min',
+        'jquery.ui': 'libs/jquery-ui-1.10.3/jquery-ui.min',
+        'bootstrap': 'libs/bootstrap-v3.0.0-rc1/js/bootstrap.min',
         'bootstrap-css': 'libs/bootstrap-v3.0.0-rc1/css/bootstrap.css',
-
-        'model-engine': 'me-demo/model-engine',
-        'jquery-validate': 'libs/jquery-validation-1.11.1',
-        'jquery-file-upload': 'libs/jquery-file-upload-8.7.1'
     },
     shim:{
     	'jquery.ui': ['jquery'],
@@ -18,6 +14,13 @@ require.config({
     }
 });
 
-require.toUrl('bootstrap-css');    
-require.toUrl('css/global.css');
-require(['jquery'], function(){});
+function loadCss(url) {
+    var link = document.createElement("link");
+    link.type = "text/css";
+    link.rel = "stylesheet";
+    link.href = url;
+    document.getElementsByTagName("head")[0].appendChild(link);
+}
+
+loadCss(require.toUrl('bootstrap-css'));
+loadCss(require.toUrl('css/global.css'));

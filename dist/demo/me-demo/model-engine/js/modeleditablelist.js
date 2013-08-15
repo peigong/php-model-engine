@@ -1,7 +1,8 @@
-define(['jquery'], function(require, exports, module) {
-    var ml = require('model-engine/js/modellist'),
-        mef = require('model-engine/js/modeleditableform');
-
+define([
+    'jquery',
+    'model-engine/js/modellist',
+    'model-engine/js/modeleditableform'
+], function($, ml, mef) {
     var ModelList = ml.ModelList,
         ModelEditableForm = mef.ModelEditableForm;
 
@@ -196,6 +197,8 @@ define(['jquery'], function(require, exports, module) {
      */
     ModelEditableList.Event = $.extend(ModelList.Event, {'EDITED': 'edited'});
     
-    exports.ModelEditableList = ModelEditableList;
+    return {
+        'ModelEditableList': ModelEditableList
+    };
 });
 

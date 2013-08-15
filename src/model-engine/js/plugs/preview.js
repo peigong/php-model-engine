@@ -1,6 +1,6 @@
-define(function(require, exports, module) {
-    var $ = require('jquery');
-
+define([
+    'jquery'
+], function($) {
     /**
      * 创建FLASH的HTML内容。
      * @param url {String} swf格式物料或播放器的URL地址。
@@ -48,6 +48,8 @@ define(function(require, exports, module) {
         }
         $(container).html(html);
     };
-        
-    exports.preview = preview;
+    
+    return {
+        'preview': preview
+    };    
 });

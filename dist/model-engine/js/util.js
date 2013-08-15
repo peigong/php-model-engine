@@ -1,4 +1,4 @@
-define(function(require, exports, module) {
+define(function() {
     /**
      * 格式化对象。
      * @param str {String} 用于格式化的字符串。
@@ -16,5 +16,16 @@ define(function(require, exports, module) {
         return result;
     }
 
-    exports.format = format;
+    function loadCss(url) {
+        var link = document.createElement("link");
+        link.type = "text/css";
+        link.rel = "stylesheet";
+        link.href = url;
+        document.getElementsByTagName("head")[0].appendChild(link);
+    }
+
+    return {
+        'format': format,
+        'loadCss': loadCss
+    };
 });
