@@ -5,13 +5,13 @@ define([
     'model-engine/js/enum',
     'model-engine/js/event',
     'model-engine/js/util',
-    'model-engine/js/plugs/checkboxinput.plug',
-    'model-engine/js/plugs/fileinput.plug',
-    'model-engine/js/plugs/radiolistinput.plug',
     'model-engine/js/plugs/rowcontainer.plug',
+    'model-engine/js/plugs/textinput.plug',
+    'model-engine/js/plugs/checkboxinput.plug',
+    'model-engine/js/plugs/radiolistinput.plug',
     'model-engine/js/plugs/selectinput.plug',
-    'model-engine/js/plugs/textinput.plug'
-], function($, jv, jvi18n, enu, eve, util, checkboxinput, fileinput, radiolistinput, rowcontainer, selectinput, textinput) {
+    'model-engine/js/plugs/fileinput.plug'
+], function($, jv, jvi18n, enu, eve, util, rowcontainer, textinput, checkboxinput, radiolistinput, selectinput, fileinput) {
     var ModelType = enu.ModelType,
         FormfieldPrefix = enu.FormfieldPrefix,
         Event = eve.Event,
@@ -19,12 +19,12 @@ define([
         format = util.format,
         loadCss = util.loadCss,
         plugs = {
-            'checkboxinput': checkboxinput, 
-            'fileinput': fileinput, 
-            'radiolistinput': radiolistinput, 
             'rowcontainer': rowcontainer, 
+            'textinput': textinput,
+            'checkboxinput': checkboxinput, 
+            'radiolistinput': radiolistinput, 
             'selectinput': selectinput, 
-            'textinput': textinput
+            'fileinput': fileinput
         };
 
     loadCss(require.toUrl('model-engine/css/model-engine.css'));    

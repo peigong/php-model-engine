@@ -16,7 +16,7 @@ class DAttribute extends DObject implements IDAttribute {
     function  __construct(){
         //parent::__construct();
         $this->table = 'modelengine_core_attributes'; 
-        $this->sql_init = implode('/', array(ROOT, 'model-engine', 'sql', 'sqlite', 'modelengine.core')); 
+        $this->sql_init = realpath(implode('/', array(ModelEngineRoot, 'sql', 'sqlite', 'modelengine.core'))); 
     }
     
     /**

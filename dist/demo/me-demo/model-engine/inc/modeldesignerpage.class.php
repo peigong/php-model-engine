@@ -38,7 +38,7 @@ class ModelDesignerPage extends WebPage implements IInjectEnable {
             $temp = $template['template'];
             $this->setTitle($title);
             //$this->setMenuItemActive('workbench');
-            $this->smarty->addTemplateDir(ROOT . 'model-engine/templates');
+            $this->smarty->addTemplateDir(ModelEngineRoot . 'templates');
             $this->display($temp);
         }
     }

@@ -16,7 +16,7 @@ class DDefaultValue extends DObject implements IDDefaultValue {
     function  __construct(){
         //parent::__construct();
         $this->table = 'modelengine_dict_default_values'; 
-        $this->sql_init = implode('/', array(ROOT, 'model-engine', 'sql', 'sqlite', 'modelengine.dict')); 
+        $this->sql_init = realpath(implode('/', array(ModelEngineRoot, 'sql', 'sqlite', 'modelengine.dict'))); 
     }
     
     /**

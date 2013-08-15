@@ -16,7 +16,7 @@ class DSystemList extends DObject implements IDSystemList {
     function  __construct(){
         //parent::__construct();
         $this->table = 'modelengine_core_system_lists'; 
-        $this->sql_init = implode('/', array(ROOT, 'model-engine', 'sql', 'sqlite', 'modelengine.core')); 
+        $this->sql_init = realpath(implode('/', array(ModelEngineRoot, 'sql', 'sqlite', 'modelengine.core'))); 
     }
     
     /**

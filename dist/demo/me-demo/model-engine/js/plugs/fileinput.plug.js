@@ -4,7 +4,6 @@ define([
     'model-engine/js/plugs/preview',
     'model-engine/js/util',
     'model-engine/js/plugs/plugutil',
-    'jquery.ui',
     'jquery-file-upload/jquery.fileupload'
 ], function($, enu, pre, util, plugutil) {
     var ModelType = enu.ModelType,
