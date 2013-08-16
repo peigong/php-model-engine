@@ -1,10 +1,12 @@
 define([
     'jquery', 
     'model-engine/js/enum', 
+    'model-engine/js/modelform', 
     'model-engine/js/modelformengine'
-], function($, enu, mfe) {
+], function($, enu, mf, mfe) {
     var ModelType = enu.ModelType,
         ModelCategory = enu.ModelCategory,
+        ModelForm = mf.ModelForm,
         ModelFormEngine = mfe.ModelFormEngine;
         
     /**

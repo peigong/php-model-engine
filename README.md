@@ -14,6 +14,9 @@
  * jQuery UI库([http://jqueryui.com](http://jqueryui.com))：git clone https://github.com/jquery/jquery-ui.git --branch 1.10.3 ./libs/jquery-ui-1.10.3
  * jQuery File Upload([blueimp-file-upload](blueimp-file-upload)：git clone https://github.com/blueimp/jQuery-File-Upload.git --branch 8.7.1 ./libs/jquery-file-upload-8.7.1
  * jQuery Validation Plugin([http://jqueryvalidation.org](http://jqueryvalidation.org))：git clone https://github.com/jzaefferer/jquery-validation.git --branch 1.11.1 ./libs/jquery-validation-1.11.1
+ * bootstrap框架([http://twitter.github.io/bootstrap](http://twitter.github.io/bootstrap))
+ 	* clone发布分支：git clone https://github.com/twbs/bootstrap.git --branch v2.3.2 ./libs/bootstrap-v2.3.2
+ 	* 下载可用版本：http://www.bootcss.com/assets/bootstrap.zip => ./libs/bootstrap-v2.3.2
  * bootstrap框架([http://twitter.github.io/bootstrap](http://twitter.github.io/bootstrap))：git clone https://github.com/twbs/bootstrap.git --branch v3.0.0-rc1 ./libs/bootstrap-v3.0.0-rc1
  * Smarty模板引擎([http://www.smarty.net](http://www.smarty.net))：svn checkout http://smarty-php.googlecode.com/svn/tags/Smarty_3_1_8 ./libs/Smarty_3_1_8
 

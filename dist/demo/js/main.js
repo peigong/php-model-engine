@@ -5,8 +5,9 @@ require.config({
     paths: {
         'jquery': 'libs/jquery-2.0.3/jquery.min',
         'jquery.ui': 'libs/jquery-ui-1.10.3/jquery-ui.min',
-        'bootstrap': 'libs/bootstrap-v3.0.0-rc1/js/bootstrap.min',
-        'bootstrap-css': 'libs/bootstrap-v3.0.0-rc1/css/bootstrap.css',
+        'bootstrap': 'libs/bootstrap-v2.3.2/js/bootstrap.min',
+        'bootstrap-css': 'libs/bootstrap-v2.3.2/css/bootstrap.min.css',
+        'bootstrap-responsive-css': 'libs/bootstrap-v2.3.2/css/bootstrap-responsive.min.css'
     },
     shim:{
     	'jquery.ui': ['jquery'],
@@ -23,4 +24,5 @@ function loadCss(url) {
 }
 
 loadCss(require.toUrl('bootstrap-css'));
+loadCss(require.toUrl('bootstrap-responsive-css'));
 loadCss(require.toUrl('css/global.css'));

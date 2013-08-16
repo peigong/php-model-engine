@@ -194,7 +194,7 @@ abstract class DObject extends AbstractObject{
             }, $db_fields);
         $sql = $this->assembleRetrieveSql($db, $settings);
         $row = $this->dao->getLine($sql, $db);
-        if ($rows && count($rows) > 0) {
+        if ($row && count($row) > 0) {
             for($i = 0; $i < count($entity_fields); $i++){
                 $entity[$entity_fields[$i]] = $row[$db_fields[$i]];
             }

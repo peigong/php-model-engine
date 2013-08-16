@@ -1,9 +1,11 @@
 define([
     'jquery',
+    'model-engine/js/util',
     'model-engine/js/modellist',
     'model-engine/js/modeleditableform'
-], function($, ml, mef) {
-    var ModelList = ml.ModelList,
+], function($, util, ml, mef) {
+    var format = util.format,
+        ModelList = ml.ModelList,
         ModelEditableForm = mef.ModelEditableForm;
 
     var OperateType = {'EDIT': 'edit', 'DELETE': 'delete'};

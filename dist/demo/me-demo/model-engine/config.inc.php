@@ -24,7 +24,7 @@ if (!isset($context)) {
 $context->setConfigPath(ModelEngineRoot . 'conf/ioc/root', ROOT);
 $context->setConfigPath(ModelEngineRoot . 'conf/ioc/model-engine', ModelEngineRoot);
 
-if (!isset($context)) {
+if (!isset($httpContext)) {
 	require_once(ROOT . "inc/core/httpcontext.class.php");
 	$httpContext = new HttpContext($context);
 }
