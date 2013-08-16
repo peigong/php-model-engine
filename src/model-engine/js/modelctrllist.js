@@ -28,6 +28,11 @@ define([
             */
             'name': 'name',
 
+            'form': {
+                'dynamic_fetch_service': '',
+                'upload_service': '',
+            },
+
             /**
             * 数据添加的配置信息。
             */
@@ -124,6 +129,12 @@ define([
         },
         openForm: function(type, def){
             var id, name, service, options = {'fixedfields': {}};
+            var form_options = this.options['form'];
+            for(var key in form_options){
+                if (form_options[key]) {
+                    options[key] = form_options[key];
+                };
+            }
             switch(type){
                 case FormType.ADD:
                     id = FormType.ADD + '_' + this.code,
