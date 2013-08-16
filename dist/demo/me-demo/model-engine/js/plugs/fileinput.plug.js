@@ -30,7 +30,7 @@ define([
             controls = plugutil.createHorizontalContainer(o.containers, container, settings, form_name, attributes.label);
         
         var upload_service = './svr/file_upload.php';
-        if (ext.hasownproperty('upload_service')) {
+        if (ext.hasOwnProperty('upload_service')) {
             upload_service = ext['upload_service'];
         };
 

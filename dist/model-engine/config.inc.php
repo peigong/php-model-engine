@@ -12,9 +12,13 @@ if (!defined('ROOT')) {
 }
 
 /*模型和模型表单引擎库的根目录*/
-define('ModelEngineRoot', str_replace('\\', '/', dirname(__FILE__)) . '/');
+if (!defined(ModelEngineRoot)) {
+	define('ModelEngineRoot', str_replace('\\', '/', dirname(__FILE__)) . '/');
+}
 /*'jQuery文件上传插件服务器端类的路径*/
-define('jQueryFileUploadLibPath', ROOT . 'libs/jquery-file-upload-8.7.1/');
+if (!defined(ModelEngineRoot)) {
+	define('jQueryFileUploadLibPath', ROOT . 'libs/jquery-file-upload-8.7.1/');
+}
 
 if (!isset($context)) {
 	require_once(ROOT . "inc/core/ioc/applicationcontextfactory.class.php");
