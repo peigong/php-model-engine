@@ -17,5 +17,5 @@ define('SMARTY_CACHE', $current__root . 'cache/smarty/');
 define('STATIC_HOST', "http://$server_name/me-demo/static");
 define('STATIC_PATH', $current__root . 'static');
 /*- 数据库存储文件目录 -*/
-define('DATA_PATH', $current__root . 'data/');
+define('ModelEngineData', $current__root . 'data/');
 ?>

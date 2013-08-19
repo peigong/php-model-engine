@@ -12,7 +12,12 @@ class ModelEngineSQLiteRoute implements IDbRoute{
      * 构造函数。
      */
     function  __construct(){
-        $this->root = DATA_PATH; 
+        $this->root = '';
+        if (defined('ModelEngineData')) {
+            $this->root = ModelEngineData; 
+        }elseif (defined('DATA_PATH')) {
+            $this->root = DATA_PATH; 
+        }
     }
     
     /**
@@ -51,7 +56,6 @@ class ModelEngineSQLiteRoute implements IDbRoute{
             $db_name = implode('_', array($arr_table[0], $arr_table[1]));
             $db = implode('', array($db, $db_name, '.sqlite'));
         }else{
-            //TODO：抛异常
         }
         return $db;
     }

@@ -12,12 +12,16 @@ if (!defined('ROOT')) {
 }
 
 /*模型和模型表单引擎库的根目录*/
-if (!defined(ModelEngineRoot)) {
+if (!defined('ModelEngineRoot')) {
 	define('ModelEngineRoot', str_replace('\\', '/', dirname(__FILE__)) . '/');
 }
 /*'jQuery文件上传插件服务器端类的路径*/
-if (!defined(ModelEngineRoot)) {
+if (!defined('ModelEngineRoot')) {
 	define('jQueryFileUploadLibPath', ROOT . 'libs/jquery-file-upload-8.7.1/');
+}
+
+if (!defined('ModelEngineData')) {
+	define('ModelEngineData', ROOT . '../../demo.data/');
 }
 
 if (!isset($context)) {
