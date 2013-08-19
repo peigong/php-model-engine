@@ -163,7 +163,7 @@ class BForm extends BObject implements IBForm{
                 $form['model'] = $model;
                 $form['code'] = $code;
                 $form['name'] = $item['name'];
-                //$form['description'] = $item['description'];
+                $form['description'] = $item['description'];
                 
                 // 获取表单对象的属性集合
                 $attributes = $this->b_formattribute->getAttributeValues($code, $id);
