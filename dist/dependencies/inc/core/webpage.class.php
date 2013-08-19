@@ -37,10 +37,11 @@ abstract class WebPage{
      */
     function  __construct(){
         /*设置上下文状态*/
-        global $context;
-        $httpContext = new HttpContext($context);
+        global $context, $httpContext;
+        if (!$httpContext) {
+            $httpContext = new HttpContext($context);
+        }
         $this->user = $httpContext->getUser();
-        $this->user->intercept();
         $this->identity = $this->user->getIdentity();
         if ($this->identity) {
             $this->userName = $this->identity->getName();
@@ -66,6 +67,7 @@ abstract class WebPage{
      * @param $tpl {String} 模板地址（基于全局模板目录的）。
      */
     protected function display($tpl){
+        $this->user->intercept();
         if($tpl){
             /*- 定义系统名称和页面标题 -*/
             $sys_name = '';
