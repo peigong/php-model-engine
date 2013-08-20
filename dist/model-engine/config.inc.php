@@ -2,6 +2,10 @@
 /**
  * 系统目录。
  */
+$global_config_path = realpath(dirname(__FILE__) . '/../../config.inc.php');
+if (file_exists($global_config_path)) {
+	require_once($global_config_path);
+}
 $global_config_path = realpath(dirname(__FILE__) . '/../config.inc.php');
 if (file_exists($global_config_path)) {
 	require_once($global_config_path);

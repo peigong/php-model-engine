@@ -1,8 +1,9 @@
 define([
     'jquery',
+    'bootstrap',
     'model-engine/js/util',
     'model-engine/js/list'
-], function($, util, l) {
+], function($, bootstrap, util, l) {
     var format = util.format,
         loadCss = util.loadCss,
         empty = l.empty;

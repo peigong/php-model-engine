@@ -1,0 +1,2099 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book version="5.0" xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <title>模型和表单引擎数据存储设计方案</title>
+
+    <author>
+      <personname><firstname>周</firstname><surname>培公</surname></personname>
+
+      <affiliation>
+        <orgname>http://www.peigong.tk</orgname>
+      </affiliation>
+    </author>
+
+    <pubdate></pubdate>
+  </info>
+
+  <chapter>
+    <title>核心数据表</title>
+
+    <para>模型引擎系统元数据集中管理，存储在DATA_PATH下的core目录下的modelengine_core.sqlite数据库中。</para>
+
+    <section>
+      <title>模型数据表modelengine_core_models</title>
+
+      <table>
+        <title>模型数据表modelengine_core_models</title>
+
+        <tgroup cols="7">
+          <colspec align="center" />
+
+          <thead>
+            <row>
+              <entry align="center">字段名称</entry>
+
+              <entry align="center">数据类型</entry>
+
+              <entry align="center">数据大小</entry>
+
+              <entry align="center">是否自增</entry>
+
+              <entry align="center">可否可空</entry>
+
+              <entry align="center">默认值</entry>
+
+              <entry align="center">注释</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry align="center">model_id</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型的自增ID。</entry>
+            </row>
+
+            <row>
+              <entry align="center">model_code</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center">20</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型的的编码。</entry>
+            </row>
+
+            <row>
+              <entry align="center">model_name</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center">255</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">可空</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型的的名称。</entry>
+            </row>
+
+            <row>
+              <entry align="center">model_description</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center">255</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">可空</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型的的描述。</entry>
+            </row>
+
+            <row>
+              <entry align="center">model_table</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center">50</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型数据存储的数据表。</entry>
+            </row>
+
+            <row>
+              <entry align="center">attribute_table</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center">50</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型属性数据存储的数据表。</entry>
+            </row>
+
+            <row>
+              <entry align="center">category_id</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型类别的自增ID。</entry>
+            </row>
+
+            <row>
+              <entry align="center">update_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据更新的时间。</entry>
+            </row>
+
+            <row>
+              <entry align="center">create_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据创建的时间。</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+
+    <section>
+      <title>模型的类别数据表modelengine_core_model_categories</title>
+
+      <table>
+        <title>模型的类别数据表modelengine_core_model_categories</title>
+
+        <tgroup cols="7">
+          <colspec align="center" />
+
+          <thead>
+            <row>
+              <entry align="center">字段名称</entry>
+
+              <entry align="center">数据类型</entry>
+
+              <entry align="center">数据大小</entry>
+
+              <entry align="center">是否自增</entry>
+
+              <entry align="center">可否可空</entry>
+
+              <entry align="center">默认值</entry>
+
+              <entry align="center">注释</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry align="center">category_id</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">扩展属性模板类别的自增ID。</entry>
+            </row>
+
+            <row>
+              <entry align="center">category_name</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">扩展属性模板的类别名称。</entry>
+            </row>
+
+            <row>
+              <entry align="center">category_description</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">扩展属性模板类别的描述。</entry>
+            </row>
+
+            <row>
+              <entry align="center">parent_id</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">可空</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">扩展属性模板的类别父编码。</entry>
+            </row>
+
+            <row>
+              <entry align="center">position_order</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">用于排序的值。</entry>
+            </row>
+
+            <row>
+              <entry align="center">update_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据更新的时间。</entry>
+            </row>
+
+            <row>
+              <entry align="center">create_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据创建的时间。</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+
+    <section>
+      <title>模型属性的数据表modelengine_core_attributes</title>
+
+      <table>
+        <title>模型属性的数据表modelengine_core_attributes</title>
+
+        <tgroup cols="7">
+          <colspec align="center" />
+
+          <thead>
+            <row>
+              <entry align="center">字段名称</entry>
+
+              <entry align="center">数据类型</entry>
+
+              <entry align="center">数据大小</entry>
+
+              <entry align="center">是否自增</entry>
+
+              <entry align="center">可否可空</entry>
+
+              <entry align="center">默认值</entry>
+
+              <entry align="center">注释</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry align="center">attribute_id</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型属性的自增ID。</entry>
+            </row>
+
+            <row>
+              <entry align="center">attribute_name</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center">20</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型属性的名称。</entry>
+            </row>
+
+            <row>
+              <entry align="center">attribute_comment</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center">255</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型属性的注释。</entry>
+            </row>
+
+            <row>
+              <entry align="center">value_type</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center">20</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型属性值的类型。</entry>
+            </row>
+
+            <row>
+              <entry align="center">default_value</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center">20</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型属性的默认值。</entry>
+            </row>
+
+            <row>
+              <entry align="center">model_code</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型的编码。</entry>
+            </row>
+
+            <row>
+              <entry align="center">category_id</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">0</entry>
+
+              <entry align="center">模型属性类别的自增ID。</entry>
+            </row>
+
+            <row>
+              <entry align="center">list_id</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">0</entry>
+
+              <entry
+              align="center">模型属性值可选列表的ID（&lt;0：系统内置列表；&gt;0：用户自定义列表。）。</entry>
+            </row>
+
+            <row>
+              <entry align="center">is_ext</entry>
+
+              <entry align="center">bool</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">0</entry>
+
+              <entry align="center">是否是扩展属性。</entry>
+            </row>
+
+            <row>
+              <entry align="center">is_editable</entry>
+
+              <entry align="center">bool</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">0</entry>
+
+              <entry align="center">是否是允许用户编辑的属性。</entry>
+            </row>
+
+            <row>
+              <entry align="center">is_autoupdate</entry>
+
+              <entry align="center">bool</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">0</entry>
+
+              <entry align="center">在修改数据时，是否使用默认值自动更新。</entry>
+            </row>
+
+            <row>
+              <entry align="center">is_primary</entry>
+
+              <entry align="center">bool</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">0</entry>
+
+              <entry align="center">是否是主键属性。</entry>
+            </row>
+
+            <row>
+              <entry align="center">position_order</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">用于排序的值。</entry>
+            </row>
+
+            <row>
+              <entry align="center">update_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据更新的时间。</entry>
+            </row>
+
+            <row>
+              <entry align="center">create_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据创建的时间。</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+
+    <section>
+      <title>模型属性的类别数据表modelengine_core_attribute_categories</title>
+
+      <table>
+        <title>模型属性的类别数据表modelengine_core_attribute_categories</title>
+
+        <tgroup cols="7">
+          <colspec align="center" />
+
+          <thead>
+            <row>
+              <entry align="center">字段名称</entry>
+
+              <entry align="center">数据类型</entry>
+
+              <entry align="center">数据大小</entry>
+
+              <entry align="center">是否自增</entry>
+
+              <entry align="center">可否可空</entry>
+
+              <entry align="center">默认值</entry>
+
+              <entry align="center">注释</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry align="center">category_id</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">扩展属性模板类别的自增ID。</entry>
+            </row>
+
+            <row>
+              <entry align="center">category_name</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">扩展属性模板的类别名称。</entry>
+            </row>
+
+            <row>
+              <entry align="center">category_description</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">扩展属性模板类别的描述。</entry>
+            </row>
+
+            <row>
+              <entry align="center">parent_id</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">可空</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">扩展属性模板的类别父编码。</entry>
+            </row>
+
+            <row>
+              <entry align="center">position_order</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">用于排序的值。</entry>
+            </row>
+
+            <row>
+              <entry align="center">update_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据更新的时间。</entry>
+            </row>
+
+            <row>
+              <entry align="center">create_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据创建的时间。</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+
+    <section>
+      <title>模型表单数据表modelengine_core_forms</title>
+
+      <table>
+        <title>模型表单数据表modelengine_core_forms</title>
+
+        <tgroup cols="7">
+          <colspec align="center" />
+
+          <thead>
+            <row>
+              <entry align="center">字段名称</entry>
+
+              <entry align="center">数据类型</entry>
+
+              <entry align="center">数据大小</entry>
+
+              <entry align="center">是否自增</entry>
+
+              <entry align="center">可否可空</entry>
+
+              <entry align="center">默认值</entry>
+
+              <entry align="center">注释</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry align="center">form_id</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型表单的自增ID。</entry>
+            </row>
+
+            <row>
+              <entry align="center">model_code</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center">20</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型的编码。</entry>
+            </row>
+
+            <row>
+              <entry align="center">form_name</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center">255</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型表单的名称。</entry>
+            </row>
+
+            <row>
+              <entry align="center">form_description</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center">255</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">可空</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型表单的描述信息。</entry>
+            </row>
+
+            <row>
+              <entry align="center">form_mode_code</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center">20</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">表单的模型编码。</entry>
+            </row>
+
+            <row>
+              <entry align="center">parent_id</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">上级模型表单的自增ID。</entry>
+            </row>
+
+            <row>
+              <entry align="center">position_order</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">用于排序的值。</entry>
+            </row>
+
+            <row>
+              <entry align="center">update_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据更新的时间。</entry>
+            </row>
+
+            <row>
+              <entry align="center">create_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据创建的时间。</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+
+    <section>
+      <title>模型表单与扩展属性的关联关系数据表modelengine_core_form_attributes</title>
+
+      <table>
+        <title>模型表单与扩展属性的关联关系数据表modelengine_core_form_attributes</title>
+
+        <tgroup cols="7">
+          <colspec align="center" />
+
+          <thead>
+            <row>
+              <entry align="center">字段名称</entry>
+
+              <entry align="center">数据类型</entry>
+
+              <entry align="center">数据大小</entry>
+
+              <entry align="center">是否自增</entry>
+
+              <entry align="center">可否可空</entry>
+
+              <entry align="center">默认值</entry>
+
+              <entry align="center">注释</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry align="center">model_attribute_id</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">扩展属性模板与模型数据关联的自增ID。</entry>
+            </row>
+
+            <row>
+              <entry align="center">model_code</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center">20</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型的编码。</entry>
+            </row>
+
+            <row>
+              <entry align="center">model_id</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型数据的自增ID。</entry>
+            </row>
+
+            <row>
+              <entry align="center">attribute_id</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">扩展属性模板的自增ID。</entry>
+            </row>
+
+            <row>
+              <entry align="center">str_vlaue</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型的文本属性值。</entry>
+            </row>
+
+            <row>
+              <entry align="center">update_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据更新的时间。</entry>
+            </row>
+
+            <row>
+              <entry align="center">create_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据创建的时间。</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+
+    <section>
+      <title>模型表单输入域的验证方法数据表modelengine_core_validation</title>
+
+      <table>
+        <title>模型表单输入域的验证方法数据表modelengine_core_validation</title>
+
+        <tgroup cols="7">
+          <colspec align="center" />
+
+          <thead>
+            <row>
+              <entry align="center">字段名称</entry>
+
+              <entry align="center">数据类型</entry>
+
+              <entry align="center">数据大小</entry>
+
+              <entry align="center">是否自增</entry>
+
+              <entry align="center">可否可空</entry>
+
+              <entry align="center">默认值</entry>
+
+              <entry align="center">注释</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry align="center">validation_id</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型表单输入域验证的自增ID。</entry>
+            </row>
+
+            <row>
+              <entry align="center">model_code</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center">20</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型的编码。</entry>
+            </row>
+
+            <row>
+              <entry align="center">form_id</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">要验证的表单对象自增ID。</entry>
+            </row>
+
+            <row>
+              <entry align="center">validation_method</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">表单输入域验证方法的编码。</entry>
+            </row>
+
+            <row>
+              <entry align="center">validation_message</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">验证失败后的提示信息。</entry>
+            </row>
+
+            <row>
+              <entry align="center">position_order</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">用于排序的值。</entry>
+            </row>
+
+            <row>
+              <entry align="center">update_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据更新的时间。</entry>
+            </row>
+
+            <row>
+              <entry align="center">create_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据创建的时间。</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+
+    <section>
+      <title>模型表单输入域的验证方法与扩展属性的关联关系数据表modelengine_core_validation_attributes</title>
+
+      <table>
+        <title>模型表单输入域的验证方法与扩展属性的关联关系数据表modelengine_core_validation_attributes</title>
+
+        <tgroup cols="7">
+          <colspec align="center" />
+
+          <thead>
+            <row>
+              <entry align="center">字段名称</entry>
+
+              <entry align="center">数据类型</entry>
+
+              <entry align="center">数据大小</entry>
+
+              <entry align="center">是否自增</entry>
+
+              <entry align="center">可否可空</entry>
+
+              <entry align="center">默认值</entry>
+
+              <entry align="center">注释</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry align="center">model_attribute_id</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">扩展属性模板与模型数据关联的自增ID。</entry>
+            </row>
+
+            <row>
+              <entry align="center">model_code</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center">20</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型的编码。</entry>
+            </row>
+
+            <row>
+              <entry align="center">model_id</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型数据的自增ID。</entry>
+            </row>
+
+            <row>
+              <entry align="center">attribute_id</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">扩展属性模板的自增ID。</entry>
+            </row>
+
+            <row>
+              <entry align="center">str_vlaue</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型的文本属性值。</entry>
+            </row>
+
+            <row>
+              <entry align="center">update_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据更新的时间。</entry>
+            </row>
+
+            <row>
+              <entry align="center">create_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据创建的时间。</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+
+    <section>
+      <title>系统内置属性值下拉列表数据表modelengine_core_system_lists</title>
+
+      <table>
+        <title>系统内置属性值下拉列表数据表modelengine_core_system_lists</title>
+
+        <tgroup cols="7">
+          <colspec align="center" />
+
+          <thead>
+            <row>
+              <entry align="center">字段名称</entry>
+
+              <entry align="center">数据类型</entry>
+
+              <entry align="center">数据大小</entry>
+
+              <entry align="center">是否自增</entry>
+
+              <entry align="center">可否可空</entry>
+
+              <entry align="center">默认值</entry>
+
+              <entry align="center">注释</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry align="center">list_id</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">系统内置属性值下拉列表的自增ID。</entry>
+            </row>
+
+            <row>
+              <entry align="center">list_name</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">系统内置属性值下拉列表的名称。</entry>
+            </row>
+
+            <row>
+              <entry align="center">list_description</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">系统内置属性值下拉列表的描述。</entry>
+            </row>
+
+            <row>
+              <entry align="center">list_clazz</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">窄接口实现类IOC配置ID。</entry>
+            </row>
+
+            <row>
+              <entry align="center">position_order</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">用于排序的值。</entry>
+            </row>
+
+            <row>
+              <entry align="center">update_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据更新的时间。</entry>
+            </row>
+
+            <row>
+              <entry align="center">create_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据创建的时间。</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+
+    <section>
+      <title>用户自定义属性值可选列表数据表modelengine_core_custom_lists</title>
+
+      <table>
+        <title>用户自定义属性值可选列表数据表modelengine_core_custom_lists</title>
+
+        <tgroup cols="7">
+          <colspec align="center" />
+
+          <thead>
+            <row>
+              <entry align="center">字段名称</entry>
+
+              <entry align="center">数据类型</entry>
+
+              <entry align="center">数据大小</entry>
+
+              <entry align="center">是否自增</entry>
+
+              <entry align="center">可否可空</entry>
+
+              <entry align="center">默认值</entry>
+
+              <entry align="center">注释</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry align="center">list_id</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">属性可选列表的自增ID。</entry>
+            </row>
+
+            <row>
+              <entry align="center">list_name</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">属性可选列表的名称。</entry>
+            </row>
+
+            <row>
+              <entry align="center">list_description</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">属性可选列表的描述。</entry>
+            </row>
+
+            <row>
+              <entry align="center">position_order</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">用于排序的值。</entry>
+            </row>
+
+            <row>
+              <entry align="center">update_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据更新的时间。</entry>
+            </row>
+
+            <row>
+              <entry align="center">create_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据创建的时间。</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+
+    <section>
+      <title>用户自定义属性值可选列表项数据表modelengine_core_custom_listitems</title>
+
+      <table>
+        <title>用户自定义属性值可选列表项数据表modelengine_core_custom_listitems</title>
+
+        <tgroup cols="7">
+          <colspec align="center" />
+
+          <thead>
+            <row>
+              <entry align="center">字段名称</entry>
+
+              <entry align="center">数据类型</entry>
+
+              <entry align="center">数据大小</entry>
+
+              <entry align="center">是否自增</entry>
+
+              <entry align="center">可否可空</entry>
+
+              <entry align="center">默认值</entry>
+
+              <entry align="center">注释</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry align="center">item_id</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">可选列表项的自增ID。</entry>
+            </row>
+
+            <row>
+              <entry align="center">list_id</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">所属的可选列表的自增ID。</entry>
+            </row>
+
+            <row>
+              <entry align="center">item_value</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">可选列表项的值。</entry>
+            </row>
+
+            <row>
+              <entry align="center">item_text</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">可选列表项的显示文本。</entry>
+            </row>
+
+            <row>
+              <entry align="center">position_order</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">用于排序的值。</entry>
+            </row>
+
+            <row>
+              <entry align="center">update_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据更新的时间。</entry>
+            </row>
+
+            <row>
+              <entry align="center">create_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据创建的时间。</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>字典数据表</title>
+
+    <para>模型引擎系统字典数据表集中管理，存储在DATA_PATH的dict目录下的modelengine_dict.sqlite数据库中。</para>
+
+    <section>
+      <title>模型属性值的类型数据表modelengine_dict_value_types</title>
+
+      <table>
+        <title>模型属性值的类型数据表modelengine_dict_value_types</title>
+
+        <tgroup cols="7">
+          <colspec align="center" />
+
+          <thead>
+            <row>
+              <entry align="center">字段名称</entry>
+
+              <entry align="center">数据类型</entry>
+
+              <entry align="center">数据大小</entry>
+
+              <entry align="center">是否自增</entry>
+
+              <entry align="center">可否可空</entry>
+
+              <entry align="center">默认值</entry>
+
+              <entry align="center">注释</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry align="center">type_id</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型属性值的类型自增ID。</entry>
+            </row>
+
+            <row>
+              <entry align="center">type_code</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型属性值的类型的编码。</entry>
+            </row>
+
+            <row>
+              <entry align="center">type_name</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">可空</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型属性值的类型的名称。</entry>
+            </row>
+
+            <row>
+              <entry align="center">type_description</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">可空</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型属性值的类型的描述。</entry>
+            </row>
+
+            <row>
+              <entry align="center">position_order</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">用于排序的值。</entry>
+            </row>
+
+            <row>
+              <entry align="center">update_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据更新的时间。</entry>
+            </row>
+
+            <row>
+              <entry align="center">create_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据创建的时间。</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+
+    <section>
+      <title>模型属性值的默认值定义数据表modelengine_dict_default_values</title>
+
+      <table>
+        <title>模型属性值的默认值定义数据表modelengine_dict_default_values</title>
+
+        <tgroup cols="7">
+          <colspec align="center" />
+
+          <thead>
+            <row>
+              <entry align="center">字段名称</entry>
+
+              <entry align="center">数据类型</entry>
+
+              <entry align="center">数据大小</entry>
+
+              <entry align="center">是否自增</entry>
+
+              <entry align="center">可否可空</entry>
+
+              <entry align="center">默认值</entry>
+
+              <entry align="center">注释</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry align="center">type_id</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">是</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型属性值的类型自增ID。</entry>
+            </row>
+
+            <row>
+              <entry align="center">type_code</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型属性值的类型的编码。</entry>
+            </row>
+
+            <row>
+              <entry align="center">type_name</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">可空</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型属性值的类型的名称。</entry>
+            </row>
+
+            <row>
+              <entry align="center">type_description</entry>
+
+              <entry align="center">varchar</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">可空</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">模型属性值的类型的描述。</entry>
+            </row>
+
+            <row>
+              <entry align="center">position_order</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">用于排序的值。</entry>
+            </row>
+
+            <row>
+              <entry align="center">update_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据更新的时间。</entry>
+            </row>
+
+            <row>
+              <entry align="center">create_time</entry>
+
+              <entry align="center">integer</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center">否</entry>
+
+              <entry align="center"></entry>
+
+              <entry align="center">数据创建的时间。</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+  </chapter>
+</book>

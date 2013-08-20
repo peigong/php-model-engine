@@ -1,6 +1,6 @@
 <?php
 require_once(dirname(__FILE__) . "/../config.inc.php");
-require_once(ModelEngineRoot . 'inc/modules/modelengine.inc.php');
+require_once(ModelEngineRoot . 'inc/modelengine.inc.php');
 
 $model = isset($_POST['model']) ? $_POST['model'] : '';
 $id = isset($_POST['id']) ? $_POST['id'] : 0;
@@ -10,7 +10,7 @@ $value = isset($_POST['value']) ? $_POST['value'] : '';
 if(strlen($model) > 0
     && $id > 0
     && strlen($name) > 0){
-    $manager = $context->getBean('modelengine.modules.business.model');
+    $manager = $context->getBean('modelengine.business.model');
     $attributes = $manager->getAttributes($model);
     if(count($attributes) > 0){
         $attr = array();

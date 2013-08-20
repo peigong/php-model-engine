@@ -11,7 +11,6 @@ define([
         preview = pre.preview,
         loadCss = util.loadCss;
         
-    loadCss(require.toUrl('bootstrap-css'));
     loadCss(require.toUrl('jquery-file-upload/jquery.fileupload-ui.css'));    
         
     /**

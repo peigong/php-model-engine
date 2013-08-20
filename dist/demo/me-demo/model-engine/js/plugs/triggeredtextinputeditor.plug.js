@@ -1,13 +1,9 @@
 define([
     'jquery',
-    'model-engine/js/enum',
-    'model-engine/js/util'
-], function($, enu, util, plugutil) {
+    'model-engine/js/enum'
+], function($, enu) {
     var ModelType = enu.ModelType,
-        FormfieldPrefix = enu.FormfieldPrefix,
-        loadCss = util.loadCss;
-        
-    loadCss(require.toUrl('bootstrap-css'));
+        FormfieldPrefix = enu.FormfieldPrefix;
         
     /**
      * 创建由点击触发的单行文本框编辑器表单项。

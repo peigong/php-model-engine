@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns="http://www.peigong.tk/ioc/config">
     <!-- 全局使用类配置定义 -->
-    <bean id="modelengine.global.db.route" class="ModelEngineSQLiteRoute" path="inc/modules/db/modelenginesqliteroute.class.php" />
+    <bean id="modelengine.global.db.route" class="ModelEngineSQLiteRoute" path="inc/db/modelenginesqliteroute.class.php" />
     <bean id="modelengine.global.uploadhandler" class="ModelEngineUploadHandler" path="inc/modelengineuploadhandler.class.php" />
-    <bean id="modelengine.pages.modeldesignerpage" class="ModelDesignerPage" path="inc/modeldesignerpage.class.php"></bean>
-    <bean id="modelengine.modules.core.b.object" abstract="true">
-    </bean>
-    <bean id="modelengine.modules.core.d.object" abstract="true">
+    <bean id="modelengine.pages.modeldesignerpage" class="ModelDesignerPage" path="inc/modeldesignerpage.class.php" />
+    <bean id="modelengine.core.b.object" abstract="true" />
+    <bean id="modelengine.core.d.object" abstract="true">
         <properties>
             <property name="dao" ref="modelengine.global.dao" />
             <property name="route" ref="modelengine.global.db.route" />

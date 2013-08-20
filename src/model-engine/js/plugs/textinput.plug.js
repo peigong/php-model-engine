@@ -1,15 +1,12 @@
 define([
     'jquery',
     'model-engine/js/enum',
-    'model-engine/js/util',
     'model-engine/js/plugs/plugutil',
     'model-engine/js/plugs/triggeredtextinputeditor.plug'
-], function($, enu, util, plugutil, trigger) {
+], function($, enu, plugutil, trigger) {
     var ModelType = enu.ModelType,
-        FormfieldPrefix = enu.FormfieldPrefix,
-        loadCss = util.loadCss;
+        FormfieldPrefix = enu.FormfieldPrefix;
         
-    loadCss(require.toUrl('bootstrap-css'));
         
     /**
      * 创建单行文本框表单项。

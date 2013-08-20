@@ -1,9 +1,6 @@
 define([
-    'jquery',
-    'model-engine/js/util'
-], function($, util) {
-    var loadCss = util.loadCss;
-    loadCss(require.toUrl('bootstrap-css'));
+    'jquery'
+], function($) {
     
     /**
      * 创建表单项的水平容器。

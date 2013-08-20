@@ -1,6 +1,6 @@
 <?php
 require_once(dirname(__FILE__) . "/../config.inc.php");
-require_once(ModelEngineRoot . 'inc/modules/modelengine.inc.php');
+require_once(ModelEngineRoot . 'inc/modelengine.inc.php');
 
 /*-- 表单要求执行的Action的类型 --*/
 define('FORM_ACTION_NONE', 'none');
@@ -14,7 +14,7 @@ $ext = array('uid' => $uid);
 $type = isset($_POST['t']) ? $_POST['t'] : '';
 
 if(strlen($type) > 0){
-    $manager = $context->getBean('modelengine.modules.business.model');
+    $manager = $context->getBean('modelengine.business.model');
     $attributes = $manager->getAttributes($type);
     if(count($attributes) > 0){
         $id = 0;

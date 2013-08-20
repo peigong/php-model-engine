@@ -1,14 +1,10 @@
 define([
     'jquery',
-    'model-engine/js/enum',
-    'model-engine/js/util'
-], function($, enu, util) {
+    'model-engine/js/enum'
+], function($, enu) {
     var ModelType = enu.ModelType,
-        FormfieldPrefix = enu.FormfieldPrefix,
-        loadCss = util.loadCss;
-        
-    loadCss(require.toUrl('bootstrap-css'));
-        
+        FormfieldPrefix = enu.FormfieldPrefix;
+                
     /**
      * 创建单选按钮列表表单项。
      * @param o {ModelForm} 模型表单对象的实例。

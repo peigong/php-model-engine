@@ -1,6 +1,6 @@
 <?php
 require_once(dirname(__FILE__) . "/../config.inc.php");
-require_once(ModelEngineRoot . 'inc/modules/modelengine.inc.php');
+require_once(ModelEngineRoot . 'inc/modelengine.inc.php');
 
 $type = $code = '';
 $ext = array();
@@ -15,14 +15,14 @@ foreach($_GET as $key=>$value){
 }
 $entities = array();
 $managers = array(
-        MODEL_TYPE_MODEL => 'modelengine.modules.business.model',
-        MODEL_TYPE_ATTRIBUTE => 'modelengine.modules.business.attribute',
-        MODEL_TYPE_MODELFORM => 'modelengine.modules.business.form',
-        MODEL_TYPE_SYSTEMLIST => 'modelengine.modules.business.systemlist',
-        MODEL_TYPE_CUSTOMLIST => 'modelengine.modules.business.customlist',
-        MODEL_TYPE_CUSTOMLISTITEM => 'modelengine.modules.business.customlistitem',
-        MODEL_TYPE_VALIDATION => 'modelengine.modules.business.validation',
-        'formattribute' => 'modelengine.modules.business.formattribute'
+        MODEL_TYPE_MODEL => 'modelengine.business.model',
+        MODEL_TYPE_ATTRIBUTE => 'modelengine.business.attribute',
+        MODEL_TYPE_MODELFORM => 'modelengine.business.form',
+        MODEL_TYPE_SYSTEMLIST => 'modelengine.business.systemlist',
+        MODEL_TYPE_CUSTOMLIST => 'modelengine.business.customlist',
+        MODEL_TYPE_CUSTOMLISTITEM => 'modelengine.business.customlistitem',
+        MODEL_TYPE_VALIDATION => 'modelengine.business.validation',
+        'formattribute' => 'modelengine.business.formattribute'
     );
 if((strlen($type) > 0) && array_key_exists($type, $managers)){
     //实现了模型和表单引擎系统的IModelListFetch接口的类

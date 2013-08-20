@@ -1,14 +1,11 @@
 define([
     'jquery',
     'model-engine/js/enum',
-    'model-engine/js/util'
+    'model-engine/js/plugs/plugutil'
 ], function($, enu, util) {
     var ModelType = enu.ModelType,
-        FormfieldPrefix = enu.FormfieldPrefix,
-        loadCss = util.loadCss;
-        
-    loadCss(require.toUrl('bootstrap-css'));
-        
+        FormfieldPrefix = enu.FormfieldPrefix;
+                
     /**
      * 创建复选按钮表单项。
      * @param o {ModelForm} 模型表单对象的实例。
@@ -21,8 +18,7 @@ define([
      * @param def {String} 表单对象的默认值。
      */
     function create(o, container, settings, ext, def){
-        var util = require('model-engine/js/plugs/plugutil'),
-            attributes = settings.attributes,
+        var attributes = settings.attributes,
             form_name = o.getControlName(settings),
             controls = util.createHorizontalContainer(o.containers, container, settings, form_name, attributes.label);
                 
