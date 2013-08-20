@@ -1,4 +1,4 @@
-/node_modules/
+/node_modules/**
 /libs/*
 /dist/demo/me-demo/cache/*
 /dist/demo/me-demo/data/*
