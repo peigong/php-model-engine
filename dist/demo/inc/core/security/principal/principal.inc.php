@@ -34,9 +34,9 @@ interface IPrincipal{
 	function getIdentity();
 
 	/**
-	* 进行最初的拦截，进行认证。
+	* 获取当前用户的权限列表。
 	*/
-	function intercept();
+	function getPermissions();
 
 	/**
 	* 确定当前用户是否属于指定的角色。

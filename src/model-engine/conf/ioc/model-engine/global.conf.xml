@@ -3,7 +3,6 @@
     <!-- 全局使用类配置定义 -->
     <bean id="modelengine.global.db.route" class="ModelEngineSQLiteRoute" path="inc/db/modelenginesqliteroute.class.php" />
     <bean id="modelengine.global.uploadhandler" class="ModelEngineUploadHandler" path="inc/modelengineuploadhandler.class.php" />
-    <bean id="modelengine.core.b.object" abstract="true" />
     <bean id="modelengine.core.d.object" abstract="true">
         <properties>
             <property name="dao" ref="modelengine.global.dao" />
@@ -12,4 +11,3 @@
     </bean>
     <bean id="modelengine.pages.modeldesignerpage" class="ModelDesignerPage" path="inc/modeldesignerpage.class.php" />
 </config>
-

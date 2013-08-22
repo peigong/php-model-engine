@@ -1,12 +1,6 @@
 <?php
 require_once(ROOT . "inc/core/httpcontext.class.php");
 
-/**
- * 广告前端系统统一DEMO项目
- * 当前版本：@MASTERVERSION@
- * 构建时间：@BUILDDATE@
- * @COPYRIGHT@
- */
 require_once(SMARTY_PATH . 'Smarty.class.php');
 
 /**
@@ -31,6 +25,9 @@ abstract class WebPage{
     protected $userName = '';
 
     private $title = '';
+    private $menu = array();
+    private $menuProvider = null;
+    private $authProvider = null;
 
     /**
      * 构造函数。
@@ -45,6 +42,10 @@ abstract class WebPage{
         $this->identity = $this->user->getIdentity();
         if ($this->identity) {
             $this->userName = $this->identity->getName();
+        }
+        if ($context) {
+            $this->menuProvider = $context->getBean("site.menu.provider");
+            $this->authProvider = $context->getBean("security.authorization.provider");
         }
 
         /*设置Smarty模板对象*/
@@ -67,8 +68,13 @@ abstract class WebPage{
      * @param $tpl {String} 模板地址（基于全局模板目录的）。
      */
     protected function display($tpl){
-        $this->user->intercept();
+        $permissions = $this->user->getPermissions();
+        if ($this->authProvider) {
+            $this->authProvider->intercept($permissions);
+        }
         if($tpl){
+            /*- 当前登录用户的名称 -*/
+            $this->assign('UserName', $this->userName);
             /*- 定义系统名称和页面标题 -*/
             $sys_name = '';
             if (defined('SYSTEMNAME')) {
@@ -82,7 +88,11 @@ abstract class WebPage{
                 $this->title = $sys_name;
             }
             $this->assign('PageTile', $this->title);
-            $this->assign('UserName', $this->userName);
+            /*- 页面菜单的配置 -*/
+            if ($this->menuProvider) {
+                $this->menu = $this->menuProvider->getMenuSettings($permissions, $this->menu);
+            }
+            $this->assign('Menu', $this->menu);
             @$this->smarty->display($tpl);
         }
     }
@@ -102,6 +112,15 @@ abstract class WebPage{
      */
     public function setTitle($title = ''){
         $this->title = $title;
+    }
+    
+    /**
+     * 设置当前状态的菜单项。
+     * @param $menu {String} 页面上的菜单标识。
+     * @param $item {String} 页面上的菜单项标识。
+     */
+    public function setMenuActive($menu, $item){
+        $this->menu = array($menu => array($item => array('active' => 'active')));
     }
 
     /**

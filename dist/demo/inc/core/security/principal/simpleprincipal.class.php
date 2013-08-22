@@ -7,9 +7,10 @@ require_once(ROOT . 'inc/core/security/principal/simpleidentity.class.php');
 */
 class SimplePrincipal implements IPrincipal{
 	/**
-	* 进行最初的拦截，进行认证。
+	* 获取当前用户的权限列表。
 	*/
-	public function intercept(){
+	public function getPermissions(){
+		return array();
 	}
 	
 	/**
