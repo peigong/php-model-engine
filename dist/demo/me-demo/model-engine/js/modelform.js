@@ -120,7 +120,9 @@ define([
         initialise: function(settings){
             this.settings = settings;
             if(this.settings.hasOwnProperty('id')){
-                this.model = settings.model;
+                if (!this.model) {
+                    this.model = settings.model;
+                };
                 this.create();
                 this.dispatchEvent(ModelForm.Event.LOADED);
                 this.loaded = true;
@@ -134,6 +136,9 @@ define([
          */
         load: function(data){
             var service = this.options['static_fetch_service'];
+            if (data.hasOwnProperty('model')) {
+                this.model = data.model;
+            };
             if (service) {
                 if (data.hasOwnProperty('name')) {
                     $.getJSON(service + '/' + data['name'] + '.json', {}, $.proxy(this.initialise, this));

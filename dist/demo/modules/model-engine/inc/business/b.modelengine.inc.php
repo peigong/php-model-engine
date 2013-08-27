@@ -213,18 +213,16 @@ interface IBForm extends IInjectEnable, IModelListFetch{
     /**
      * 根据模型表单的ID，获取一个模型表单的配置数据。
      * @param $id {Int} 模型表单的ID。
-     * @param $code {String} 模型的编码。
      * @return {mixed} 模型表单的配置数据。
      */
-    function getModelFormById($id, $code = '');
+    function getModelFormById($id);
     
     /**
      * 根据模型表单的名称，获取一个模型表单的配置数据。
      * @param $name {String} 模型表单的名称。
-     * @param $code {String} 模型的编码。
      * @return {mixed} 模型表单的配置数据。
      */
-    function getModelFormByName($name, $code = '');
+    function getModelFormByName($name);
     
     /**
      * 复制一个模型表单。

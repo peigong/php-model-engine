@@ -61,23 +61,21 @@ class BForm extends BObject implements IBForm{
     /**
      * 根据模型表单的ID，获取一个模型表单的配置数据。
      * @param $id {Int} 模型表单的ID。
-     * @param $code {String} 模型的编码。
      * @return {mixed} 模型表单的配置数据。
      */
-    public function getModelFormById($id, $code = ''){
+    public function getModelFormById($id){
         $entity = $this->dao->getEntityById($id);
-        return $this->getModelFormByEntity($entity, $code);
+        return $this->getModelFormByEntity($entity);
     }
     
     /**
      * 根据模型表单的名称，获取一个模型表单的配置数据。
      * @param $name {String} 模型表单的名称。
-     * @param $code {String} 模型的编码。
      * @return {mixed} 模型表单的配置数据。
      */
-    public function getModelFormByName($name, $code = ''){
+    public function getModelFormByName($name){
         $entity = $this->dao->getEntityByName($name);
-        return $this->getModelFormByEntity($entity, $code);
+        return $this->getModelFormByEntity($entity);
     }
     
     /**
@@ -184,7 +182,7 @@ class BForm extends BObject implements IBForm{
     /*- IBForm 接口实现 END -*/
     
     /*- 私有方法 START -*/
-    private function getModelFormByEntity($entity, $parasitifer){
+    private function getModelFormByEntity($entity){
         $form = array();
         if($entity && array_key_exists('id', $entity)){
             $id = $entity['id'];
@@ -197,13 +195,13 @@ class BForm extends BObject implements IBForm{
             $form['attributes'] = $this->b_formattribute->getAttributeValues($code, $id);
             $form['items'] = array();
             if($entity['leaves'] > 0){
-                $form['items'] = $this->getModelFormLeaves($id, $parasitifer);
+                $form['items'] = $this->getModelFormLeaves($id);
             }
         }
         return $form;
     }
     
-    private function getModelFormLeaves($parentId, $parasitifer){
+    private function getModelFormLeaves($parentId){
         $result = array();
         $items = $this->dao->getListByParentId($parentId);
         foreach($items as $idx=>$item){
@@ -243,7 +241,7 @@ class BForm extends BObject implements IBForm{
                 // 获取表单对象的下级对象集合
                 $form['items'] = array();
                 if($item['leaves'] > 0){//如果有子对象，那么items属性就是子对象的列表
-                    $form['items'] = $this->getModelFormLeaves($id, $parasitifer);
+                    $form['items'] = $this->getModelFormLeaves($id);
                 }
 
                 // 如果表单对象有对应的数据库字段
