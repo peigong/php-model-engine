@@ -25,11 +25,7 @@ define([
                     //表单ID
                     data = {'id': id};
                 }
-                if(options && options['model'] && (options['model'].length > 0)){
-                    //表单宿主的模型
-                    data['model'] = options['model'];
-                }
-                form.load(data);
+                form.load($.extend(data, options));
             }
             return ModelForm.Instances[id];
         },

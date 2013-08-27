@@ -43,6 +43,7 @@ define([
         this.name = name || '';       
         this.def = def || {};       
         this.model = null;
+        this.parasitifer = null;
         this.popup = false;
         this.loaded = false;
         this.settings = null; 
@@ -120,8 +121,9 @@ define([
         initialise: function(settings){
             this.settings = settings;
             if(this.settings.hasOwnProperty('id')){
-                if (!this.model) {
-                    this.model = settings.model;
+                this.model = settings.model;
+                if (!this.parasitifer) {
+                    this.parasitifer = this.model;
                 };
                 this.create();
                 this.dispatchEvent(ModelForm.Event.LOADED);
@@ -136,8 +138,9 @@ define([
          */
         load: function(data){
             var service = this.options['static_fetch_service'];
-            if (data.hasOwnProperty('model')) {
-                this.model = data.model;
+            if (data.hasOwnProperty('parasitifer')) {
+                /*宿主模型的用途主要是在特定情况下获取模型字段的列表*/
+                this.parasitifer = data.parasitifer;
             };
             if (service) {
                 if (data.hasOwnProperty('name')) {
@@ -369,7 +372,8 @@ define([
                 def = this.def[key];
             };
             var ext = { 
-                'model': this.model,
+                /*宿主模型的用途主要是在特定情况下获取模型字段的列表*/
+                'parasitifer': this.parasitifer,
                 'inline': inline, 
                 'list_fetch_service': this.options['list_fetch_service'],
                 'upload_service': this.options['upload_service'],

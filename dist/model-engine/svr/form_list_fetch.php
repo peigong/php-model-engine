@@ -4,7 +4,7 @@ require_once(ModelEngineRoot . 'inc/modelengine.inc.php');
 
 $type = isset($_GET['type']) ? $_GET['type'] : '';
 $id = isset($_GET['id']) ? $_GET['id'] : 0;
-$model = isset($_GET['model']) ? $_GET['model'] : '';
+$parasitifer = isset($_GET['parasitifer']) ? $_GET['parasitifer'] : '';
 $entities = array();
 if (strlen($type) > 0 && $id > 0) {
     switch ($type) {
@@ -21,7 +21,8 @@ if (strlen($type) > 0 && $id > 0) {
             $clazz = $entity['clazz'];
             $system = $context->getBean($clazz);
             if ($system) {
-                $options = array('code' => $model, 'editable' => true);
+                /*宿主模型的用途主要是在特定情况下获取模型字段的列表*/
+                $options = array('code' => $parasitifer, 'editable' => true);
                 $entities = $system->fetchSystemList($options);
             }
             break;

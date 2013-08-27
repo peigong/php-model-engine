@@ -27,7 +27,8 @@ define([
             var options = {
                 'type': list['type'], 
                 'id': list['id'],
-                'model': ext['model']
+                /*宿主模型的用途主要是在特定情况下获取模型字段的列表*/
+                'parasitifer': ext['parasitifer']
             };
             $.get(ext['list_fetch_service'], options, function(items){
                 for(var i = 0; i < items.length; i++){
