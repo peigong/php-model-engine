@@ -76,4 +76,4 @@
  * 电子邮件：peigong@foxmail.com
  * 微博地址：[http://weibo.com/u/3030510210](http://weibo.com/u/3030510210)
  * 博客地址：[http://www.peigong.tk](http://www.peigong.tk)
- * 项目地址：[https://github.com/peigong/php-db](https://github.com/peigong/php-db)
+ * 项目地址：[https://github.com/peigong/php-model-engine](https://github.com/peigong/php-model-engine)
