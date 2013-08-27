@@ -1,10 +1,4 @@
 <?php
-/**
- * 广告前端系统统一DEMO项目
- * 当前版本：@MASTERVERSION@
- * 构建时间：@BUILDDATE@
- * @COPYRIGHT@
- */
 require_once(ROOT . 'inc/core/webpage.class.php');
 require_once(ROOT . 'inc/core/ioc/applicationcontext.inc.php');
 
@@ -39,6 +33,10 @@ class ModelDesignerPage extends WebPage implements IInjectEnable {
             $this->setTitle($title);
             $this->setMenuActive('model-engine-sub', $this->type);
             $this->smarty->addTemplateDir(ModelEngineRoot . 'templates');
+            if (defined('STATIC_HOST')) {
+                $this->assign('StaticHost', STATIC_HOST);
+            }
+
             $this->display($temp);
         }
     }

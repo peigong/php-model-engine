@@ -57,6 +57,29 @@ class DCustomListItem extends DObject implements IDCustomListItem {
         $rows = $this->retrieve($this->db, $settings);
         return $rows;
     }
+
+    /**
+    * 增加用户自定义属性列表项。
+    * @param $list {Int} 所属列表的编号。
+    * @param $value {String} 列表项的值。
+    * @param $text {String} 列表项的文本。
+    * @param $position {Int} 排序权重。
+    */
+    public function add($list, $value, $text, $position){
+        $this->initialise();
+        $settings = array(
+            'table' => $this->table, 
+            'fields' => array(
+                'list_id' => array('value' => $list, 'usequot' => false),
+                'item_value' => array('value' => $value, 'usequot' => true),
+                'item_text' => array('value' => $text, 'usequot' => true),
+                'position_order' => array('value' => $position, 'usequot' => false),
+                'update_time' => array('value' => time(), 'usequot' => false),
+                'create_time' => array('value' => time(), 'usequot' => false)
+                )
+            );
+        return $this->insert($this->db, $settings);
+    }
     /*- IDCustomListItem 接口实现 END -*/
     
     /*- 私有方法 START -*/

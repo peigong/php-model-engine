@@ -7,11 +7,15 @@
         <h1>模型和模型表单设计</h1>
         <!-- 二级导航 -->
         {include file="menu-model-engine-sub.html"}
-        <aside class="left span4">
+        <aside class="left span3">
+            <h3 class="title">模型类别<span class="model-ctrl"><a id="modelcategory_create_handler" title="添加新的模型类别" href="#"><i class="icon-plus"></i></a></span></h3>
+            <div id="modelcategory_list_container"></div>
+        </aside>
+        <aside class="span4">
             <h3 class="title">模型<span class="model-ctrl"><a id="model_create_handler" title="添加新模型" href="#"><i class="icon-plus"></i></a></span></h3>
             <div id="model_list_container"></div>
         </aside>
-        <aside class="list span5">
+        <aside class="list span4">
             <h3 class="title">属性<span class="model-ctrl"><a id="attribute_create_handler" title="添加新属性" href="#"><i class="icon-plus"></i></a></span></h3>
             <div id="attribute_list_container"></div>
         </aside>
@@ -26,10 +30,34 @@ require([
     var ModelType = enu.ModelType,
         ModelCtrlList = mcl.ModelCtrlList,
         LinkageList = ll.LinkageList;
-    var model_list = new ModelCtrlList("#model_list_container", ModelType.MODEL, { 
+    var modelcategory_list = new ModelCtrlList("#modelcategory_list_container", ModelType.MODEL_TYPE_MODELCATEGORY, { 
+            'value': 'category_id', 
+            'text': '[{ category_id }]{ category_name }',
+            'name': 'category_name', 
+
+            'form': { 'static_fetch_service': '{$StaticHost}/forms/' + ModelType.MODEL_TYPE_MODELCATEGORY },
+
+            'add': {
+                'handler': '#modelcategory_create_handler', 
+                'form_name': 'frm_modelcategory_create'
+            },
+
+            'edit': {
+                'key': 'category_id',
+                'form_name': 'frm_modelcategory_update'
+            },
+
+            'delete': {
+                'service': './svr/model_delete.php',
+                'options' : { 'model': ModelType.modelcategory, 'id': '{ category_id }', 'attr': '' }             
+            } 
+        } ),
+        model_list = new ModelCtrlList("#model_list_container", ModelType.MODEL, { 
             'value': 'model_code', 
             'text': '[{ model_code }]{ model_name }',
             'name': 'model_name', 
+
+            'form': { 'static_fetch_service': '{$StaticHost}/forms/' + ModelType.MODEL },
 
             'add': {
                 'handler': '#model_create_handler', 
@@ -50,7 +78,9 @@ require([
             'value': 'attribute_id', 
             'text': '[{ attribute_name }]{ attribute_comment }',
             'name': 'attribute_comment', 
-            
+
+            'form': { 'static_fetch_service': '{$StaticHost}/forms/' + ModelType.ATTRIBUTE },
+
             'add': {
                 'handler': '#attribute_create_handler', 
                 'form_name': 'frm_attribute_create',
@@ -67,8 +97,9 @@ require([
                 'options' : { 'model': ModelType.ATTRIBUTE, 'id': '{ attribute_id }' }             
             } 
         } ),
+        cm_linkage = new LinkageList(modelcategory_list, model_list),
         ma_linkage = new LinkageList(model_list, attribute_list);
-    ma_linkage.load();
+    cm_linkage.load();
 } );
 </script>
 {include file="common/footer.tpl.html"}

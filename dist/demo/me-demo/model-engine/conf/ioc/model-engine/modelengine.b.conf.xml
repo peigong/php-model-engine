@@ -11,6 +11,7 @@
     <bean id="modelengine.business.modelcategory" class="BModelCategory" path="inc/business/b.modelcategory.class.php"  parent="modelengine.core.b.object">
         <properties>
             <property name="dao" ref="modelengine.dataaccess.modelcategory" />
+            <property name="manager" ref="modelengine.business.model" />
         </properties>
     </bean>
     <bean id="modelengine.business.attribute" class="BAttribute" path="inc/business/b.attribute.class.php"  parent="modelengine.core.b.object">
@@ -25,8 +26,6 @@
             <property name="b_model" ref="modelengine.business.model" />
             <property name="b_attribute" ref="modelengine.business.attribute" />
             <property name="b_formattribute" ref="modelengine.business.formattribute" />
-            <property name="b_system_list" ref="modelengine.business.systemlist" />
-            <property name="b_custom_list_item" ref="modelengine.business.customlistitem" />
             <property name="b_validation" ref="modelengine.business.validation" />
         </properties>
     </bean>
@@ -69,6 +68,18 @@
         <properties>
             <property name="dao" ref="modelengine.dataaccess.validation" />
             <property name="manager" ref="modelengine.business.model" />
+        </properties>
+    </bean>
+    <bean id="modelengine.business.tool" class="BModelTool" path="inc/business/b.modeltool.class.php"  parent="modelengine.core.b.object">
+        <properties>
+            <property name="model" ref="modelengine.business.model" />
+            <property name="attribute" ref="modelengine.business.attribute" />
+            <property name="form" ref="modelengine.business.form" />
+            <property name="validation" ref="modelengine.business.validation" />
+            <property name="category" ref="modelengine.business.modelcategory" />
+            <property name="system" ref="modelengine.business.systemlist" />
+            <property name="custom" ref="modelengine.business.customlist" />
+            <property name="item" ref="modelengine.business.customlistitem" />
         </properties>
     </bean>
 </config>

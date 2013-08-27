@@ -14,7 +14,6 @@ define([
         this.master = master;
         this.items = this.master.items;
         this.options = $.extend({
-            'model': '',
             'service': '', 
             'delete': {
                 'service': '',
@@ -32,10 +31,10 @@ define([
          * 打开添加数据的表单。
          */
         open: function(){
-            if (this.options['model'] && this.options['service']) {
+            if (this.options['service']) {
                 var options = { 
                     't': ModelType.ATTRIBUTE, 
-                    'code': this.options['model'], 
+                    'code': this.master.model, 
                     'editable': 1 
                 };
                 $.getJSON(this.options['service'], options, $.proxy(this.checkEditableAttributes, this));

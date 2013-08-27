@@ -14,8 +14,8 @@ define('SMARTY_TEMPLATES', ROOT . 'templates/');
 define('SMARTY_CACHE', $current__root . 'cache/smarty/');
 
 /*- 静态资源访问配置 -*/
-define('STATIC_HOST', "http://$server_name/me-demo/static");
 define('STATIC_PATH', $current__root . 'static');
+define('STATIC_HOST', "http://$server_name/me-demo/static");
 /*- 数据库存储文件目录 -*/
 define('ModelEngineData', $current__root . 'data/');
 ?>

@@ -2,12 +2,17 @@
 /**
  * 模型枚举。
  */
+
 if (!defined('MODEL_TYPE_MODEL')) {
     define('MODEL_TYPE_MODEL', 'model');
 }
 if (!defined('MODEL_TYPE_ATTRIBUTE')) {
     define('MODEL_TYPE_ATTRIBUTE', 'attribute');
 }
+if (!defined('MODEL_TYPE_MODELCATEGORY')) {
+    define('MODEL_TYPE_MODELCATEGORY', 'modelcategory');
+}
+
 if (!defined('MODEL_TYPE_SYSTEMLIST')) {
     define('MODEL_TYPE_SYSTEMLIST', 'systemlist');
 }
@@ -17,6 +22,7 @@ if (!defined('MODEL_TYPE_CUSTOMLIST')) {
 if (!defined('MODEL_TYPE_CUSTOMLISTITEM')) {
     define('MODEL_TYPE_CUSTOMLISTITEM', 'customlistitem');
 }
+
 if (!defined('MODEL_TYPE_MODELFORM')) {
     define('MODEL_TYPE_MODELFORM', 'modelform');
 }

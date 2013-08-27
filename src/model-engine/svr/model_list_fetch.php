@@ -15,6 +15,7 @@ foreach($_GET as $key=>$value){
 }
 $entities = array();
 $managers = array(
+        MODEL_TYPE_MODELCATEGORY => 'modelengine.business.modelcategory',
         MODEL_TYPE_MODEL => 'modelengine.business.model',
         MODEL_TYPE_ATTRIBUTE => 'modelengine.business.attribute',
         MODEL_TYPE_MODELFORM => 'modelengine.business.form',

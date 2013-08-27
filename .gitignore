@@ -3,3 +3,4 @@
 /dist/demo/me-demo/cache/*
 /dist/demo/me-demo/data/*
 /dist/demo/me-demo/static/*
+/dist/demo/me-demo/model-engine/tmp/*

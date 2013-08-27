@@ -53,6 +53,17 @@ class BCustomListItem extends BObject implements IBCustomListItem{
         return $result;
     }
     /*- ISystemListFetch 接口实现 END -*/
+
+    /**
+    * 增加用户自定义属性列表项。
+    * @param $list {Int} 所属列表的编号。
+    * @param $value {String} 列表项的值。
+    * @param $text {String} 列表项的文本。
+    * @param $position {Int} 排序权重。
+    */
+    public function add($list, $value, $text, $position){
+        return  $this->dao->add($list, $value, $text, $position);
+    }
     /*- IBCustomListItem 接口实现 END -*/
     
     /*- 私有方法 START -*/

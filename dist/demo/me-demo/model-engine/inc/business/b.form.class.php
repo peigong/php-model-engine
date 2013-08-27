@@ -6,12 +6,9 @@ require_once(ModelEngineRoot . 'inc/business/b.modelengine.inc.php');
  * 模型引擎系统业务层模型表单类。
  */
 class BForm extends BObject implements IBForm{
-    private $context;
     private $b_model;
     private $b_attribute;
     private $b_formattribute;
-    private $b_system_list;
-    private $b_custom_list_item;
     private $b_validation;
     
     /*- IBForm 接口实现 START -*/
@@ -42,7 +39,7 @@ class BForm extends BObject implements IBForm{
         return $result;
     }
     /*- IModelListFetch 接口实现 END -*/
-    
+   
     /**
      * 根据模型编码，获取模型表单的列表。
      * @param $code {String} 模型的编码。
@@ -50,6 +47,15 @@ class BForm extends BObject implements IBForm{
      */
     public function getListByModel($code){
         return $this->dao->getListByModel($code);
+    }
+    
+    /**
+     * 根据上级ID，获取模型表单的数据列表。
+     * @param $parentId {int} 上级ID。
+     * @return {Array} 模型表单的数据列表。
+     */
+    public function getListByParentId($parentId){
+        return $this->dao->getListByParentId($parentId);
     }
     
     /**
@@ -75,36 +81,83 @@ class BForm extends BObject implements IBForm{
     }
     
     /**
-     * 复制一个模型表单对象。
-     * @param $code {String} 模型的编码。
-     * @param $id {Int} 模型表单对象的ID。
-	 * @return Boolean 是否操作成功。
+     * 复制一个模型表单。
+     * @param $id {Int} 模型表单的ID。
      */
-    public function copy($code, $id, $parentId = 0){
-        $result = true;
-        $model_id = -1;
+    public function copy($id){
+        $attributes = $this->b_model->getAttributes(MODEL_TYPE_MODELFORM);
+        $entity = $this->b_model->getAttributeValues(MODEL_TYPE_MODELFORM, $id, $attributes);
+        $form = $this->load_form_data($entity);
+        $this->import_form_data($form, 0);
+    }
+
+    /**
+    * 装载一个表单对象的子对象及表单验证对象等数据。
+    * @param $form {Array} 待装载的表单初始数据对象。
+    * @return {Array} 表单完整数据对象。
+    */
+    public function load_form_data($form){
+        $form_id = $form['form_id'];
+
+        $forms = array();
+        $rows = $this->getListByParentId($form_id);
+        foreach ($rows as $idx => $row) {
+            $code = $row['code'];
+            $attributes = $this->b_model->getAttributes($code);
+            $entity = $this->b_model->getAttributeValues($code, $row['id'], $attributes);
+            array_push($forms, $this->load_form_data($entity));
+        }
+        $form['forms'] = $forms;
+
+        $validations = $this->b_validation->fetchModelList($form_id, array());
+        $form['validations'] = $validations;
+
+        return $form;
+    }
+
+    /**
+    * 向数据库导入一个表单完整数据对象。
+    * @param $form {Array} 待导入的表单完整数据对象。
+    * @param $parent {Array} 表单对象的父ID。
+    */
+    public function import_form_data($form, $parent){
+        $code = $form['form_mode_code'];
+        $forms = $form['forms'];
+        $validations = $form['validations'];
+
+        $form['parent_id'] = $parent;
         $attributes = $this->b_model->getAttributes($code);
-        $attributeValues = $this->b_model->getAttributeValues($code, $id, $attributes);
-        $new_attributes = array();
-        foreach($attributes as $attribute){
-            $value = $attributeValues[$attribute['name']];
-            $attribute['value'] = isset($value) ? $value : '';
-            //TODO:在业务层感知数据库具体字段，不太理想，是折衷方案。
-            if('parent_id' == $attribute['name']){
-                $attribute['value'] = $parentId;
+        if(count($attributes) > 0){
+            foreach($attributes as &$attribute){
+                $name = $attribute['name'];
+                if (array_key_exists($name, $form)) {
+                    $value = $form[$name];
+                    $value = isset($value) ? $value : '';
+                    $attribute['value'] = $value;
+                }
             }
-            array_push($new_attributes, $attribute);
-        }
-        $model_id = $this->b_model->create($code, $new_attributes);
-        $models = $this->dao->getListByParentId($id);
-        if(count($models) > 0){
-            foreach($models as $model){
-                $sub_code = $model['code'];
-                $sub_id = $model['id'];
-                $this->copy($sub_code, $sub_id, $model_id);
+            $form_id = $this->b_model->create($code, $attributes);
+
+            $attr = $this->b_model->getAttributes(MODEL_TYPE_VALIDATION);
+            if(count($attr) > 0){
+                foreach ($validations as $idx => $validation) {
+                    $validation['form_id'] = $form_id;
+                    foreach($attr as &$att){
+                        $name = $att['name'];
+                        if (array_key_exists($name, $validation)) {
+                            $value = $validation[$name];
+                            $value = isset($value) ? $value : '';
+                            $att['value'] = $value;
+                        }
+                    }
+                    $validation_id = $this->b_model->create(MODEL_TYPE_VALIDATION, $attr);
+                }
             }
         }
-        return $result;
+
+        foreach ($forms as $idx => $sub) {
+            $this->import_form_data($sub, $form_id);
+        }
     }
     
     /**
@@ -163,51 +216,47 @@ class BForm extends BObject implements IBForm{
                 $form['model'] = $model;
                 $form['code'] = $code;
                 $form['name'] = $item['name'];
-                $form['description'] = $item['description'];
+                //$form['description'] = $item['description'];
                 
                 // 获取表单对象的属性集合
                 $attributes = $this->b_formattribute->getAttributeValues($code, $id);
                 $form['attributes'] = $attributes;
                 
                 // 获取表单对象的验证方法集合
-                $validation = $this->b_validation->fetchModelList($id, array());
-                $form['validation'] = $validation;
+                $validations = array();
+                /*忽略的属性*/
+                $ignore_attributes = array('validation_id', 'model_code', 'form_id', 'position_order', 'update_time', 'create_time');
+                $rows = $this->b_validation->fetchModelList($id, array());
+                foreach ($rows as $idx => $row) {
+                    $validation = array();
+                    foreach ($row as $key => $val) {
+                        if (!in_array($key, $ignore_attributes)) {
+                            $validation[$key] = $val;
+                        }
+                    }
+                    if (count($validation) > 0) {
+                        array_push($validations, $validation);
+                    }
+                }
+                $form['validations'] = $validations;
                 
                 // 获取表单对象的下级对象集合
                 $form['items'] = array();
                 if($item['leaves'] > 0){//如果有子对象，那么items属性就是子对象的列表
                     $form['items'] = $this->getModelFormLeaves($id, $parasitifer);
-                }else{//没有子对象，
-                    // 如果表单对象有对应的数据库字段
-                    if(array_key_exists('field', $attributes) && $attributes['field']){
-                        $field = $attributes['field'];
-                        $attribute = $this->b_attribute->getEntity($model, $field);
-                        // 指定模型的对应数据库字段，是一个能够从列表中选择数据的属性。
-                        if(array_key_exists('list', $attribute)){
-                            $listitems = array();
-                            $list = $attribute['list'];
-                            $default = $attribute['default'];
-                            if($list > 0){
-                                //用户自定义属性值列表
-                                //实现了模型和表单引擎系统的ISystemListFetch接口的类
-                                $options = array('listId' => $list);
-                                $listitems = $this->b_custom_list_item->fetchSystemList($options);
-                            }elseif(($list < 0) && $this->context && $this->b_system_list){//系统内置属性值列表
-                                $entity = $this->b_system_list->getEntity(abs($list));
-                                $clazz = $entity['clazz'];
-                                if($clazz){
-                                    //实现了模型和表单引擎系统的ISystemListFetch接口的类
-                                    $system_list = $this->context->getBean($clazz);
-                                    $options = array('code' => $parasitifer, 'editable' => true);
-                                    $listitems = $system_list->fetchSystemList($options);
-                                }
-                            }
-                            foreach($listitems as $listitem){
-                                if(!$listitem['group']){
-                                    $listitem['default'] = $default;
-                                }
-                                array_push($form['items'], $listitem);
-                            }
+                }
+
+                // 如果表单对象有对应的数据库字段
+                if(array_key_exists('field', $attributes) && $attributes['field']){
+                    $field = $attributes['field'];
+                    $attribute = $this->b_attribute->getEntity($model, $field);
+                    // 指定模型的对应数据库字段，是一个能够从列表中选择数据的属性。
+                    if(array_key_exists('list', $attribute)){
+                        $list = $attribute['list'];
+                        if ($list > 0) {
+                            $form['list'] = array('type' => 'custom', 'id' => $list);
+                        }else if ($list < 0) {
+                            $form['list'] = array('type' => 'system', 'id' => abs($list));
                         }
                     }
                 }

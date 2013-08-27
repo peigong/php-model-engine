@@ -1,0 +1,119 @@
+{include file="common/header.tpl.html"}
+<script type="text/javascript" src="../js/config.js"></script>
+<style type="text/css">
+div.left { margin-left: 0px; }
+div.tool-ctrl{ clear: both; }
+form.form-inline label.checkbox{ margin-bottom: 10px; margin-left: 15px;}
+</style>
+<section class="section">
+    <div class="container">
+        <h1>模型和模型表单设计</h1>
+        <!-- 二级导航 -->
+        {include file="menu-model-engine-sub.html"}
+        <div>{$Message}</div>
+    	<div class="container">
+    		<h2>导入、备份和导出表单配置</h2>
+			<div class='left span6'>
+		        <h3>拥有模型定义数据的模块</h3>
+				<form class="form-inline" method="post">
+					<div>
+				        {foreach $Modules as $idx=>$module}
+						<label class="checkbox span2">
+						    <input type="checkbox" name='module[]' value="{$module}">{$module}
+						</label>
+				        {/foreach}
+					</div>
+					<div class='tool-ctrl'>
+				        <input type='hidden' name='axn' value='import-modules' />
+			  			<button type="submit" class="btn">导入</button>
+					</div>
+				</form>
+			</div>
+			<div class='span6'>
+		        <h3>备份、导出</h3>
+				<form class="form-inline" method="post">
+			        <input type='hidden' name='axn' value='backup' />
+		  			<button type="submit" class="btn">备份模型和表单引擎的数据库</button>
+				</form>
+				<form class="form-inline" method="post">
+			        <input type='hidden' name='axn' value='export-forms' />
+		  			<button type="submit" class="btn">导出模型和表单引擎的表单配置</button>
+				</form>
+			</div>
+		</div>
+		<hr />
+    	<div class="container">
+    		<h2>导出模型定义数据</h2>
+			<div class='left span6'>
+		        <h3>模型类别</h3>
+				<form class="form-inline" method="post">
+					<div>
+				        {foreach $Categories as $idx=>$category}
+						<label class="checkbox span2">
+						    <input type="checkbox" name='category[]' value="{$category['category_id']}">{$category['category_name']}
+						</label>
+				        {/foreach}
+					</div>
+					<div class='tool-ctrl'>
+				        <input type='hidden' name='axn' value='export-categories' />
+			  			<button type="submit" class="btn">导出</button>
+					</div>
+				</form>
+		        <h3>系统内置的属性值下拉列表</h3>
+				<form class="form-inline" method="post">
+					<div>
+				        {foreach $SystemLists as $idx=>$list}
+						<label class="checkbox span2">
+						    <input type="checkbox" name='list[]' value="{$list['list_id']}">{$list['list_name']}
+						</label>
+				        {/foreach}
+					</div>
+					<div class='tool-ctrl'>
+				        <input type='hidden' name='axn' value='export-system-lists' />
+			  			<button type="submit" class="btn">导出</button>
+					</div>
+				</form>
+		        <h3>用户自定义的属性值可选列表</h3>
+				<form class="form-inline" method="post">
+					<div>
+				        {foreach $CustomLists as $idx=>$list}
+						<label class="checkbox span3">
+						    <input type="checkbox" name='list[]' value="{$list['list_id']}">{$list['list_name']}
+						</label>
+				        {/foreach}
+					</div>
+					<div class='tool-ctrl'>
+				        <input type='hidden' name='axn' value='export-custom-lists' />
+			  			<button type="submit" class="btn">导出</button>
+					</div>
+				</form>
+			</div>
+			<div class='span6'>
+		        <h3>模型和表单引擎中的模型</h3>
+				<form class="form-inline" method="post">
+					<div>
+				        {foreach $Models as $idx=>$model}
+						<label class="checkbox span2">
+						    <input type="checkbox" name='model[]' value="{$model['model_code']}">{$model['model_name']}
+						</label>
+				        {/foreach}
+					</div>
+					<div class='tool-ctrl'>
+				        <input type='hidden' name='axn' value='export-models' />
+			  			<button type="submit" class="btn">导出</button>
+					</div>
+				</form>
+		        <h3>已经导出的模型定义数据</h3>
+		        <ul class="inline">
+			        {foreach $Files as $idx=>$file}
+					<li class='span2'>{$file}</li>
+			        {/foreach}
+		        </ul>
+			</div>
+		</div>
+    </div>
+</section>
+<script type="text/javascript">
+require(['bootstrap']);
+</script>
+{include file="common/footer.tpl.html"}

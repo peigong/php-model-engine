@@ -18,7 +18,7 @@ define([
     function create(o, container, settings, ext, def){
         var util = require('model-engine/js/plugs/plugutil'),
             attributes = settings.attributes,
-            items = settings.items, 
+            list = settings.list, 
             form_name = o.getControlName(settings),
             controls = util.createHorizontalContainer(o.containers, container, settings, form_name, attributes.label);
         
@@ -26,20 +26,30 @@ define([
         controls.append(input);
         input.attr('id', form_name);
         input.attr('name', form_name);
-        var group = input;
-        for(var i = 0; i < items.length; i++){
-            if(items[i]['group']){
-                group = $('<optgroup label=\'' + items[i]['label'] + '\' />');
-                input.append(group);
-            }else{
-                group.append($('<option value=\'' + items[i]['value'] + '\'>' + items[i]['text'] + '</option>'));
-            }
-        }
-
-        if (def) {
-            $(input).val(def);
-        };
         o.controls[form_name] = {'id': form_name, 'name': settings.name, 'type': ModelType.SELECTINPUT, 'field': attributes.field};
+
+        if (list && ext.hasOwnProperty('list_fetch_service')) {
+            var options = {
+                'type': list['type'], 
+                'id': list['id'],
+                'model': ext['model']
+            };
+            $.getJSON(ext['list_fetch_service'], options, function(items){
+                var group = input;
+                for(var i = 0; i < items.length; i++){
+                    if(items[i]['group']){
+                        group = $('<optgroup label=\'' + items[i]['label'] + '\' />');
+                        input.append(group);
+                    }else{
+                        group.append($('<option value=\'' + items[i]['value'] + '\'>' + items[i]['text'] + '</option>'));
+                    }
+                }
+
+                if (def) {
+                    $(input).val(def);
+                };
+            });
+        };
     }
     
     return {

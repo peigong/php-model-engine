@@ -41,7 +41,7 @@ interface IDModel extends IInjectEnable{
     /**
      * 获取模型的列表。
      * @param $cid {Int} 模型类别的ID。
-     * @return Array 模型的列表。
+     * @return {Array} 模型的列表。
      */
     function getList($cid);
     
@@ -119,9 +119,21 @@ interface IDModel extends IInjectEnable{
      *       'value' => ''
      * ),... ...)
      * @param $ext {Array} 数据库切割需要的扩展参数。
-	 * @return Int 新添加的模型ID（异常为-1）。
+	 * @return {Int} 新添加的模型ID（异常为-1）。
      */
     function create($table, $attributes, $ext);
+
+    /**
+     * 向数据库插入模型数据。
+     * @param $code {String} 模型的编码。
+     * @param $name {String} 模型的名称。
+     * @param $description {String} 模型的描述信息。
+     * @param $model {String} 模型数据表。
+     * @param $attribute {String} 模型扩展属性数据表。
+     * @param $category {Int} 模型的类别ID。
+     * @return {Int} 新增数据的ID。
+     */
+    function add($code, $name, $description, $model, $attribute, $category);
     
     /**
      * 修改一个模型属性值。
@@ -143,7 +155,7 @@ interface IDModel extends IInjectEnable{
      *       'value' => ''
      * ),... ...)
      * @param $ext {Array} 数据库切割需要的扩展参数。
-	 * @return Boolean 是否操作成功。
+	 * @return {Boolean} 是否操作成功。
      */
     function save($id, $table, $attributes, $ext);
     
@@ -167,7 +179,7 @@ interface IDModel extends IInjectEnable{
      *       'value' => ''
      * ),... ...)
      * @param $ext {Array} 数据库切割需要的扩展参数。
-	 * @return Boolean 是否操作成功。
+	 * @return {Boolean} 是否操作成功。
      */
     function remove($id, $table, $attributes, $ext);
 }
@@ -177,8 +189,16 @@ interface IDModel extends IInjectEnable{
  */
 interface IDModelCategory extends IInjectEnable{
     /**
+     * 向数据库插入模型类别数据。
+     * @param $name {String} 模型类别名称。
+     * @param $description {String} 模型类别的描述信息。
+     * @return {Int} 新增数据的ID。
+     */
+    function add($name, $description);
+    
+    /**
      * 获取模型类别的列表。
-     * @return Array 模型类别的列表。
+     * @return {Array} 模型类别的列表。
      */
     function getList();
 }
@@ -187,6 +207,24 @@ interface IDModelCategory extends IInjectEnable{
  * 模型引擎系统数据层模型属性类的接口。
  */
 interface IDAttribute extends IInjectEnable{
+    /**
+     * 向数据库插入模型属性数据。
+     * @param $name {String} 模型属性名称。
+     * @param $comment {String} 模型属性的注释。
+     * @param $type {String} 模型属性值的类型。
+     * @param $default {String} 模型属性的默认值。
+     * @param $model {String} 模型的编码。
+     * @param $list {Int} 模型属性值可选列表的ID（<0：系统内置列表；>0：用户自定义列表。）。
+     * @param $ext {Int} 是否是扩展属性。
+     * @param $editable {Int} 是否是允许用户编辑的属性。
+     * @param $autoupdate {Int} 在修改数据时，是否使用默认值自动更新。
+     * @param $primary {Int} 是否是主键属性。
+     * @param $position {Int} 用于排序的值。
+     * @param $category {String} 模型属性类别的自增ID。
+     * @return {Int} 新增数据的ID。
+     */
+    function add($name, $comment, $type, $default, $model, $list, $ext, $editable, $autoupdate, $primary, $position, $category);
+    
     /**
      * 获取模型属性的列表。
      * @param $code {String} 模型的编码。
@@ -199,7 +237,7 @@ interface IDAttribute extends IInjectEnable{
      * 根据模型编码和属性名获取模型属性的数据实体。
      * @param $code {String} 模型的编码。
      * @param $field {String} 模型属性名。
-     * @return Array 模型属性的数据实体。
+     * @return {Array} 模型属性的数据实体。
      */
     function getEntity($code, $field);
     
@@ -294,7 +332,7 @@ interface IDAttribute extends IInjectEnable{
      *       'value' => ''
      * ),... ...)
      * @param $ext {Array} 数据库切割需要的扩展参数。
-	 * @return Boolean 是否操作成功。
+	 * @return {Boolean} 是否操作成功。
      */
     function save($code, $modelId, $table, $attributes, $ext = array());
     
@@ -305,7 +343,7 @@ interface IDAttribute extends IInjectEnable{
      * @param $table {String} 模型扩展属性存储的数据表。
      * @param $attribute {Int} 模型属性的ID。
      * @param $ext {Array} 数据库切割需要的扩展参数。
-	 * @return Boolean 是否操作成功。
+	 * @return {Boolean} 是否操作成功。
      */
     function removeValue($code, $modelId, $table, $attribute = -1, $ext = array());
 }
@@ -344,23 +382,6 @@ interface IDForm extends IInjectEnable{
 }
 
 /**
- * 模型引擎系统数据层列表类的接口。
- */
-interface IDList extends IInjectEnable{
-    /**
-     * 获取系统内置列表。
-     * @param $type {Int} 系统内置列表的类型。
-     * @return Array 系统内置列表。
-     */
-    function getSystemList($type);
-    
-    /**
-     * 获取用户自定义属性值可选列表。
-     * @return Array 属性值可选列表。
-     */
-    function getCustomList();
-}
-/**
  * 模型引擎系统数据层系统内置列表类的接口。
  */
 interface IDSystemList extends IInjectEnable{
@@ -373,9 +394,18 @@ interface IDSystemList extends IInjectEnable{
     
     /**
      * 获取系统内置列表。
-     * @return Array 系统内置列表
+     * @return {Array} 系统内置列表
      */
     function getList();
+
+    /**
+    * 增加系统内置列表。
+    * @param $name {String} 列表的名称。
+    * @param $description {String} 列表的描述信息。
+    * @param $clazz {String} 列表实现类的IOC编号。
+    * @param $position {Int} 排序权重。
+    */
+    function add($name, $description, $clazz, $position);
 }
 
 /**
@@ -384,9 +414,17 @@ interface IDSystemList extends IInjectEnable{
 interface IDCustomList extends IInjectEnable{
     /**
      * 获取用户自定义属性值可选列表。
-     * @return Array 属性值可选列表。
+     * @return {Array} 属性值可选列表。
      */
     function getList();
+
+    /**
+    * 增加用户自定义属性列表。
+    * @param $name {String} 列表的名称。
+    * @param $description {String} 列表的描述信息。
+    * @param $position {Int} 排序权重。
+    */
+    function add($name, $description, $position);
 }
 
 /**
@@ -396,9 +434,18 @@ interface IDCustomListItem extends IInjectEnable{
     /**
      * 获取属性值可选列表的列表项。
      * @param $listId Int 列表编号。
-     * @return Array 可选列表的列表项。
+     * @return {Array} 可选列表的列表项。
      */
     function getListItems($listId);
+    
+    /**
+    * 增加用户自定义属性列表项。
+    * @param $list {Int} 所属列表的编号。
+    * @param $value {String} 列表项的值。
+    * @param $text {String} 列表项的文本。
+    * @param $position {Int} 排序权重。
+    */
+    function add($list, $value, $text, $position);
 }
 
 /**
@@ -407,7 +454,7 @@ interface IDCustomListItem extends IInjectEnable{
 interface IDDefaultValue extends IInjectEnable{
     /**
      * 获取数据字段默认值的列表。
-     * @return Array 数据字段默认值的列表。
+     * @return {Array} 数据字段默认值的列表。
      */
     function getList();
 }
@@ -418,7 +465,7 @@ interface IDDefaultValue extends IInjectEnable{
 interface IDValueType extends IInjectEnable{
     /**
      * 获取数据字段值类型的列表。
-     * @return Array 数据字段值类型的列表。
+     * @return {Array} 数据字段值类型的列表。
      */
     function getList();
 }
@@ -430,7 +477,7 @@ interface IDValidation extends IInjectEnable{
     /**
      * 获取模型表单对象验证方法的列表。
      * @param $formId {int} 表单对象的ID。
-     * @return Array 模型表单对象验证方法的列表。
+     * @return {Array} 模型表单对象验证方法的列表。
      */
     function getList($formId);
 }

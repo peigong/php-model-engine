@@ -20,7 +20,7 @@ define([
     function create(o, container, settings, ext, def){
         var attributes = settings.attributes,
             form_name = o.getControlName(settings),
-            controls = util.createHorizontalContainer(o.containers, container, settings, form_name, attributes.label);
+            controls = util.createHorizontalContainer(o.containers, container, settings, form_name, attributes['label']);
                 
         var lbl_chb = $('<label class="checkbox">');
         controls.append(lbl_chb);
@@ -29,7 +29,9 @@ define([
         input.attr('id', form_name);
         input.attr('name', form_name);
         input.attr('type', 'checkbox');
-        lbl_chb.append(settings.description);
+        if (attributes.hasOwnProperty('placeholder')) {
+            lbl_chb.append(attributes['placeholder']);            
+        };
         
         if (def) {
             $(input).prop('checked', !!(def * 1));

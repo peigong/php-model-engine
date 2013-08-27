@@ -227,6 +227,34 @@ class DModel extends DObject implements IDModel {
         }
         return $result;
     }
+
+    /**
+     * 向数据库插入模型数据。
+     * @param $code {String} 模型的编码。
+     * @param $name {String} 模型的名称。
+     * @param $description {String} 模型的描述信息。
+     * @param $model {String} 模型数据表。
+     * @param $attribute {String} 模型扩展属性数据表。
+     * @param $category {Int} 模型的类别ID。
+     * @return {Int} 新增数据的ID。
+     */
+    public function add($code, $name, $description, $model, $attribute, $category){
+        $this->initialise();
+        $settings = array(
+            'table' => $this->table, 
+            'fields' => array(
+                'model_code' => array('value' => $code, 'usequot' => true),
+                'model_name' => array('value' => $name, 'usequot' => true),
+                'model_description' => array('value' => $description, 'usequot' => true),
+                'model_table' => array('value' => $model, 'usequot' => true),
+                'attribute_table' => array('value' => $attribute, 'usequot' => true),
+                'category_id' => array('value' => $category, 'usequot' => true),
+                'update_time' => array('value' => time(), 'usequot' => false),
+                'create_time' => array('value' => time(), 'usequot' => false)
+                )
+            );
+        return $this->insert($this->db, $settings);
+    }
     
     /**
      * 修改一个模型属性值。

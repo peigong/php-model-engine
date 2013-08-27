@@ -74,6 +74,29 @@ class DSystemList extends DObject implements IDSystemList {
         );
         return $this->retrieve($this->db, $settings);
     }
+
+    /**
+    * 增加系统内置列表。
+    * @param $name {String} 列表的名称。
+    * @param $description {String} 列表的描述信息。
+    * @param $clazz {String} 列表实现类的IOC编号。
+    * @param $position {Int} 排序权重。
+    */
+    public function add($name, $description, $clazz, $position){
+        $this->initialise();
+        $settings = array(
+            'table' => $this->table, 
+            'fields' => array(
+                'list_name' => array('value' => $name, 'usequot' => true),
+                'list_description' => array('value' => $description, 'usequot' => true),
+                'list_clazz' => array('value' => $clazz, 'usequot' => true),
+                'position_order' => array('value' => $position, 'usequot' => false),
+                'update_time' => array('value' => time(), 'usequot' => false),
+                'create_time' => array('value' => time(), 'usequot' => false)
+                )
+            );
+        return $this->insert($this->db, $settings);
+    }
     /*- IDSystemList 接口实现 END -*/
     
     /*- 私有方法 START -*/

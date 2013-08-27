@@ -27,6 +27,7 @@ module.exports = function(grunt) {
           {expand: true, "cwd": "src/demo", src: ["**"], dest: "dist/demo"},
           {expand: true, "cwd": "src/model-engine", src: ["**"], dest: "dist/model-engine"},
           {expand: true, "cwd": "src/model-engine", src: ["**"], dest: "dist/demo/me-demo/model-engine"},
+          {expand: true, "cwd": "src/model-engine", src: ["**"], dest: "dist/demo/modules/model-engine"},
 
           {expand: true, cwd: "libs/php-cache-0.0.2/dist/inc", src: ["**"], dest: "dist/demo/inc"},
           {expand: true, cwd: "libs/php-ioc-0.0.6/dist/inc", src: ["**"], dest: "dist/demo/inc"},

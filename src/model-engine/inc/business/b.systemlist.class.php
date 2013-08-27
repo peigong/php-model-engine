@@ -75,6 +75,18 @@ class BSystemList extends BObject implements IBSystemList{
     public function getEntity($id){
         return $this->dao->getEntity($id);
     }
+
+    /**
+    * 增加系统内置列表。
+    * @param $name {String} 列表的名称。
+    * @param $description {String} 列表的描述信息。
+    * @param $clazz {String} 列表实现类的IOC编号。
+    * @param $position {Int} 排序权重。
+    */
+    public function add($name, $description, $clazz, $position){
+        return $this->dao->add($name, $description, $clazz, $position);
+    }
+
     /*- IBSystemList 接口实现 END -*/
     
     /*- 私有方法 START -*/

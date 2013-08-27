@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.peigong.tk/ioc/config">
+    <!-- 全局使用类配置定义 -->
+    <bean id="modelengine.global.dao" class="PDOSQLite" path="inc/db/sqlite/pdosqlite.class.php" />
+</config>
+

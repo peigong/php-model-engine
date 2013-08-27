@@ -49,6 +49,11 @@ define([], function() {
             'FILEINPUT': 'fileinput',
             
             /**
+             * 模型类别。
+             */
+            'MODEL_TYPE_MODELCATEGORY': 'modelcategory',
+            
+            /**
              * 模型。
              */
             'MODEL': 'model',

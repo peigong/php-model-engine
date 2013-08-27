@@ -35,6 +35,27 @@ class DModelCategory extends DObject implements IDModelCategory {
         $this->$prop = $val;
     }
     /*- IInjectEnable 接口实现 END -*/
+    /**
+     * 向数据库插入模型类别数据。
+     * @param $name {String} 模型类别名称。
+     * @param $description {String} 模型类别的描述信息。
+     * @return {Int} 新增数据的ID。
+     */
+    public function add($name, $description){
+        $this->initialise();
+        $settings = array(
+            'table' => $this->table, 
+            'fields' => array(
+                'category_name' => array('value' => $name, 'usequot' => true),
+                'category_description' => array('value' => $description, 'usequot' => true),
+                'parent_id' => array('value' => 0, 'usequot' => false),
+                'position_order' => array('value' => 0, 'usequot' => false),
+                'update_time' => array('value' => time(), 'usequot' => false),
+                'create_time' => array('value' => time(), 'usequot' => false)
+                )
+            );
+        return $this->insert($this->db, $settings);
+    }
         
     /**
      * 获取模型类别的列表。

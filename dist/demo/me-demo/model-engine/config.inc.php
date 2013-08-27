@@ -15,6 +15,9 @@ if (!defined('ROOT')) {
 	exit();
 }
 
+//设定没有限期的执行时间。
+set_time_limit(0);
+
 /*模型和模型表单引擎库的根目录*/
 if (!defined('ModelEngineRoot')) {
 	define('ModelEngineRoot', str_replace('\\', '/', dirname(__FILE__)) . '/');

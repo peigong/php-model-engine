@@ -29,7 +29,20 @@ define([
             'name': 'name',
 
             'form': {
+
+                /**
+                 * 拉取表单配置数据的服务器端动态地址。
+                 **/
                 'dynamic_fetch_service': '',
+
+                /**
+                 * 拉取表单配置数据的服务器端静态地址。
+                 **/
+                'static_fetch_service': '',
+
+                /**
+                * 提供上传数据接收服务的地址。
+                */
                 'upload_service': '',
             },
 

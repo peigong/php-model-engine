@@ -242,7 +242,7 @@
 
               <entry align="center"></entry>
 
-              <entry align="center">扩展属性模板类别的自增ID。</entry>
+              <entry align="center">模型类别的自增ID。</entry>
             </row>
 
             <row>
@@ -258,7 +258,7 @@
 
               <entry align="center"></entry>
 
-              <entry align="center">扩展属性模板的类别名称。</entry>
+              <entry align="center">模型类别名称。</entry>
             </row>
 
             <row>
@@ -274,7 +274,7 @@
 
               <entry align="center"></entry>
 
-              <entry align="center">扩展属性模板类别的描述。</entry>
+              <entry align="center">模型类别的描述。</entry>
             </row>
 
             <row>
@@ -290,7 +290,7 @@
 
               <entry align="center"></entry>
 
-              <entry align="center">扩展属性模板的类别父编码。</entry>
+              <entry align="center">模型类别上级ID。</entry>
             </row>
 
             <row>
@@ -564,150 +564,6 @@
               <entry align="center">0</entry>
 
               <entry align="center">是否是主键属性。</entry>
-            </row>
-
-            <row>
-              <entry align="center">position_order</entry>
-
-              <entry align="center">integer</entry>
-
-              <entry align="center"></entry>
-
-              <entry align="center">否</entry>
-
-              <entry align="center">否</entry>
-
-              <entry align="center"></entry>
-
-              <entry align="center">用于排序的值。</entry>
-            </row>
-
-            <row>
-              <entry align="center">update_time</entry>
-
-              <entry align="center">integer</entry>
-
-              <entry align="center"></entry>
-
-              <entry align="center">否</entry>
-
-              <entry align="center">否</entry>
-
-              <entry align="center"></entry>
-
-              <entry align="center">数据更新的时间。</entry>
-            </row>
-
-            <row>
-              <entry align="center">create_time</entry>
-
-              <entry align="center">integer</entry>
-
-              <entry align="center"></entry>
-
-              <entry align="center">否</entry>
-
-              <entry align="center">否</entry>
-
-              <entry align="center"></entry>
-
-              <entry align="center">数据创建的时间。</entry>
-            </row>
-          </tbody>
-        </tgroup>
-      </table>
-    </section>
-
-    <section>
-      <title>模型属性的类别数据表modelengine_core_attribute_categories</title>
-
-      <table>
-        <title>模型属性的类别数据表modelengine_core_attribute_categories</title>
-
-        <tgroup cols="7">
-          <colspec align="center" />
-
-          <thead>
-            <row>
-              <entry align="center">字段名称</entry>
-
-              <entry align="center">数据类型</entry>
-
-              <entry align="center">数据大小</entry>
-
-              <entry align="center">是否自增</entry>
-
-              <entry align="center">可否可空</entry>
-
-              <entry align="center">默认值</entry>
-
-              <entry align="center">注释</entry>
-            </row>
-          </thead>
-
-          <tbody>
-            <row>
-              <entry align="center">category_id</entry>
-
-              <entry align="center">integer</entry>
-
-              <entry align="center"></entry>
-
-              <entry align="center">是</entry>
-
-              <entry align="center">否</entry>
-
-              <entry align="center"></entry>
-
-              <entry align="center">扩展属性模板类别的自增ID。</entry>
-            </row>
-
-            <row>
-              <entry align="center">category_name</entry>
-
-              <entry align="center">varchar</entry>
-
-              <entry align="center"></entry>
-
-              <entry align="center">否</entry>
-
-              <entry align="center">否</entry>
-
-              <entry align="center"></entry>
-
-              <entry align="center">扩展属性模板的类别名称。</entry>
-            </row>
-
-            <row>
-              <entry align="center">category_description</entry>
-
-              <entry align="center">varchar</entry>
-
-              <entry align="center"></entry>
-
-              <entry align="center">否</entry>
-
-              <entry align="center">否</entry>
-
-              <entry align="center"></entry>
-
-              <entry align="center">扩展属性模板类别的描述。</entry>
-            </row>
-
-            <row>
-              <entry align="center">parent_id</entry>
-
-              <entry align="center">varchar</entry>
-
-              <entry align="center"></entry>
-
-              <entry align="center">否</entry>
-
-              <entry align="center">可空</entry>
-
-              <entry align="center"></entry>
-
-              <entry align="center">扩展属性模板的类别父编码。</entry>
             </row>
 
             <row>

@@ -50,7 +50,6 @@ define([
         var handler = this.options['add_handler'];
         if(handler){
             var form = new ModelEditableForm(this, {
-                'model': this.model,
                 'service': this.options['service'],
                 'add': this.options[OperateType.EDIT]
             });

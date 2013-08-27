@@ -89,7 +89,6 @@ class BModel extends BObject implements IBModel{
         $entity = $this->getEntityByCode($code);
         $model_table = $entity['model'];
         $attribute_table = $entity['attribute'];
-        
         if($model_table){
             foreach($attributes as $attribute){
                 if(array_key_exists('ext', $attribute) && $attribute['ext']){
@@ -186,7 +185,7 @@ class BModel extends BObject implements IBModel{
      *       'value' => ''
      * ),... ...)
      * @param $ext {Array} 数据库切割需要的扩展参数。
-	 * @return Int 新添加的模型ID（异常为-1）。
+	 * @return {Int} 新添加的模型ID（异常为-1）。
      */
     public function create($code, $attributes, $ext = array()){
         $id = -1;
@@ -216,6 +215,20 @@ class BModel extends BObject implements IBModel{
         }
         return $id;
     }
+
+    /**
+     * 向数据库插入模型数据。
+     * @param $code {String} 模型的编码。
+     * @param $name {String} 模型的名称。
+     * @param $description {String} 模型的描述信息。
+     * @param $model {String} 模型数据表。
+     * @param $attribute {String} 模型扩展属性数据表。
+     * @param $category {Int} 模型的类别ID。
+     * @return {Int} 新增数据的ID。
+     */
+    public function add($code, $name, $description, $model, $attribute, $category){
+        return $this->dao->add($code, $name, $description, $model, $attribute, $category);
+    }
     
     /**
      * 修改一个模型属性值。
@@ -237,7 +250,7 @@ class BModel extends BObject implements IBModel{
      *       'value' => ''
      * ),... ...)
      * @param $ext {Array} 数据库切割需要的扩展参数。
-	 * @return Boolean 是否操作成功。
+	 * @return {Boolean} 是否操作成功。
      */
     public function save($code, $id, $attributes, $ext = array()){
         $result = true;
@@ -273,7 +286,7 @@ class BModel extends BObject implements IBModel{
      * 删除一个模型。
      * @param $code {String} 模型的编码。
      * @param $id {Int} 模型数据的ID。
-	 * @return Boolean 是否操作成功。
+	 * @return {Boolean} 是否操作成功。
      * @param $ext {Array} 数据库切割需要的扩展参数。
      */
     public function remove($code, $id, $ext = array()){
@@ -295,7 +308,7 @@ class BModel extends BObject implements IBModel{
      * @param $id {Int} 模型数据的ID。
      * @param $attribute {Int} 模型属性的ID。
      * @param $ext {Array} 数据库切割需要的扩展参数。
-	 * @return Boolean 是否操作成功。
+	 * @return {Boolean} 是否操作成功。
      */
     public function removeAttributeValue($code, $id, $attribute, $ext = array()){
         $result = true;

@@ -16,6 +16,25 @@ class BModelCategory extends BObject implements IBModelCategory{
     }
     /*- IInjectEnable 接口实现 END -*/
     
+    /*- IModelListFetch 接口实现 START -*/
+    /**
+     * 获取模型列表。
+     * @param $code {String || Int} 用于获取列表的条件编码。
+     * @param $ext {Array} 扩展的附加条件字典。
+     * @return 模型列表。
+     */
+    public function fetchModelList($code, $ext){
+        $result = array();
+        $attributes = $this->manager->getAttributes(MODEL_TYPE_MODELCATEGORY);
+        $rows = $this->dao->getList();
+        foreach ($rows as $idx => $row) {
+            $entity = $this->manager->getAttributeValues(MODEL_TYPE_MODELCATEGORY, $row['id'], $attributes);
+            array_push($result, $entity);
+        }
+        return $result;
+    }
+    /*- IModelListFetch 接口实现 END -*/
+    
     /*- ISystemListFetch 接口实现 START -*/
     /**
      * 获取系统内置列表。
@@ -34,6 +53,16 @@ class BModelCategory extends BObject implements IBModelCategory{
         return $result;
     }
     /*- ISystemListFetch 接口实现 END -*/
+
+    /**
+     * 向数据库插入模型类别数据。
+     * @param $name {String} 模型类别名称。
+     * @param $description {String} 模型类别的描述信息。
+     * @return {Int} 新增数据的ID。
+     */
+    public function add($name, $description){
+        return $this->dao->add($name, $description);
+    }
     /*- IBModelCategory 接口实现 END -*/
     
     /*- 私有方法 START -*/

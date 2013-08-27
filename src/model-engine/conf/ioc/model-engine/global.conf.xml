@@ -10,4 +10,5 @@
         </properties>
     </bean>
     <bean id="modelengine.pages.modeldesignerpage" class="ModelDesignerPage" path="inc/modeldesignerpage.class.php" />
+    <bean id="modelengine.pages.modeltoolpage" class="ModelToolPage" path="inc/modeltoolpage.class.php" />
 </config>
