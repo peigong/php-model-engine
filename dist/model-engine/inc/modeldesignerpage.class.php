@@ -36,7 +36,6 @@ class ModelDesignerPage extends WebPage implements IInjectEnable {
             if (defined('STATIC_HOST')) {
                 $this->assign('StaticHost', STATIC_HOST);
             }
-
             $this->display($temp);
         }
     }
