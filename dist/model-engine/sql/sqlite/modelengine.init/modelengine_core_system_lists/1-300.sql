@@ -1,7 +1,0 @@
-/*- 系统内置属性值下拉列表数据表的数据，1-300条记录 -*/
-INSERT INTO [modelengine_core_system_lists] ([list_id], [list_name], [list_description], [list_clazz], [position_order], [update_time], [create_time]) VALUES (1, '模型可编辑属性列表', '模型可编辑属性列表。', 'modelengine.business.attribute', 0, 1364974632, 1364974632);
-INSERT INTO [modelengine_core_system_lists] ([list_id], [list_name], [list_description], [list_clazz], [position_order], [update_time], [create_time]) VALUES (2, '系统属性值列表', '系统属性值列表', 'modelengine.business.systemlist', 0, 1373373415, 1364974632);
-INSERT INTO [modelengine_core_system_lists] ([list_id], [list_name], [list_description], [list_clazz], [position_order], [update_time], [create_time]) VALUES (3, '模型类别列表', '模型类别列表。', 'modelengine.business.modelcategory', 0, 1364974632, 1364974632);
-INSERT INTO [modelengine_core_system_lists] ([list_id], [list_name], [list_description], [list_clazz], [position_order], [update_time], [create_time]) VALUES (4, '属性值的数据类型列表', '属性值的数据类型列表。', 'modelengine.business.valuetype', 0, 1364974632, 1364974632);
-INSERT INTO [modelengine_core_system_lists] ([list_id], [list_name], [list_description], [list_clazz], [position_order], [update_time], [create_time]) VALUES (5, '模型属性的默认值列表', '模型属性的默认值列表。', 'modelengine.business.defaultvalue', 0, 1364974632, 1364974632);
-INSERT INTO [modelengine_core_system_lists] ([list_id], [list_name], [list_description], [list_clazz], [position_order], [update_time], [create_time]) VALUES (6, '广告位的类别列表', '广告位的类别列表', 'adengine.business.slotcategory', 0, 1372650301, 1372650301);

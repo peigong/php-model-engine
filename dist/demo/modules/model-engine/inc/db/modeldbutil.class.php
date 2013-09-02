@@ -46,7 +46,7 @@ class ModelDbUtil implements IModelDbUtil{
         $this->util->import($path, $db);
         $mmd_path = implode('/', array($sql, $module, "$name.mmd.json"));
         if (is_file($mmd_path)) {
-            $mmd = json_decode(file_get_contents($mmd_path));
+            $mmd = json_decode(file_get_contents($mmd_path), true);
             foreach ($mmd as $code => $attr) {
                 $attr_update = array();
                 $current_mmd = array();
@@ -100,7 +100,7 @@ class ModelDbUtil implements IModelDbUtil{
                 $attributes = $this->manager->getAttributes($code);
                 foreach ($attributes as $idx => $attribute) {
                     if ($attribute['ext']) {
-                        array_push($mmd[$code], array($attribute['name'] => $attribute['id']));
+                        $mmd[$code][$attribute['name']] = $attribute['id'];
                     }
                 }
             }
