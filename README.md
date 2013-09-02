@@ -6,8 +6,8 @@
 
  * PHP版本的缓存机制框架：git clone https://github.com/peigong/php-cache.git --branch 0.0.2 ./libs/php-cache-0.0.2
  * PHP版本的IOC框架：git clone https://github.com/peigong/php-ioc.git --branch 0.0.6 ./libs/php-ioc-0.0.6
- * PHP版本的数据库访问框架：git clone https://github.com/peigong/php-db.git --branch 0.0.2 ./libs/php-db-0.0.2
- * PHP网站系统核心基类和接口库：git clone https://github.com/peigong/php-site-core.git --branch 0.0.4 ./libs/php-site-core-0.0.4
+ * PHP版本的数据库访问框架：git clone https://github.com/peigong/php-db.git --branch 0.1.0 ./libs/php-db-0.1.0
+ * PHP网站系统核心基类和接口库：git clone https://github.com/peigong/php-site-core.git --branch 0.1.0 ./libs/php-site-core-0.1.0
  * PHP WEB系统的常用工具库：git clone https://github.com/peigong/php-utils.git --branch 0.0.1 ./libs/php-utils-0.0.1
  * RequireJS框架([http://requirejs.org](http://requirejs.org))：git clone https://github.com/jrburke/requirejs.git --branch 2.1.8 ./libs/requirejs-2.1.8
  * jQuery框架([http://jquery.com](http://jquery.com))：git clone https://github.com/jquery/jquery.git --branch 2.0.3 ./libs/jquery-2.0.3
@@ -41,44 +41,49 @@
 
 ## 版本的更新记录 ##
 
+### 0.1.1 ###
+ * 增加了模型数据的数据库工具，用于其他系统模块的导入、导出数据。
+
 ### 0.1.0 ###
+ * 正式发布可使用版本。
  * 优化了DEMO时，JS配置文件的引用。
 
-### 0.0.11 ###
+### 开发内测版本 ###
+#### 0.0.11 ####
  * 修改了表单宿主模型的BUG。
 
-### 0.0.10 ###
+#### 0.0.10 ####
  * 优化了表单宿主模型的处理逻辑，更加流畅、优雅。
 
-### 0.0.9 ###
+#### 0.0.9 ####
  * 增加了导入、导出和备份的工具。
  * 表单数据由动态获取优化为可以一次生成，静态获取。
  * 约定了系统模块下的mdd目录存放标准的模型定义数据。
 
-### 0.0.8 ###
+#### 0.0.8 ####
  * 升级使用了，PHP网站系统核心基类和接口库的0.0.4版本。
  * 更新了二级菜单的处理方式。
 
-### 0.0.7 ###
+#### 0.0.7 ####
  * 调整目录结构，使模型和表单引擎遵循网站模块的配置标准。
 
-### 0.0.6 ###
+#### 0.0.6 ####
  * 恢复注释掉的表单描述信息，以使复选框控件显示出描述文本。
 
-### 0.0.5 ###
+#### 0.0.5 ####
  * 升级了PHP网站系统核心基类和接口库的版本。
 
-### 0.0.4 ###
+#### 0.0.4 ####
  * 兼容了配置文件中常量和接口可能重复定义的问题。
  * 为模型和表单引擎定义独立的数据库配置。
 
-### 0.0.3 ###
+#### 0.0.3 ####
  * 增加了列表控件向模型表单传递参数的机制。
 
-### 0.0.2 ###
+#### 0.0.2 ####
  * 修订了因为拼写错误所引起的上传控件BUG。
 
-### 0.0.1 ###
+#### 0.0.1 ####
  * 实现模型和模型表单引擎基本的框架机制。
 
 ## 作者信息 ##

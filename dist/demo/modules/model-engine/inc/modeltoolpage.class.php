@@ -8,7 +8,7 @@ require_once(ROOT . 'inc/core/ioc/applicationcontext.inc.php');
 class ModelToolPage extends WebPage implements IInjectEnable {
     private $type = 'tool';
     private $templates = array(
-        'tool' => array('title' => '模型数据的导入、导出工具', 'template' => 'model-tool.tpl.html')
+        'tool' => array('title' => '模型工具', 'template' => 'model-tool.tpl.html')
     );
 
     /*- IInjectEnable 接口实现 START -*/

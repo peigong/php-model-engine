@@ -16,14 +16,17 @@ abstract class DObject extends AbstractObject{
     protected $route = null;
     
     /**
+     * 数据库工具。
+     */
+    protected $util = null;
+    
+    /**
      * 初始化数据库。
      * @param $db {String} 要访问的数据库路径。
      * @param $sql {String} 用于初始化数据库的SQL文件路径。
      */
     protected function initialize($db, $sql){
-        //设定没有限期的执行时间。
-        set_time_limit(0);
-        $this->exec_sql_file($db, $sql);
+        $this->util->import($sql, $db);
     }
     
     /**
@@ -273,40 +276,6 @@ abstract class DObject extends AbstractObject{
             array_push($sql, $settings['order']);
         }
         return implode(' ', $sql);
-    }
-    
-    private function exec_sql_file($db, $path){
-        if(is_file($path)){
-            $cmd = @file_get_contents($path);
-            if(strlen($cmd) > 0){
-                $this->dao->runSql($cmd, $db);
-            }
-        }elseif(is_dir($path)){
-            if($dh = opendir($path)){
-                $sql_files = array();
-                $sql_dirs = array();
-                while(false !== ($file = readdir($dh))){
-                    if($file != '.' && $file != '..'){
-                        $sql_file = implode('/', array($path, $file));
-                        if(is_file($sql_file)){
-                            array_push($sql_files, $sql_file);
-                        }elseif(is_dir($sql_file)){
-                            array_push($sql_dirs, $sql_file);
-                        }
-                    }
-                }
-                // 先执行sql文件
-                foreach($sql_files as $sql_file){
-                    $this->exec_sql_file($db, $sql_file);
-                }
-                // 再执行sql目录
-                foreach($sql_dirs as $sql_dir){
-                    $this->exec_sql_file($db, $sql_dir);
-                }
-            }
-        }else{
-            //TODO:抛异常
-        }
     }
 }
 ?>

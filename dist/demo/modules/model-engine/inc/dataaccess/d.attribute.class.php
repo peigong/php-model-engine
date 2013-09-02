@@ -307,6 +307,40 @@ class DAttribute extends DObject implements IDAttribute {
         $this->delete($db, $settings);
         return true;
     }
+
+    /**
+    * 重置模型属性关联表中的扩展属性值的ID。
+    * @param $table {String} 模型属性关联表。
+    * @param $attributes {Array} 新旧扩展属性值ID的对照表。
+    * 数据格式如：array(array('old' => '', 'new' => ''))
+    */
+    public function reset($table, $attributes){
+        if (strlen($table) > 0) {
+            $db = $this->getDbByTable($table, array());
+            foreach ($attributes as $idx => $attribute) {
+                $old_id = 0;
+                $new_id = 0;
+                if (array_key_exists('old', $attribute)) {
+                    $old_id = $attribute['old'];
+                }
+                if (array_key_exists('new', $attribute)) {
+                    $new_id = $attribute['new'];
+                }
+                if (($old_id > 0) && ($new_id > 0)) {
+                    $conditions = "attribute_id = $old_id";
+                    $settings = array(
+                        'table' => $table, 
+                        'fields' => array(
+                            'attribute_id' => array('value' => $new_id, 'usequot' => false),
+                            'update_time' => array('value' => time(), 'usequot' => false)
+                        ),
+                        'conditions' => $conditions
+                    );
+                    $this->update($db, $settings);
+                }
+            }
+        }
+    }
     /*- IDAttribute 接口实现 END -*/
     
     /*- 私有方法 START -*/
@@ -360,7 +394,8 @@ class DAttribute extends DObject implements IDAttribute {
             'conditions' => $conditions
         );
         $db = $this->getDbByTable($table, $ext);
-        return !!$this->getVar($db, $settings);
+        $o = $this->getVar($db, $settings);
+        return !!$o;
     }
     
     

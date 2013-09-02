@@ -346,6 +346,14 @@ interface IDAttribute extends IInjectEnable{
 	 * @return {Boolean} 是否操作成功。
      */
     function removeValue($code, $modelId, $table, $attribute = -1, $ext = array());
+
+    /**
+    * 重置模型属性关联表中的扩展属性值的ID。
+    * @param $table {String} 模型属性关联表。
+    * @param $attributes {Array} 新旧扩展属性值ID的对照表。
+    * 数据格式如：array(array('old' => '', 'new' => ''))
+    */
+    function reset($table, $attributes);
 }
 
 /**

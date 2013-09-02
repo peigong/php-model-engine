@@ -92,6 +92,17 @@ class BAttribute extends BObject implements IBAttribute{
     public function getEntity($code, $field){
         return $this->dao->getEntity($code, $field);
     }
+
+
+    /**
+    * 重置模型属性关联表中的扩展属性值的ID。
+    * @param $table {String} 模型属性关联表。
+    * @param $attributes {Array} 新旧扩展属性值ID的对照表。
+    * 数据格式如：array(array('old' => '', 'new' => ''))
+    */
+    public function reset($table, $attributes){
+        return $this->dao->reset($table, $attributes);
+    }
     /*- IBAttribute 接口实现 END -*/
     
     /*- 私有方法 START -*/

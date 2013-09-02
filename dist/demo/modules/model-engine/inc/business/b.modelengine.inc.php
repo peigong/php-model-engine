@@ -190,6 +190,14 @@ interface IBAttribute extends IInjectEnable, IModelListFetch, ISystemListFetch{
      * @return {Int} 新增数据的ID。
      */
     function add($name, $comment, $type, $default, $model, $list, $ext, $editable, $autoupdate, $primary, $position, $category);
+
+    /**
+    * 重置模型属性关联表中的扩展属性值的ID。
+    * @param $table {String} 模型属性关联表。
+    * @param $attributes {Array} 新旧扩展属性值ID的对照表。
+    * 数据格式如：array(array('old' => '', 'new' => ''))
+    */
+    function reset($table, $attributes);
 }
 
 /**

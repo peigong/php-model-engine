@@ -7,6 +7,14 @@
         <properties>
             <property name="dao" ref="modelengine.global.dao" />
             <property name="route" ref="modelengine.global.db.route" />
+            <property name="util" ref="modelengine.global.dbutil" />
+        </properties>
+    </bean>
+    <bean id="modelengine.global.modeldbutil" class="ModelDbUtil" path="inc/db/modeldbutil.class.php">
+        <properties>
+            <property name="util" ref="modelengine.global.dbutil" />
+            <property name="manager" ref="modelengine.business.model" />
+            <property name="b_attribute" ref="modelengine.business.attribute" />
         </properties>
     </bean>
     <bean id="modelengine.pages.modeldesignerpage" class="ModelDesignerPage" path="inc/modeldesignerpage.class.php" />
