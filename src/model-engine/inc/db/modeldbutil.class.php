@@ -42,8 +42,10 @@ class ModelDbUtil implements IModelDbUtil{
     * @param $db {String} 数据库。
     */
     public function import($module, $name, $sql, $db){
-        $path = implode('/', array($sql, $module, $name));
-        $this->util->import($path, $db);
+        if ($db) {
+            $path = implode('/', array($sql, $module, $name));
+            $this->util->import($path, $db);
+        }
         $mmd_path = implode('/', array($sql, $module, "$name.mmd.json"));
         if (is_file($mmd_path)) {
             $mmd = json_decode(file_get_contents($mmd_path), true);
@@ -92,8 +94,11 @@ class ModelDbUtil implements IModelDbUtil{
         $path = implode('/', array($tmp, $module, $name));
         io_mkdir($path);
         foreach ($tables as $idx => $table) {
-            $sql = $this->util->export($db, array('type' => 'table', 'objects' => array($table)));
-            file_put_contents(implode('', array($path, '/', $table, '.sql')), $sql);
+            if ($db) {
+                $sql = $this->util->export($db, array('type' => 'table', 'objects' => array($table)));
+                file_put_contents(implode('', array($path, '/', $table, '.sql')), $sql);
+            }
+
             if (array_key_exists($table, $dict)) {
                 $code = $dict[$table];
                 $mmd[$code] = array();

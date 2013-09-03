@@ -34,7 +34,7 @@ require([
             'text': '[{ category_id }]{ category_name }',
             'name': 'category_name', 
 
-            'form': { 'static_fetch_service': '{$StaticHost}/forms/' + ModelType.MODEL_TYPE_MODELCATEGORY },
+            'form': { 'fetch_service': './svr/model_form_fetch.php' },
 
             'add': {
                 'handler': '#modelcategory_create_handler', 
@@ -56,7 +56,7 @@ require([
             'text': '[{ model_code }]{ model_name }',
             'name': 'model_name', 
 
-            'form': { 'static_fetch_service': '{$StaticHost}/forms/' + ModelType.MODEL },
+            'form': { 'fetch_service': './svr/model_form_fetch.php' },
 
             'add': {
                 'handler': '#model_create_handler', 
@@ -78,7 +78,7 @@ require([
             'text': '[{ attribute_name }]{ attribute_comment }',
             'name': 'attribute_comment', 
 
-            'form': { 'static_fetch_service': '{$StaticHost}/forms/' + ModelType.ATTRIBUTE },
+            'form': { 'fetch_service': './svr/model_form_fetch.php' },
 
             'add': {
                 'handler': '#attribute_create_handler', 

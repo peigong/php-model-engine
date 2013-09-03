@@ -11,7 +11,7 @@ form.form-inline label.checkbox{ margin-bottom: 10px; margin-left: 15px;}
         {include file="menu-model-engine-sub.html"}
         <div>{$Message}</div>
     	<div class="container">
-    		<h2>导入、备份和导出表单配置</h2>
+    		<h2>导入、导出和备份</h2>
 			<div class='left span6'>
 		        <h3>拥有模型定义数据的模块</h3>
 				<form class="form-inline" method="post">
@@ -29,14 +29,14 @@ form.form-inline label.checkbox{ margin-bottom: 10px; margin-left: 15px;}
 				</form>
 			</div>
 			<div class='span6'>
-		        <h3>备份、导出</h3>
-				<form class="form-inline" method="post">
-			        <input type='hidden' name='axn' value='backup' />
-		  			<button type="submit" class="btn">备份模型和表单引擎的数据库</button>
-				</form>
+		        <h3>导出表单配置、备份数据库</h3>
 				<form class="form-inline" method="post">
 			        <input type='hidden' name='axn' value='export-forms' />
 		  			<button type="submit" class="btn">导出模型和表单引擎的表单配置</button>
+				</form>
+				<form class="form-inline" method="post">
+			        <input type='hidden' name='axn' value='backup' />
+		  			<button type="submit" class="btn">备份模型和表单引擎的数据库</button>
 				</form>
 			</div>
 		</div>

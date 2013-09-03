@@ -61,7 +61,7 @@ require([
             'value': 'form_id', 'text': 'form_name', 
             'name': 'form_name', 
 
-            'form': { 'static_fetch_service': '{$StaticHost}/forms/' + ModelType.MODELFORM },
+            'form': { 'fetch_service': './svr/model_form_fetch.php' },
 
             'add': {
                 'handler': '#form_create_handler', 
@@ -103,7 +103,7 @@ require([
             'text': '[{ validation_method }]{ validation_message }',
             'name': 'validation_method', 
 
-            'form': { 'static_fetch_service': '{$StaticHost}/forms/' + ModelType.VALIDATION },
+            'form': { 'fetch_service': './svr/model_form_fetch.php' },
 
             'add': {
                 'handler': '#validation_create_handler', 
@@ -127,7 +127,7 @@ require([
             item = form_list.selectedItem;
         engine.clean();
         if(item.hasOwnProperty('form_id')){
-            var form = engine.create(item['form_id'], item['form_name'], {
+            var form = engine.create(item['form_id'], item['form_id'], {
                     'init_key': 'id',
                     'placeholder': '#form_placeholder', 
                     'fixedfields': { 'model_code': ModelType.MODEL, 'form_mode_code': ModelType.MODELFORM }

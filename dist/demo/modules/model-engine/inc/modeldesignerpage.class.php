@@ -33,9 +33,6 @@ class ModelDesignerPage extends WebPage implements IInjectEnable {
             $this->setTitle($title);
             $this->setMenuActive('model-engine-sub', $this->type);
             $this->smarty->addTemplateDir(ModelEngineRoot . 'templates');
-            if (defined('STATIC_HOST')) {
-                $this->assign('StaticHost', STATIC_HOST);
-            }
             $this->display($temp);
         }
     }

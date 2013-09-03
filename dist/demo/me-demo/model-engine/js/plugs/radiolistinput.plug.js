@@ -23,14 +23,14 @@ define([
             controls = util.createHorizontalContainer(o.containers, container, settings, form_name, attributes.label);
             
         o.controls[form_name] = {'id': form_name, 'name': settings.name, 'type': ModelType.RADIOLISTINPUT, 'field': attributes.field};
-        if (list && ext.hasOwnProperty('list_fetch_service')) {
+        if (list && ext.hasOwnProperty('list_service')) {
             var options = {
                 'type': list['type'], 
                 'id': list['id'],
                 /*宿主模型的用途主要是在特定情况下获取模型字段的列表*/
                 'parasitifer': ext['parasitifer']
             };
-            $.get(ext['list_fetch_service'], options, function(items){
+            $.get(ext['list_service'], options, function(items){
                 for(var i = 0; i < items.length; i++){
                     var lbl_rdl = $('<label class="radio inline">');
                     controls.append(lbl_rdl);

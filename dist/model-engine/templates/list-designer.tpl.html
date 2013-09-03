@@ -34,7 +34,7 @@ require([
             'text': 'list_name',
             'name': 'list_name', 
 
-            'form': { 'static_fetch_service': '{$StaticHost}/forms/' + ModelType.SYSTEMLIST },
+            'form': { 'fetch_service': './svr/model_form_fetch.php' },
 
             'add': {
                 'handler': '#systemlist_create_handler', 
@@ -56,7 +56,7 @@ require([
             'text': 'list_name',
             'name': 'list_name', 
             
-            'form': { 'static_fetch_service': '{$StaticHost}/forms/' + ModelType.CUSTOMLIST },
+            'form': { 'fetch_service': './svr/model_form_fetch.php' },
 
             'add': {
                 'handler': '#customlist_create_handler', 
@@ -78,7 +78,7 @@ require([
             'text': '[{ item_value }]{ item_text }',
             'name': 'item_text', 
             
-            'form': { 'static_fetch_service': '{$StaticHost}/forms/' + ModelType.CUSTOMLISTITEM },
+            'form': { 'fetch_service': './svr/model_form_fetch.php' },
 
             'add': {
                 'handler': '#customlistitem_create_handler', 

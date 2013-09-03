@@ -46,8 +46,12 @@ switch ($axn) {
 		if (defined('STATIC_PATH')) {
 			$target = STATIC_PATH;
 		}
-		$manager->export_forms($target);
-		$message = '成功导出了全部表单的配置数据！';
+		if (strlen($target) > 0) {
+			$manager->export_forms($target);
+			$message = '成功导出了全部表单的配置数据！';
+		}else{
+			$message = '没有定义常量：STATIC_PATH！';
+		}
 		break;
 	case 'backup':
 		$time = time();

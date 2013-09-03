@@ -93,6 +93,13 @@ abstract class WebPage{
                 $this->menu = $this->menuProvider->getMenuSettings($permissions, $this->menu);
             }
             $this->assign('Menu', $this->menu);
+            /*配置常用常量*/
+            if (defined('STATIC_HOST')) {
+                $this->assign('StaticHost', STATIC_HOST);
+            }
+            if (defined('VirtualModelEngineRoot')) {
+                $this->assign('VirtualModelEngineRoot', VirtualModelEngineRoot);
+            }
             @$this->smarty->display($tpl);
         }
     }

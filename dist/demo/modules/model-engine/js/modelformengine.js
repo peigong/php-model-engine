@@ -20,10 +20,10 @@ define([
             if(!ModelForm.Instances.hasOwnProperty(id)){        
                 var form = new ModelForm(id, name, options, def);
                 ModelForm.Instances[id] = form;
-                var data = {'name': name};
+                var data = { 'name': name };
                 if(options && options['init_key'] && ('id' == options['init_key'])){
                     //表单ID
-                    data = {'id': id};
+                    data = { 'id': name };
                 }
                 form.load($.extend(data, options));
             }

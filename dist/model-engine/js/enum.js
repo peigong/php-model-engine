@@ -88,8 +88,7 @@ define([], function() {
      * 模型的类别。
      */
     var ModelCategory = {
-        'FORMINPUT': 2,
-        'AD': 3
+        'FORMINPUT': 2
     };
     
     var FormfieldPrefix = {};

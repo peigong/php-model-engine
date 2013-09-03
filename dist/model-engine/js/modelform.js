@@ -67,19 +67,14 @@ define([
             'def_name': 'name',
 
             /**
-             * 拉取表单配置数据的服务器端动态地址。
+             * 拉取表单配置数据的服务器端地址。
              **/
-            'dynamic_fetch_service': './svr/model_form_fetch.php',
-
-            /**
-             * 拉取表单配置数据的服务器端静态地址。
-             **/
-            'static_fetch_service': '',
+            'fetch_service': './svr/model_form_fetch.php',
 
             /**
              * 拉取表单列表项的服务器端地址。
              **/
-            'list_fetch_service': './svr/form_list_fetch.php',
+            'list_service': './svr/form_list_fetch.php',
 
             /*接收表单提交数据的服务器端服务*/
             'action_service': './svr/model_form_save.php',
@@ -137,19 +132,19 @@ define([
          * 从服务器加载表单对象的配置。
          */
         load: function(data){
-            var service = this.options['static_fetch_service'];
+            var service = this.options['fetch_service'];
             if (data.hasOwnProperty('parasitifer')) {
                 /*宿主模型的用途主要是在特定情况下获取模型字段的列表*/
                 this.parasitifer = data.parasitifer;
             };
-            if (service) {
-                if (data.hasOwnProperty('name')) {
-                    $.getJSON(service + '/' + data['name'] + '.json', {}, $.proxy(this.initialise, this));
-                }
-            }else{
-                service = this.options['dynamic_fetch_service'];
-                $.getJSON(service, data, $.proxy(this.initialise, this));
-            }
+            var options = {};
+            if (data.hasOwnProperty('id')) {
+                options['id'] = data['id'];
+            };
+            if (data.hasOwnProperty('name')) {
+                options['name'] = data['name'];
+            };
+            $.getJSON(service, options, $.proxy(this.initialise, this));
         },
         
         /**
@@ -375,7 +370,7 @@ define([
                 /*宿主模型的用途主要是在特定情况下获取模型字段的列表*/
                 'parasitifer': this.parasitifer,
                 'inline': inline, 
-                'list_fetch_service': this.options['list_fetch_service'],
+                'list_service': this.options['list_service'],
                 'upload_service': this.options['upload_service'],
                 'createItem': $.proxy(this.createItem, this) 
             };

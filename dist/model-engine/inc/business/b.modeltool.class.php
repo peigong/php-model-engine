@@ -187,12 +187,14 @@ class BModelTool extends BObject implements IBModelTool{
         foreach ($forms as $idx => $form) {
             $id = $form['id'];
             $name = $form['name'];
-            $model = $form['model'];
-            $path = implode('/', array($target, 'forms', $model));
+
+            $path = implode('/', array($target, 'forms'));
             io_mkdir($path);
             $path .= "/$name.json";
-            $data = $this->form->getModelFormById($id, $model);
-            file_put_contents($path, json_encode($data));
+
+            $comment = '';//'/*- export from model-engine -*/';
+            $data = $this->form->getModelFormById($id);
+            file_put_contents($path, $comment . json_encode($data));
         }
     }
 

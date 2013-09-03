@@ -107,8 +107,8 @@ define([
                             designer = $(this).prop('designer'),
                             forms = designer.input_create_forms;
                         if(forms.hasOwnProperty(code) && forms[code]){
-                            var frm_id = forms[code];
-                            var form = engine.create(frm_id, frm_id, {
+                            var frm_name = forms[code];
+                            var form = engine.create(frm_name, frm_name, {
                                     /*宿主模型的用途主要是在特定情况下获取模型字段的列表*/
                                     'parasitifer': designer.form.model, //表单宿主的模型
                                     'fixedfields': {

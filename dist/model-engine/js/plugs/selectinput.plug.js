@@ -28,14 +28,14 @@ define([
         input.attr('name', form_name);
         o.controls[form_name] = {'id': form_name, 'name': settings.name, 'type': ModelType.SELECTINPUT, 'field': attributes.field};
 
-        if (list && ext.hasOwnProperty('list_fetch_service')) {
+        if (list && ext.hasOwnProperty('list_service')) {
             var options = {
                 'type': list['type'], 
                 'id': list['id'],
                 /*宿主模型的用途主要是在特定情况下获取模型字段的列表*/
                 'parasitifer': ext['parasitifer']
             };
-            $.getJSON(ext['list_fetch_service'], options, function(items){
+            $.getJSON(ext['list_service'], options, function(items){
                 var group = input;
                 for(var i = 0; i < items.length; i++){
                     if(items[i]['group']){
