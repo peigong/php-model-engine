@@ -36,6 +36,11 @@ define([
                 'fetch_service': '',
 
                 /**
+                 * 拉取表单列表项的服务器端地址。
+                 **/
+                'list_service': '',
+
+                /**
                 * 提供上传数据接收服务的地址。
                 */
                 'upload_service': '',

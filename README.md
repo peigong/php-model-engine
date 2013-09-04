@@ -6,7 +6,7 @@
 
  * PHP版本的缓存机制框架：git clone https://github.com/peigong/php-cache.git --branch 0.0.2 ./libs/php-cache-0.0.2
  * PHP版本的IOC框架：git clone https://github.com/peigong/php-ioc.git --branch 0.0.6 ./libs/php-ioc-0.0.6
- * PHP版本的数据库访问框架：git clone https://github.com/peigong/php-db.git --branch 0.1.0 ./libs/php-db-0.1.0
+ * PHP版本的数据库访问框架：git clone https://github.com/peigong/php-db.git --branch 0.1.1 ./libs/php-db-0.1.1
  * PHP网站系统核心基类和接口库：git clone https://github.com/peigong/php-site-core.git --branch 0.1.1 ./libs/php-site-core-0.1.1
  * PHP WEB系统的常用工具库：git clone https://github.com/peigong/php-utils.git --branch 0.0.1 ./libs/php-utils-0.0.1
  * RequireJS框架([http://requirejs.org](http://requirejs.org))：git clone https://github.com/jrburke/requirejs.git --branch 2.1.8 ./libs/requirejs-2.1.8
@@ -40,6 +40,10 @@
  * model-engine：可移植的模型和模型表单引擎的类库。具体使用需参考demo中的js和php配置。
 
 ## 版本的更新记录 ##
+
+### 0.1.4 ###
+ * 修订了单选按钮列表控件的BUG。
+ * 优化了在分库的情况下导入、导出的功能。
 
 ### 0.1.3 ###
  * 优化表单配置的获取方式，规避可能的跨域问题。

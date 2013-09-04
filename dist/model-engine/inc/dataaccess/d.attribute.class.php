@@ -310,13 +310,13 @@ class DAttribute extends DObject implements IDAttribute {
 
     /**
     * 重置模型属性关联表中的扩展属性值的ID。
+    * @param $db {String} 数据库。
     * @param $table {String} 模型属性关联表。
     * @param $attributes {Array} 新旧扩展属性值ID的对照表。
     * 数据格式如：array(array('old' => '', 'new' => ''))
     */
-    public function reset($table, $attributes){
+    public function reset($db, $table, $attributes){
         if (strlen($table) > 0) {
-            $db = $this->getDbByTable($table, array());
             foreach ($attributes as $idx => $attribute) {
                 $old_id = 0;
                 $new_id = 0;
